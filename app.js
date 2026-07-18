@@ -1,286 +1,186 @@
-const screens=[...document.querySelectorAll('.screen')];
-let fragments=["","","",""];
-try{fragments=JSON.parse(localStorage.getItem('gettysburgFragments')||'["","","",""]');}catch(e){fragments=["","","",""];}
-let selected=null, hintCount=0;
-function startPrologue(){
-  document.body.classList.add('prologue-mode');
-  const prologue=document.querySelector('[data-id="prologue"]');
-  if(!prologue)return;
-  prologue.classList.remove('run-intro');
-  void prologue.offsetWidth;
-  prologue.classList.add('run-intro');
+:root{
+  --bg:#f3efe6;--panel:#f8f4eb;--panel2:#efe9dd;--ink:#173f63;--muted:#6d7b87;
+  --paper:#fbf8f1;--paperink:#2d2a25;--red:#a33a2b;--blue:#173f63;--gold:#b58a4a;
+  --line:#c8c0b2;--ok:#4e7a5b;--warn:#a97836;--bad:#a0524d;--shadow:0 16px 40px rgba(49,55,61,.15)
 }
-function go(id){
-  screens.forEach(s=>s.classList.toggle('active',s.dataset.id===id));
-  const s=document.querySelector(`[data-id="${id}"]`);if(!s)return;
-  document.body.classList.toggle('prologue-mode',id==='prologue');
-  window.scrollTo({top:0,behavior:id==='prologue'?'auto':'smooth'});
-  updateProgress(s);
-  if(id==='prologue')startPrologue();
-  if(id==='B4'){
-    const everett=document.getElementById('everettSide');
-    const searching=document.getElementById('searching');
-    const remembered=document.getElementById('remembered');
-    if(everett)everett.classList.remove('fade-side');
-    if(searching)searching.style.display='block';
-    if(remembered)remembered.style.display='none';
-    setTimeout(()=>{everett?.classList.add('fade-side');if(searching)searching.style.display='none';if(remembered)remembered.style.display='block';},1500);
-  }
-}
-function updateProgress(s){const p=+s.dataset.progress||0;document.getElementById('globalProgress').style.width=p+'%';document.getElementById('progressLabel').textContent=p+'%';const caseId=s.dataset.case;document.getElementById('sectionLabel').textContent=caseId?'Case File '+caseId:(s.dataset.label||'Archive entry');renderKey();}
-function renderKey(){document.getElementById('keyMini').textContent=fragments.map((x,i)=>x||['██','██','██','█'][i]).join(' · ')}
-function unlockFragment(i,v){
-  fragments[i]=v;
-  try{localStorage.setItem('gettysburgFragments',JSON.stringify(fragments));}catch(e){}
-  renderKey();
-  toast('Recovery fragment '+v+' stored.');
-  document.querySelectorAll('.feedback.show .card').forEach(card=>{card.classList.remove('recovery-pulse');void card.offsetWidth;card.classList.add('recovery-pulse');});
-}
-function toast(t){const e=document.getElementById('toast');e.textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),1800)}
-document.addEventListener('click',e=>{const b=e.target.closest('[data-next]');if(b)go(b.dataset.next)});
-document.querySelectorAll('.options').forEach(box=>box.addEventListener('click',e=>{const o=e.target.closest('.option');if(!o)return;if(box.id==='a1opts')return;box.querySelectorAll('.option').forEach(x=>x.classList.remove('selected'));o.classList.add('selected');if(box.id==='b6mc')return;let fb=null;if(box.id==='a1mc')fb=document.getElementById('a1mcfb');else if(box.id==='a4mc')fb=document.getElementById('a4mcfb');else fb=document.getElementById(box.id.replace('mc','fb'))||document.getElementById(box.id+'fb');if(o.dataset.correct&&fb)fb.classList.add('show');else if(!o.dataset.correct)toast('Recheck the evidence.')}));
-function checkMulti(id,n,fbid){const sel=[...document.querySelectorAll('#'+id+' .selected')];const ok=sel.length===n&&sel.every(x=>x.dataset.correct);if(ok)document.getElementById(fbid).classList.add('show');else toast('Select only statements that the image itself can support.');}
-let timeline=[];
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:
+radial-gradient(circle at 10% 8%,rgba(23,63,99,.06),transparent 22%),
+radial-gradient(circle at 85% 18%,rgba(163,58,43,.05),transparent 24%),
+repeating-linear-gradient(0deg,rgba(23,63,99,.018) 0 1px,transparent 1px 4px),
+var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,textarea{font:inherit} button{cursor:pointer}
+.shell{min-height:100vh;display:grid;grid-template-rows:auto 1fr}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(248,244,235,.96);backdrop-filter:blur(10px);border-bottom:3px solid var(--red);padding:10px 16px;display:flex;align-items:center;gap:16px}
+.brand{display:flex;gap:11px;align-items:center;min-width:250px} .seal{width:34px;height:34px;border:2px solid var(--blue);border-radius:50%;display:grid;place-items:center;font-family:Georgia,serif;font-weight:700;color:var(--red);background:#fffaf0}
+.brand b{font-family:Georgia,serif;letter-spacing:.08em;color:var(--blue)} .smallcaps{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#66727b}
+.progresswrap{flex:1} .progressline{height:5px;background:#d8d0c3;border-radius:8px;overflow:hidden} .progressbar{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--red));transition:.6s}
+.progressmeta{display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);margin-top:4px}
+.keymini{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.8rem;color:var(--blue)}
+main{width:min(1160px,94vw);margin:0 auto;padding:34px 0 90px}
+.screen{display:none;animation:fade .45s ease} .screen.active{display:block} @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.archivehead{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;border-bottom:2px solid var(--blue);padding-bottom:16px;margin-bottom:24px;position:relative}
+.archivehead h1,.archivehead h2{font-family:Impact,'Arial Narrow',Haettenschweiler,sans-serif;margin:.15em 0;letter-spacing:.015em;color:var(--blue);text-transform:uppercase} .archivehead h1{font-size:clamp(2.2rem,5.2vw,5.1rem);line-height:.9;white-space:nowrap} .archivehead h2{font-size:clamp(1.8rem,4vw,3.6rem)}
+.kicker{letter-spacing:.18em;text-transform:uppercase;color:var(--red);font-size:.74rem;font-weight:700} .status{text-align:right;color:var(--blue);font-family:ui-monospace,monospace}
+.grid{display:grid;gap:20px} .g2{grid-template-columns:repeat(2,minmax(0,1fr))} .g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{background:rgba(251,248,241,.96);border:1px solid #cfc5b5;border-radius:8px;padding:20px;box-shadow:var(--shadow);position:relative}
+.card h3{font-family:Georgia,serif;margin-top:0;color:var(--blue)} .paper{background:var(--paper);color:var(--paperink);border:1px solid #c7b995;border-radius:2px;box-shadow:0 12px 34px rgba(59,51,41,.18);padding:28px;font-family:Georgia,serif;position:relative}
+.paper img{mix-blend-mode:multiply}
+.btn{border:1px solid var(--blue);background:var(--blue);color:#fffaf1;padding:12px 18px;border-radius:5px;text-transform:uppercase;letter-spacing:.1em;font-size:.78rem;font-weight:700}
+.btn:hover,.btn:focus{background:#255578;outline:2px solid rgba(163,58,43,.28);outline-offset:2px} .btn.primary{background:var(--red);border-color:var(--red)} .btn.ghost{background:transparent;color:var(--blue)} .btn[disabled]{opacity:.4;cursor:not-allowed}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.evidence-list{display:grid;gap:8px;font-family:ui-monospace,monospace;font-size:.84rem} .file{border:1px solid #c7c0b3;padding:10px 12px;background:#f7f2e8} .available{color:#4e7a5b} .damaged{color:#a96d43}
+.hero-copy{max-width:760px;font-size:1.12rem;line-height:1.7;color:#35495b} .dramatic{font-family:Georgia,serif;font-size:clamp(1.45rem,3vw,2.4rem);line-height:1.35;color:var(--blue)}
+.source-img{width:100%;max-height:520px;object-fit:contain;background:#efe8da;border:1px solid #b9ad9b;border-radius:2px}
+.source-note{font-size:.74rem;color:var(--muted);margin-top:8px;line-height:1.45}
+.options{display:grid;gap:10px;margin-top:16px} .option{text-align:left;padding:13px;border:1px solid #b9b2a6;background:#fbf8f1;color:#2f4658;border-radius:6px} .option.selected{border-color:var(--red);background:#f4e7df} .option.correct{border-color:#6f9b75;background:#edf4ee} .option.wrong{border-color:#9b6464;background:#f6e6e4}
+.feedback{display:none;margin-top:16px;border-left:4px solid var(--red);padding:13px 16px;background:#f5efe4;line-height:1.55;color:#30485b} .feedback.show{display:block}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:10px} .tile{border:1px solid #bbb3a7;background:#faf6ee;padding:16px;border-radius:6px;min-height:115px} .tile strong{display:block;font-family:Georgia,serif;font-size:1.25rem;color:var(--red)} .tile button{width:100%;margin-top:10px}
+.dropzone{border:1px dashed #8b98a3;padding:15px;min-height:64px;border-radius:6px;background:#f7f2e9;color:#2f4658} .dropzone.filled{border-style:solid;border-color:var(--red);background:#f5e9e2}
+.mapbox{position:relative;aspect-ratio:16/9;background:linear-gradient(135deg,#dce5ec,#f4efe6);border:1px solid #9ba9b4;overflow:hidden;border-radius:7px}
+.mapbox svg{width:100%;height:100%} .hotspot{position:absolute;width:34px;height:34px;border-radius:50%;border:2px solid #d6b16a;background:rgba(214,177,106,.18);transform:translate(-50%,-50%);animation:pulse 1.8s infinite} @keyframes pulse{50%{box-shadow:0 0 0 14px rgba(214,177,106,0)}}
+.person{display:grid;grid-template-columns:180px 1fr;gap:20px;align-items:start} .portrait{width:100%;aspect-ratio:4/5;object-fit:cover;filter:grayscale(.8) sepia(.15);border:1px solid #59636c}
+.badge{display:inline-block;border:1px solid var(--red);padding:5px 8px;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--red);background:#fbf6ed}
+.tooltip{border-bottom:1px dotted #c5af76;position:relative;cursor:help} .tooltip::after{content:attr(data-tip);position:absolute;left:0;bottom:calc(100% + 8px);width:230px;background:#f2ead6;color:#2a2722;padding:8px 10px;border-radius:4px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.2s;font-size:.78rem;line-height:1.35;z-index:20} .tooltip:hover::after,.tooltip:focus::after{opacity:1}
+.info{display:inline-grid;place-items:center;width:20px;height:20px;border:1px solid #71808c;border-radius:50%;font-size:.72rem;color:#b9c8d4;background:#111923}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.78);display:none;place-items:center;z-index:100;padding:20px} .modal.show{display:grid} .modalbox{width:min(680px,95vw);max-height:82vh;overflow:auto;background:#faf6ed;border:1px solid #b9b0a2;border-radius:8px;padding:24px;color:#2f4658}
+.speech{font-family:Georgia,serif;font-size:1.18rem;line-height:1.82;color:#2d2922;background:#eee6d5;padding:32px;border-radius:4px;box-shadow:var(--shadow)} .speech p{margin:0 0 1em} .markable{border-radius:3px;cursor:pointer;padding:1px 2px} .markable:hover{background:#e4d3a7} .markable.marked{background:#d7bd7a}
+textarea{width:100%;min-height:110px;background:#fffdf8;color:#2f4658;border:1px solid #aaa195;border-radius:5px;padding:12px;resize:vertical}
+.radio-row{display:flex;gap:9px;flex-wrap:wrap} .chip{border:1px solid #9da8b0;padding:8px 10px;border-radius:999px;background:#fbf8f1;color:#2f4658} .chip.active{background:#f0ddd4;border-color:var(--red)}
+.compare{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:stretch} .vs{align-self:center;font-family:Georgia,serif;font-size:2rem;color:#bda46e} .fade-side{opacity:.38;filter:grayscale(1);transition:1.2s}
+.section-speech{font-family:Georgia,serif;line-height:1.85;background:#fbf8f1;color:#2b2822;padding:26px;border:1px solid #c5b9a7} .sentence{display:inline} .boundary{display:inline-block;width:14px;height:22px;border-left:2px dotted #a67d48;margin:0 4px;vertical-align:-5px;cursor:pointer} .boundary.on{border-left:5px solid #8a4b3d}
+.sortgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px} .pool{display:grid;gap:8px} .note{padding:11px;border:1px solid #b8b0a4;background:#faf6ee;border-radius:5px;cursor:pointer;color:#2f4658} .note.active{border-color:var(--red);background:#f1e3dc}
+.argmap{display:grid;gap:9px;max-width:680px;margin:20px auto} .argnode{border:1px solid #a6b0b8;background:#f7f2e9;padding:12px 16px;text-align:center;border-radius:5px;color:var(--blue);font-weight:700} .arrow{text-align:center;color:var(--red);font-size:1.4rem}
+.levels{display:grid;gap:12px} .level{border-left:4px solid var(--blue);background:#f8f3ea;padding:14px;color:#2f4658} .level:nth-child(2){border-color:#8e6b45} .level:nth-child(3){border-color:var(--red)}
+.blueprint{display:grid;grid-template-columns:1fr 1fr;gap:14px} .layer{border:1px solid #b7afa2;background:#faf6ee;padding:13px;color:#2f4658} .quote{font-family:Georgia,serif;color:var(--red)}
+.keyentry{display:flex;justify-content:center;align-items:center;gap:10px;margin:26px 0} .keyentry input{width:110px;text-align:center;font-family:ui-monospace,monospace;font-size:1.6rem;background:#fffdf8;color:var(--blue);border:1px solid #9eaaaF;padding:10px} .keyentry span{font-size:2rem;color:#bda46e}
+.toast{position:fixed;right:16px;bottom:16px;background:var(--blue);border:1px solid var(--blue);color:#fffaf1;padding:12px 15px;border-radius:6px;opacity:0;transform:translateY(10px);transition:.25s;z-index:120} .toast.show{opacity:1;transform:none}
+.footer-sources{margin-top:50px;border-top:1px solid #303a44;padding-top:20px;color:#8f9daa;font-size:.75rem;line-height:1.55}
+@media(max-width:760px){.archivehead h1{font-size:clamp(1.9rem,9vw,3.1rem);white-space:nowrap}.g2,.g3,.sortgrid,.blueprint,.compare{grid-template-columns:1fr} .vs{display:none} .person{grid-template-columns:110px 1fr} .topbar{align-items:flex-start;flex-wrap:wrap} .progresswrap{order:3;flex-basis:100%} .timeline{grid-template-columns:1fr 1fr} .archivehead{align-items:flex-start;flex-direction:column} .status{text-align:left}}
+
+.archivehead::after{content:"★";position:absolute;left:50%;bottom:-11px;transform:translateX(-50%);background:var(--bg);padding:0 10px;color:var(--red);font-size:.8rem}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue) 0 42%,transparent 42% 58%,var(--red) 58% 100%);opacity:.6}
+.paper::before{content:"ARCHIVE COPY";position:absolute;top:10px;right:12px;font-family:ui-monospace,monospace;font-size:.62rem;letter-spacing:.14em;color:rgba(163,58,43,.55);transform:rotate(-2deg)}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.15;background-image:radial-gradient(circle at 20% 20%,rgba(23,63,99,.2) 0 1px,transparent 1.5px),radial-gradient(circle at 80% 40%,rgba(163,58,43,.15) 0 1px,transparent 1.5px);background-size:38px 38px,54px 54px;mix-blend-mode:multiply;z-index:0}
+main,.topbar{position:relative;z-index:1}
+
+/* Consolidated review adjustments */
+.archive-register{gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.archive-register .file{display:grid;grid-template-columns:24px 92px 1fr auto;gap:10px;align-items:center;border:0;border-bottom:1px solid #d8d1c6;border-radius:0;background:transparent;padding:11px 4px;color:var(--blue)}
+.archive-register .file:last-child{border-bottom:0}
+.archive-register .doc-icon{font-size:.85rem;color:#7d8992;opacity:.8}
+.archive-register .file-code{font-weight:700;letter-spacing:.04em}
+.archive-register .file-type{color:#4c5e6d}
+.archive-register .file-status{font-size:.72rem;letter-spacing:.1em;font-weight:700}
+.archive-register .available .file-status{color:#4e7a5b}.archive-register .damaged .file-status{color:#a96d43}
+.intro-compact .dramatic{font-size:clamp(1.18rem,2vw,1.65rem);line-height:1.35}
+.task-note{font-size:.83rem;font-weight:700;color:var(--red);letter-spacing:.03em;margin-top:-4px}
+.source-release{font-family:Georgia,serif;font-size:1.05rem;color:var(--blue)}
+.research-grid{display:flex;flex-direction:column;gap:24px;margin-top:20px}
+.research-card{display:grid;grid-template-columns:minmax(320px,.9fr) minmax(0,1.1fr);border:1px solid #c7beb0;background:#faf6ee;border-radius:7px;overflow:hidden;box-shadow:0 8px 22px rgba(49,55,61,.08)}
+.research-visual{min-width:0;background:#ece5d9;border-right:1px solid #c7beb0;display:flex;flex-direction:column}.research-card img{width:100%;height:340px;object-fit:contain;background:#ece5d9;display:block}.source-credit{padding:8px 12px;border-top:1px solid rgba(199,190,176,.75);background:#f4eee3;color:#6b6a64;font-size:.72rem;letter-spacing:.03em}
+.source-document-preview{min-height:340px;padding:42px 46px;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(135deg,#eee4d1,#f8f1e5);color:#463f34;font-family:Georgia,serif;position:relative;overflow:hidden}
+.source-document-preview:before{content:"";position:absolute;inset:12px;border:1px solid rgba(86,67,45,.25);pointer-events:none}
+.source-document-preview p{position:relative;margin:.65rem 0;font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.65}
+.source-document-preview .smallcaps{position:relative;color:#765f46}
+.recovered-context-strip{max-width:900px;margin:-4px 0 22px;padding:14px 18px;border-top:1px solid #bdb4a6;border-bottom:1px solid #bdb4a6;background:rgba(247,242,232,.72);color:#405264}.recovered-context-strip p{margin:.45rem 0 0;line-height:1.6}
+.recovered-fragment{margin:0 0 22px;padding:16px 18px;background:#f5efe4;border-left:4px solid #274b6b}.recovered-fragment h3{margin:.3rem 0 .45rem}.recovered-fragment p{margin:0;line-height:1.6}
+
+.research-body{padding:24px;display:grid;align-content:start;gap:14px}.research-hint{margin:0;line-height:1.6;color:#465a69}.term-notes{display:grid;gap:6px;padding:10px 12px;border-left:3px solid #7f91a0;background:#f4f0e8;color:#4c5f6e;font-size:.83rem;line-height:1.5}.term-notes p{margin:0}
+.research-body label{display:grid;gap:5px;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:#657480}
+.research-body input{width:100%;padding:10px;border:1px solid #b6aea2;border-radius:4px;background:#fffdf8;color:#2f4658}
+.source-link{font-size:.78rem;color:var(--blue);text-decoration:underline;text-underline-offset:3px}
+.research-card.verified{border-color:#6f9b75;background:#f4f8f3}.research-card.verified .verify-source{background:#4e7a5b;border-color:#4e7a5b}
+.timeline-builder{margin-top:24px;padding-top:20px;border-top:1px solid #d2cabd}.timeline-pool{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}.timeline-choice{flex:1 1 210px;text-align:left}.timeline-choice.selected{opacity:.45}.timeline-sequence{display:flex;flex-wrap:wrap;gap:8px}
+.progressmeta #sectionLabel{font-weight:700;color:var(--blue)}
+@media(max-width:840px){.archive-register .file{grid-template-columns:20px 76px 1fr}.archive-register .file-status{grid-column:3}.research-card{grid-template-columns:1fr}.research-visual{border-right:0;border-bottom:1px solid #c7beb0}.research-card img{height:min(56vw,360px)}.source-document-preview{min-height:280px;padding:32px 28px}}
 
 
-
-// A01 research timeline and historical bridge
-const researchAnswers={
-  lincoln:{
-    year:'1860',
-    aliases:[
-      'abraham lincoln elected president','lincoln elected president','lincoln is elected president',
-      'lincoln wins the presidential election','lincoln won the presidential election','lincoln wins the election',
-      'election of abraham lincoln','election of lincoln','presidential election of 1860','lincoln election'
-    ]
-  },
-  secession:{
-    year:'1860',
-    aliases:[
-      'ordinance to dissolve the union','ordinance to dissolve','ordinance of secession',
-      'south carolina ordinance of secession','south carolinas ordinance of secession',
-      'secession of south carolina','south carolinas secession','south carolina secession',
-      'south carolina secedes from the union','south carolina secedes from union',
-      'south carolina leaves the union','south carolina leaves union','south carolina left the union',
-      'south carolina breaks from the union','south carolina breaks with the union',
-      'south carolina withdraws from the union','south carolina withdrew from the union'
-    ]
-  },
-  fortsumter:{
-    year:'1861',
-    aliases:[
-      'battle of fort sumter','battle at fort sumter','attack on fort sumter','attack at fort sumter',
-      'bombardment of fort sumter','fort sumter','beginning of the american civil war',
-      'start of the american civil war','outbreak of the american civil war','american civil war begins',
-      'beginning of the civil war','start of the civil war','civil war begins','civil war starts'
-    ]
-  }
-};
-function normalizeText(v){
-  return (v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()
-    .replace(/[’']/g,'').replace(/[^a-z0-9\s-]/g,' ').replace(/-/g,' ')
-    .replace(/\b(the|a|an)\b/g,' ').replace(/\s+/g,' ').trim();
-}
-function canonicalText(v){
-  return normalizeText(v).split(' ').filter(Boolean).map(word=>{
-    if(word.length>5&&word.endsWith('ies')) return word.slice(0,-3)+'y';
-    if(word.length>4&&word.endsWith('s')&&!word.endsWith('ss')) return word.slice(0,-1);
-    return word;
-  }).join(' ');
-}
-function editDistance(a,b){
-  if(a===b)return 0;if(!a.length)return b.length;if(!b.length)return a.length;
-  const prev=Array.from({length:b.length+1},(_,i)=>i);
-  for(let i=1;i<=a.length;i++){
-    let left=i,diag=prev[0];prev[0]=i;
-    for(let j=1;j<=b.length;j++){
-      const up=prev[j],cost=a[i-1]===b[j-1]?0:1;
-      const val=Math.min(up+1,left+1,diag+cost);diag=up;prev[j]=val;left=val;
-    }
-  }
-  return prev[b.length];
-}
-function closeEnough(input,alias){
-  const a=canonicalText(input),b=canonicalText(alias);if(!a||!b)return false;
-  if(a===b)return true;
-  if((a.includes(b)||b.includes(a))&&Math.min(a.length,b.length)>=8)return true;
-  const maxLen=Math.max(a.length,b.length);
-  const allowed=maxLen<12?1:maxLen<25?2:Math.min(4,Math.floor(maxLen*.09));
-  return editDistance(a,b)<=allowed;
-}
-function semanticEventMatch(id,input){
-  const s=canonicalText(input);
-  if(!s)return false;
-  if(id==='lincoln'){
-    return /\blincoln\b/.test(s)&&(/\belect/.test(s)||/\belection\b/.test(s)||(/\bpresident\b/.test(s)&&/\bwin\b/.test(s)));
-  }
-  if(id==='secession'){
-    const hasSC=/south carolina/.test(s);
-    const secessionAction=/\bseced|\bsecession\b|\bleave\b|\bleft\b|\bbreak\b|\bbroke\b|\bwithdraw/.test(s);
-    const ordinanceAction=/\bordinance\b/.test(s)&&(/\bsecession\b|\bdissolve\b/.test(s));
-    return (hasSC&&secessionAction)||ordinanceAction;
-  }
-  if(id==='fortsumter'){
-    if(/fort sumter/.test(s))return true;
-    return /civil war/.test(s)&&(/\bbegin\b|\bstart\b|\boutbreak\b/.test(s));
-  }
-  return false;
-}
-function eventMatches(id,value){
-  const answer=researchAnswers[id];
-  if(!answer)return false;
-  return semanticEventMatch(id,value)||answer.aliases.some(alias=>closeEnough(value,alias));
-}
-function yearMatches(value,expectedYear){
-  const years=(value||'').match(/\b(?:17|18|19|20)\d{2}\b/g)||[];
-  return years.includes(expectedYear)||normalizeText(value)===expectedYear;
-}
-let verifiedSources=new Set();
-document.querySelectorAll('.verify-source').forEach(btn=>btn.addEventListener('click',()=>{
-  const card=btn.closest('.research-card'); const id=card.dataset.id; const a=researchAnswers[id];
-  const ev=card.querySelector('.research-event').value; const yr=card.querySelector('.research-year').value;
-  const eventOk=eventMatches(id,ev); const yearOk=yearMatches(yr,a.year);
-  if(eventOk&&yearOk){
-    card.classList.add('verified'); btn.textContent='VERIFIED'; verifiedSources.add(id);
-    if(verifiedSources.size===3){
-      document.getElementById('timelineFb')?.classList.add('show');
-      const bridge=document.getElementById('civilWarContext'); if(bridge) bridge.hidden=false;
-      toast('All three sources identified. The historical chain is now visible.');
-    }
-  } else if(!eventOk&&yearOk){
-    toast('The year fits, but the event is not identified clearly enough yet.');
-  } else if(eventOk&&!yearOk){
-    toast('The event fits. Check the year once more.');
-  } else {
-    toast('Not yet. Research the source and check both the event and the year.');
-  }
-}));
+/* Consolidated A/B review updates */
+.evidence-register{display:grid;gap:0;border-top:1px solid #c8c0b2;border-bottom:1px solid #c8c0b2}
+.evidence-row{display:grid;grid-template-columns:28px 62px 1fr auto;gap:10px;align-items:center;padding:11px 4px;border-bottom:1px solid #ddd5c8;background:transparent}
+.evidence-row:last-child{border-bottom:0}
+.evidence-icon{color:#6d7b87;font-size:.95rem}.evidence-code{font-family:ui-monospace,monospace;font-weight:700;color:#173f63}.evidence-type{font-size:.78rem;letter-spacing:.08em;color:#40586c}.evidence-status{font-family:ui-monospace,monospace;font-size:.72rem;letter-spacing:.08em;font-weight:700}.evidence-status.available{color:#4e7a5b}.evidence-status.damaged{color:#a96d43}
+.intro-card .intro-compact,.context-lead .intro-compact{font-family:Georgia,serif;font-size:clamp(1.05rem,1.5vw,1.35rem);line-height:1.55;color:#274b6b;margin-top:0}
+.context-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0 22px}.context-grid>div{border-left:3px solid #173f63;background:#f7f2e9;padding:12px}.context-grid b{color:#a33a2b;font-size:.78rem;letter-spacing:.12em}.context-grid p{margin:.45em 0 0;line-height:1.5}
+.auto-timeline{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:8px;margin:16px 0}.auto-timeline>div:not(.timeline-arrow){background:#fffaf2;border:1px solid #c9bda9;padding:12px;text-align:center}.auto-timeline strong{display:block;color:#a33a2b;font-family:Georgia,serif;font-size:1.15rem}.auto-timeline span{display:block;margin-top:4px;font-size:.8rem}.timeline-arrow{color:#a33a2b;font-size:1.25rem;text-align:center}
+.locator-map{position:relative;aspect-ratio:900/620;border:1px solid #9ba9b4;border-radius:7px;overflow:hidden;background:#eef2f4;box-shadow:0 10px 28px rgba(49,55,61,.12)}.locator-map svg{width:100%;height:100%;display:block}.map-click-layer{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent;cursor:crosshair}.map-marker{position:absolute;transform:translate(-50%,-50%);font-size:2rem;line-height:1;color:#a33a2b;text-shadow:0 1px 0 #fff,0 0 5px #fff;pointer-events:none}
+.recovered-data{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.recovered-data .note.assigned{opacity:.38;text-decoration:line-through}.occasion-fields{display:grid;gap:8px}.assign.filled,.cat.filled{border-style:solid;border-color:#a33a2b;background:#f5e9e2}.task-note{font-size:.78rem;color:#6d7b87;line-height:1.45}
+.note.assigned{opacity:.48}.note.assigned::after{content:'  ✓';color:#4e7a5b;font-weight:700}
+.case-progress-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:#6d7b87}
+@media(max-width:760px){.context-grid,.recovered-data{grid-template-columns:1fr}.auto-timeline{grid-template-columns:1fr}.timeline-arrow{transform:rotate(90deg)}.evidence-row{grid-template-columns:24px 54px 1fr}.evidence-status{grid-column:3}.archivehead h1{white-space:normal}}
 
 
-// A02 geographic locator: users may retry until the target area is found
-const mapLayer=document.getElementById('mapClickLayer');
-mapLayer?.addEventListener('click',(event)=>{
-  const rect=mapLayer.getBoundingClientRect();
-  const x=(event.clientX-rect.left)/rect.width;
-  const y=(event.clientY-rect.top)/rect.height;
-  const marker=document.getElementById('mapMarker');
-  if(marker){marker.hidden=false;marker.style.left=(x*100)+'%';marker.style.top=(y*100)+'%';}
-  // Approximate Gettysburg target on this locator map: south-central Pennsylvania.
-  const targetX=.405, targetY=.39; const hit=Math.hypot(x-targetX,y-targetY)<.085;
-  document.getElementById('mapRetry')?.classList.toggle('show',!hit);
-  document.getElementById('mapfb')?.classList.toggle('show',hit);
-});
+/* ===== Cinematic narrative system ===== */
+body.prologue-mode{background:#07090c;overflow-x:hidden}
+body.prologue-mode .topbar{opacity:0;transform:translateY(-12px);pointer-events:none}
+.topbar{transition:opacity .5s ease,transform .5s ease}
+.prologue-screen{min-height:100vh;margin:-34px calc((100vw - min(1160px,94vw))/-2) -90px;width:100vw;background:#07090c;color:#f4efe5;overflow:hidden}
+.prologue-stage{position:relative;min-height:100vh;display:grid;place-items:center;padding:7vh 6vw;background:radial-gradient(circle at 50% 40%,rgba(35,49,64,.28),transparent 42%),#07090c}
+.cold-open{position:absolute;inset:0;display:grid;place-content:center;text-align:center;gap:.35rem;width:min(900px,90vw);margin:auto}
+.cold-line{margin:0;font-family:Georgia,serif;font-size:clamp(1.4rem,3.2vw,3rem);letter-spacing:.02em;opacity:0;transform:translateY(12px);animation:coldLineIn 1s ease forwards}
+.line-1{animation-delay:.8s}.line-2{animation-delay:3.4s}.line-3{animation-delay:6s;color:#d7cbb7}.line-4{animation-delay:8.6s;color:#d7cbb7}.line-5{animation-delay:11.2s;color:#d7cbb7}
+.cold-open{animation:coldOpenOut 1.2s ease 15.8s forwards}
+.cinematic-blackout{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;animation:blackout 1.8s ease 15.4s forwards}
+.archive-origin{position:relative;z-index:2;width:min(920px,90vw);opacity:0;transform:translateY(18px);animation:archiveOriginIn 1.2s ease 17.2s forwards;padding:5vh 0}
+.origin-copy{max-width:760px;margin:0 auto;color:#c9d0d6;font-size:clamp(.98rem,1.6vw,1.16rem);line-height:1.75}
+.origin-copy p{margin:0 0 1rem}
+.origin-turn{color:#f0e6d5}
+.origin-fragments{display:grid;gap:.15rem;margin:1.6rem 0!important;font-family:Georgia,serif;font-size:clamp(1.25rem,2.4vw,2rem);color:#fff}
+.prologue-interface{margin:3rem auto 0;text-align:center;opacity:0;animation:interfaceReveal 1s ease 22.4s forwards}
+.prologue-interface h1{font-family:Impact,'Arial Narrow',Haettenschweiler,sans-serif;font-size:clamp(2.6rem,7vw,6.6rem);line-height:.92;letter-spacing:.02em;margin:.15em 0 .28em;color:#f7f0e4;white-space:nowrap}
+.prologue-interface .smallcaps{color:#b9c4cc}
+.prologue-recovery{display:flex;justify-content:space-between;align-items:center;max-width:540px;margin:0 auto 6px;text-transform:uppercase;letter-spacing:.13em;font-size:.72rem;color:#aeb9c1}
+.prologue-progress{max-width:540px;margin:0 auto;background:#2a3036}
+.prologue-access{margin-top:1.5rem;opacity:0;transform:translateY(8px);animation:accessReveal .7s ease 23.4s forwards}
+@keyframes coldLineIn{to{opacity:1;transform:none}}
+@keyframes coldOpenOut{to{opacity:0;transform:scale(.985)}}
+@keyframes blackout{0%{opacity:0}45%,100%{opacity:1}}
+@keyframes archiveOriginIn{to{opacity:1;transform:none}}
+@keyframes interfaceReveal{to{opacity:1}}
+@keyframes accessReveal{to{opacity:1;transform:none}}
 
-// A03 invitation reconstruction with reversible assignments
-const openOccasion=document.getElementById('openOccasion');
-openOccasion?.addEventListener('click',()=>{const box=document.getElementById('a3recon');if(box)box.hidden=false;});
-let occasionSelected=null;
-document.querySelectorAll('#occasionPool .note').forEach(n=>n.addEventListener('click',()=>{
-  if(n.classList.contains('assigned')) return;
-  document.querySelectorAll('#occasionPool .note').forEach(x=>x.classList.remove('active')); n.classList.add('active'); occasionSelected=n;
-}));
-function occasionComplete(){return [...document.querySelectorAll('.assign')].every(x=>x.classList.contains('filled'));}
-document.querySelectorAll('.assign').forEach(z=>z.addEventListener('click',()=>{
-  if(z.classList.contains('filled')&&!occasionSelected){
-    const value=z.dataset.assignedValue; const source=[...document.querySelectorAll('#occasionPool .note')].find(n=>n.dataset.value===value);
-    source?.classList.remove('assigned'); z.classList.remove('filled'); z.textContent=z.dataset.label; delete z.dataset.assignedValue; return;
-  }
-  if(!occasionSelected) return toast('Select a recovered data card first.');
-  if(z.dataset.answer===occasionSelected.dataset.value){
-    if(z.classList.contains('filled')){const old=z.dataset.assignedValue;document.querySelector(`#occasionPool .note[data-value="${CSS.escape(old)}"]`)?.classList.remove('assigned');}
-    z.textContent=z.dataset.label+' · '+occasionSelected.dataset.value; z.classList.add('filled'); z.dataset.assignedValue=occasionSelected.dataset.value;
-    occasionSelected.classList.remove('active'); occasionSelected.classList.add('assigned'); occasionSelected=null;
-    if(occasionComplete()) document.getElementById('a3reconfb')?.classList.add('show');
-  } else toast('That fragment belongs in another field. You can try another field.');
-}));
+/* Narrative setup: story first, task second */
+.narrative-setup{max-width:900px;margin:0 0 24px;padding:18px 22px 18px 24px;border-left:4px solid var(--red);background:linear-gradient(90deg,rgba(255,252,246,.9),rgba(248,243,234,.5));color:#30485b;box-shadow:0 10px 24px rgba(49,55,61,.07);font-family:Georgia,serif;font-size:clamp(1.02rem,1.65vw,1.22rem);line-height:1.65}
+.narrative-setup p{margin:.1rem 0 .55rem}.narrative-setup p:last-child{margin-bottom:.1rem}
+.case-overview-story{max-width:none;margin-bottom:18px;font-size:clamp(1.05rem,1.8vw,1.3rem)}
+.archive-register{margin:0 0 18px;border-top:1px solid #bdb4a6;border-bottom:1px solid #bdb4a6;background:rgba(247,242,232,.62);padding:16px 18px}
+.register-heading{margin-bottom:8px}
+.evidence-register{display:grid;gap:0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.83rem}
+.evidence-row{display:grid;grid-template-columns:26px 54px minmax(0,1fr) auto;align-items:center;gap:10px;padding:10px 4px;border-top:1px solid rgba(164,155,141,.48)}
+.evidence-row:first-child{border-top:0}
+.evidence-icon{color:#7d8a93;font-size:.92rem}.evidence-code{font-weight:700;color:var(--blue)}.evidence-type{color:#536574}.evidence-status{font-size:.72rem;letter-spacing:.11em;font-weight:700}.evidence-status.available{color:#4e7a5b}.evidence-status.damaged{color:#a96d43}.evidence-status.corrupted{color:#9a4d47}.evidence-status.locked{color:#7e7780}
+.overview-cta{display:flex;justify-content:flex-start;margin-top:20px}
 
-// A04 case reconstruction with reversible assignments
-let caseSel=null; const caseDone=new Set();
-document.querySelectorAll('#casePool .note').forEach(n=>n.addEventListener('click',()=>{
-  if(n.classList.contains('assigned')) return;
-  caseSel=n; document.querySelectorAll('#casePool .note').forEach(x=>x.classList.remove('active')); n.classList.add('active');
-}));
-document.querySelectorAll('.cat').forEach(c=>c.addEventListener('click',()=>{
-  if(c.classList.contains('filled')&&!caseSel){
-    const cat=c.dataset.cat; const source=document.querySelector(`#casePool .note[data-cat="${cat}"]`); source?.classList.remove('assigned'); c.classList.remove('filled'); c.textContent=c.dataset.label; caseDone.delete(cat); return;
-  }
-  if(!caseSel) return toast('Select an evidence statement first.');
-  if(c.dataset.cat===caseSel.dataset.cat){
-    c.textContent=c.dataset.label+' · '+caseSel.textContent; c.classList.add('filled'); caseDone.add(c.dataset.cat); caseSel.classList.remove('active'); caseSel.classList.add('assigned'); caseSel=null;
-    if(caseDone.size===5) document.getElementById('a4fb')?.classList.add('show');
-  } else toast('This evidence belongs in another category.');
-}));
-function openModal(id){document.getElementById(id).classList.add('show')} function closeModal(id){document.getElementById(id).classList.remove('show')}
-let speechSel=null;
-document.querySelectorAll('.speechfrag').forEach(n=>n.addEventListener('click',()=>{if(n.classList.contains('assigned'))return;speechSel=n;document.querySelectorAll('.speechfrag').forEach(x=>x.classList.remove('active'));n.classList.add('active');}));
-document.querySelectorAll('.speechslot').forEach(z=>z.addEventListener('click',()=>{
-  if(z.classList.contains('filled')&&!speechSel){const val=z.dataset.assignedValue;document.querySelector(`.speechfrag[data-value="${CSS.escape(val)}"]`)?.classList.remove('assigned');z.classList.remove('filled');z.textContent=z.dataset.label||('['+z.dataset.answer+']');delete z.dataset.assignedValue;return;}
-  if(!speechSel)return toast('Select a recovered data fragment.');
-  if(z.dataset.answer===speechSel.dataset.value){z.dataset.label=z.dataset.label||z.textContent;z.textContent=z.dataset.answer;z.classList.add('filled');z.dataset.assignedValue=speechSel.dataset.value;speechSel.classList.remove('active');speechSel.classList.add('assigned');speechSel=null;if([...document.querySelectorAll('.speechslot')].every(x=>x.classList.contains('filled')))document.getElementById('b3fb')?.classList.add('show');}else toast('This fragment does not fit that record.');
-}));
-let reactionPassage='',reactionCat='';
-document.querySelectorAll('#speechB5 .markable').forEach(m=>m.onclick=()=>{document.querySelectorAll('#speechB5 .markable').forEach(x=>x.classList.remove('marked'));m.classList.add('marked');reactionPassage=m.textContent});
-document.querySelectorAll('#reactionCats .chip').forEach(c=>c.onclick=()=>{document.querySelectorAll('#reactionCats .chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');reactionCat=c.textContent});
-function saveFirstReaction(){const txt=document.getElementById('reactionText').value.trim();if(!reactionPassage||!txt||!reactionCat)return toast('Mark a passage, write a short explanation and choose a category.');localStorage.setItem('gettysburgFirstReaction',JSON.stringify({passage:reactionPassage,text:txt,category:reactionCat}));document.getElementById('b5fb').classList.add('show')}
-function submitB6(){const choice=document.querySelector('#b6mc .selected');const just=document.getElementById('b6just').value.trim();if(!choice||just.length<20)return toast('Choose one statement and add a brief justification.');localStorage.setItem('gettysburgComprehension',JSON.stringify({choice:choice.textContent,justification:just}));document.getElementById('b6fb').classList.add('show')}
-document.querySelectorAll('.boundary').forEach(b=>b.onclick=()=>b.classList.toggle('on'));
-function checkBoundaries(){const ons=[...document.querySelectorAll('.boundary.on')].map(x=>x.dataset.b);if(ons.join(',')==='1,2,3,4')document.getElementById('c1fb').classList.add('show');else{hintCount++;toast('The structure is not complete yet. Look for shifts in time, focus or purpose.')}}
-function showHint(){const f=document.getElementById('c1hint');f.classList.add('show');f.innerHTML=hintCount<2?'<b>HINT 1</b><br>A new section begins when Lincoln changes his time frame, his focus, or what he is trying to achieve.':'<b>HINT 2</b><br>Look for moves from the nation\'s beginnings → Civil War → Gettysburg itself → words to sacrifice → dead to living.'}
-let funcSel=null,funcDone=0;
-document.querySelectorAll('#funcPool .note').forEach(n=>n.addEventListener('click',()=>{if(n.classList.contains('assigned'))return;funcSel=n;document.querySelectorAll('#funcPool .note').forEach(x=>x.classList.remove('active'));n.classList.add('active');}));
-document.querySelectorAll('.secslot').forEach(z=>z.addEventListener('click',()=>{
-  if(z.classList.contains('filled')&&!funcSel){const sec=z.dataset.sec;document.querySelector(`#funcPool .note[data-sec="${sec}"]`)?.classList.remove('assigned');z.classList.remove('filled');z.textContent='SECTION '+sec;funcDone=Math.max(0,funcDone-1);return;}
-  if(!funcSel)return toast('Select a function card.');
-  if(z.dataset.sec===funcSel.dataset.sec){z.textContent='SECTION '+z.dataset.sec+' · '+funcSel.textContent;z.classList.add('filled');funcSel.classList.remove('active');funcSel.classList.add('assigned');funcSel=null;funcDone++;if(funcDone===5)document.getElementById('c2fb')?.classList.add('show');}else toast('That function does not match this section.');
-}));
-let c2EvidenceStep=1;
-document.querySelectorAll('.c2ev').forEach(span=>span.addEventListener('click',()=>{
-  const step=Number(span.dataset.step);
-  if(step!==c2EvidenceStep){
-    toast('Work through the evidence prompts in order.');
-    return;
-  }
-  span.classList.add('marked');
-  c2EvidenceStep++;
-  const prompt=document.getElementById('c2Prompt');
-  if(c2EvidenceStep===2){
-    prompt.innerHTML="<b>2.</b> Mark the passage where the focus shifts from the ceremony itself to the soldiers' sacrifice.";
-  }else if(c2EvidenceStep===3){
-    prompt.innerHTML='<b>3.</b> Mark the phrase where responsibility explicitly shifts to the living.';
-  }else{
-    prompt.innerHTML='<b>EVIDENCE CONFIRMED.</b> Each structural claim is grounded in the speech itself.';
-    document.getElementById('c2evfb').classList.add('show');
-  }
-}));
-const notes=[
-['Lincoln begins by referring to the founding of the United States and recalls that the nation was created on the principles of liberty and equality.','content'],
-['Lincoln begins with the nation\'s founding ideals, using them as a point of reference for the crisis he addresses next.','analysis'],
-['Lincoln presents the Civil War as a test of whether a nation based on the principles established at its founding can continue to exist.','content'],
-['By moving from the nation\'s founding to the Civil War, Lincoln connects the present crisis directly to the ideals introduced at the beginning.','analysis'],
-['Lincoln then turns to the gathering at Gettysburg, explaining that those present have come to dedicate part of the battlefield as a cemetery for the dead.','content'],
-['Lincoln narrows his focus from the fate of the entire nation to the immediate situation at Gettysburg, making the larger conflict concrete.','analysis'],
-['Lincoln states that the people gathered at Gettysburg cannot truly dedicate the ground because the soldiers who fought and died there have already done so.','content'],
-['The argument now shifts from the speakers\' symbolic act of dedication to the soldiers\' sacrifice, which Lincoln presents as more significant than words.','analysis'],
-['Towards the end, Lincoln says that the living must complete the unfinished work of those who died and ensure that their sacrifice was not in vain.','content'],
-['Lincoln shifts responsibility from the dead to the living.','analysis'],
-['Lincoln ends by expressing the hope that the nation will experience a new birth of freedom and that democratic government will continue to exist.','content'],
-['By ending with the nation\'s future, Lincoln develops his argument from remembrance towards renewal and continued responsibility.','analysis']
-];
-const np=document.getElementById('notePool');notes.forEach(([t,k])=>{const b=document.createElement('button');b.className='note';b.textContent=t;b.dataset.kind=k;np.appendChild(b)});
-let noteSel=null,noteDone=0;
-np?.addEventListener('click',e=>{const n=e.target.closest('.note');if(!n)return;if(n.classList.contains('assigned')){n.classList.remove('assigned');delete n.dataset.assignedKind;noteDone=Math.max(0,noteDone-1);return;}noteSel=n;[...np.children].forEach(x=>x.classList.remove('active'));n.classList.add('active');});
-document.querySelectorAll('.sorttarget').forEach(z=>z.addEventListener('click',()=>{if(!noteSel)return toast('Select a note first.');if(z.dataset.kind===noteSel.dataset.kind){noteSel.classList.remove('active');noteSel.classList.add('assigned');noteSel.dataset.assignedKind=z.dataset.kind;noteDone++;noteSel=null;if(noteDone===notes.length)document.getElementById('c3fb')?.classList.add('show');}else toast('Read for function: does the note state content, or explain development?');}));
-let tempSel=null,tempPlaced=0;
-document.querySelectorAll('#temporalPool .note').forEach(n=>n.addEventListener('click',()=>{if(n.classList.contains('assigned')){n.classList.remove('assigned');tempPlaced=Math.max(0,tempPlaced-1);return;}tempSel=n;document.querySelectorAll('#temporalPool .note').forEach(x=>x.classList.remove('active'));n.classList.add('active');}));
-document.querySelectorAll('.timetarget').forEach(z=>z.addEventListener('click',()=>{if(!tempSel)return toast('Select a recovered section.');if(z.dataset.time===tempSel.dataset.time){tempSel.classList.remove('active');tempSel.classList.add('assigned');tempSel=null;tempPlaced++;if(tempPlaced===5)document.getElementById('c4fb')?.classList.add('show');}else toast('Check the temporal movement again.');}));
-document.querySelectorAll('#cfinalmc .option').forEach(o=>o.onclick=()=>{document.querySelectorAll('#cfinalmc .option').forEach(x=>x.classList.remove('selected'));o.classList.add('selected');if(o.dataset.correct)document.getElementById('cfinalfb').classList.add('show');else toast('Look at the complete movement from founding ideals to future responsibility.')})
-document.querySelectorAll('.d1mark').forEach(m=>m.onclick=()=>{if(m.dataset.correct){m.classList.add('marked');document.getElementById('d1markfb').classList.add('show')}else toast('Look for the repeated grammatical opening.')});
-function completeD1(){if(document.getElementById('d1why').value.trim().length<20)return toast('Add a brief explanation first.');document.getElementById('d1fb').classList.add('show')}
-function speakAntithesis(){if('speechSynthesis'in window){const u=new SpeechSynthesisUtterance('antithesis');u.lang='en-GB';speechSynthesis.speak(u)}}
-let mainContrast=0;
-document.querySelectorAll('.d3contrast').forEach(m=>m.onclick=()=>{m.classList.toggle('marked');mainContrast=[...document.querySelectorAll('.d3contrast.marked[data-main="1"]')].length;if(mainContrast===2)document.getElementById('d3fb').classList.add('show')});
-function completeD4(){if(document.getElementById('d4a').value.trim().length<10||document.getElementById('d4b').value.trim().length<10)return toast('Add a brief response to both questions.');document.getElementById('d4fb').classList.add('show')}
-function checkFinalKey(){if(document.getElementById('keyYear').value==='1863'&&document.getElementById('keyWords').value==='272')document.getElementById('keyfb').classList.add('show');else toast('The key combines the year of the speech and its word count.');}
-go('prologue'); renderKey();
+/* Screen and reveal choreography */
+.screen.active>.archivehead{animation:screenHeadIn .5s ease both}
+.screen.active>.narrative-setup,.screen.active>.case-overview-story{animation:storyIn .65s ease .08s both}
+.screen.active>.archive-register{animation:storyIn .65s ease .18s both}
+.screen.active>.overview-cta{animation:storyIn .55s ease .3s both}
+.screen.active>.card,.screen.active>.paper,.screen.active>.grid,.screen.active>.speech,.screen.active>.compare,.screen.active>.blueprint{animation:contentIn .55s ease .16s both}
+.feedback.show{display:block;animation:revealFeedback .5s ease both}
+.fade-side{opacity:.26;filter:grayscale(1) blur(.2px);transform:scale(.985);transition:1.25s ease}
+#remembered{animation:rememberedReveal .8s ease both}
+@keyframes screenHeadIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+@keyframes storyIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes contentIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes revealFeedback{from{opacity:0;transform:translateY(8px);box-shadow:none}to{opacity:1;transform:none;box-shadow:0 10px 24px rgba(49,55,61,.08)}}
+@keyframes rememberedReveal{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
+/* Keep overview hierarchy vertical on all widths */
+.case-overview-story+.archive-register{max-width:none}
 
+@media(max-width:760px){
+  .prologue-screen{margin:-34px -3vw -90px;width:100vw}
+  .prologue-interface h1{white-space:normal}
+  .cold-line{font-size:clamp(1.35rem,7vw,2.2rem)}
+  .evidence-row{grid-template-columns:22px 48px 1fr;gap:7px}
+  .evidence-status{grid-column:3;justify-self:start;margin-top:-5px}
+  .narrative-setup{padding:16px 18px;font-size:1rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0ms!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+  .cold-line,.archive-origin,.prologue-interface,.prologue-access{opacity:1!important;transform:none!important}
+  .cold-open{display:none}.cinematic-blackout{opacity:1!important}
+}
+
+.recovery-pulse{animation:recoveryPulse .8s ease both}@keyframes recoveryPulse{0%{transform:scale(.98);box-shadow:0 0 0 rgba(163,58,43,0)}55%{transform:scale(1.01);box-shadow:0 0 0 7px rgba(163,58,43,.08)}100%{transform:none}}
