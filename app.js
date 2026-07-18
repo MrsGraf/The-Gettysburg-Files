@@ -46,26 +46,116 @@ let timeline=[];
 
 // A01 research timeline and historical bridge
 const researchAnswers={
-  lincoln:{event:['abraham lincoln elected president','lincoln elected president','lincoln wins the election','election of abraham lincoln','presidential election of 1860','lincoln election'],year:['1860','november 1860','nov 1860']},
-  secession:{event:['south carolina secedes','south carolina secedes from the union','secession of south carolina','southern states secede','secession crisis','formation of the confederacy','confederacy is formed'],year:['1860','december 1860','dec 1860','1861']},
-  fortsumter:{event:['battle of fort sumter','fort sumter','attack on fort sumter','civil war begins','american civil war begins','beginning of the american civil war','start of the civil war'],year:['1861','april 1861','apr 1861']},
-  gettysburg:{event:['battle of gettysburg','gettysburg'],year:['1863','july 1863','jul 1863','july 1 1863','july 1-3 1863']}
+  lincoln:{
+    year:'1860',
+    aliases:[
+      'abraham lincoln elected president','lincoln elected president','lincoln is elected president',
+      'lincoln wins the presidential election','lincoln won the presidential election','lincoln wins the election',
+      'election of abraham lincoln','election of lincoln','presidential election of 1860','lincoln election'
+    ]
+  },
+  secession:{
+    year:'1860',
+    aliases:[
+      'ordinance to dissolve the union','ordinance to dissolve','ordinance of secession',
+      'south carolina ordinance of secession','south carolinas ordinance of secession',
+      'secession of south carolina','south carolinas secession','south carolina secession',
+      'south carolina secedes from the union','south carolina secedes from union',
+      'south carolina leaves the union','south carolina leaves union','south carolina left the union',
+      'south carolina breaks from the union','south carolina breaks with the union',
+      'south carolina withdraws from the union','south carolina withdrew from the union'
+    ]
+  },
+  fortsumter:{
+    year:'1861',
+    aliases:[
+      'battle of fort sumter','battle at fort sumter','attack on fort sumter','attack at fort sumter',
+      'bombardment of fort sumter','fort sumter','beginning of the american civil war',
+      'start of the american civil war','outbreak of the american civil war','american civil war begins',
+      'beginning of the civil war','start of the civil war','civil war begins','civil war starts'
+    ]
+  }
 };
-function norm(v){return (v||'').toLowerCase().trim().replace(/[.,]/g,'').replace(/\s+/g,' ');}
+function normalizeText(v){
+  return (v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()
+    .replace(/[’']/g,'').replace(/[^a-z0-9\s-]/g,' ').replace(/-/g,' ')
+    .replace(/\b(the|a|an)\b/g,' ').replace(/\s+/g,' ').trim();
+}
+function canonicalText(v){
+  return normalizeText(v).split(' ').filter(Boolean).map(word=>{
+    if(word.length>5&&word.endsWith('ies')) return word.slice(0,-3)+'y';
+    if(word.length>4&&word.endsWith('s')&&!word.endsWith('ss')) return word.slice(0,-1);
+    return word;
+  }).join(' ');
+}
+function editDistance(a,b){
+  if(a===b)return 0;if(!a.length)return b.length;if(!b.length)return a.length;
+  const prev=Array.from({length:b.length+1},(_,i)=>i);
+  for(let i=1;i<=a.length;i++){
+    let left=i,diag=prev[0];prev[0]=i;
+    for(let j=1;j<=b.length;j++){
+      const up=prev[j],cost=a[i-1]===b[j-1]?0:1;
+      const val=Math.min(up+1,left+1,diag+cost);diag=up;prev[j]=val;left=val;
+    }
+  }
+  return prev[b.length];
+}
+function closeEnough(input,alias){
+  const a=canonicalText(input),b=canonicalText(alias);if(!a||!b)return false;
+  if(a===b)return true;
+  if((a.includes(b)||b.includes(a))&&Math.min(a.length,b.length)>=8)return true;
+  const maxLen=Math.max(a.length,b.length);
+  const allowed=maxLen<12?1:maxLen<25?2:Math.min(4,Math.floor(maxLen*.09));
+  return editDistance(a,b)<=allowed;
+}
+function semanticEventMatch(id,input){
+  const s=canonicalText(input);
+  if(!s)return false;
+  if(id==='lincoln'){
+    return /\blincoln\b/.test(s)&&(/\belect/.test(s)||/\belection\b/.test(s)||(/\bpresident\b/.test(s)&&/\bwin\b/.test(s)));
+  }
+  if(id==='secession'){
+    const hasSC=/south carolina/.test(s);
+    const secessionAction=/\bseced|\bsecession\b|\bleave\b|\bleft\b|\bbreak\b|\bbroke\b|\bwithdraw/.test(s);
+    const ordinanceAction=/\bordinance\b/.test(s)&&(/\bsecession\b|\bdissolve\b/.test(s));
+    return (hasSC&&secessionAction)||ordinanceAction;
+  }
+  if(id==='fortsumter'){
+    if(/fort sumter/.test(s))return true;
+    return /civil war/.test(s)&&(/\bbegin\b|\bstart\b|\boutbreak\b/.test(s));
+  }
+  return false;
+}
+function eventMatches(id,value){
+  const answer=researchAnswers[id];
+  if(!answer)return false;
+  return semanticEventMatch(id,value)||answer.aliases.some(alias=>closeEnough(value,alias));
+}
+function yearMatches(value,expectedYear){
+  const years=(value||'').match(/\b(?:17|18|19|20)\d{2}\b/g)||[];
+  return years.includes(expectedYear)||normalizeText(value)===expectedYear;
+}
 let verifiedSources=new Set();
 document.querySelectorAll('.verify-source').forEach(btn=>btn.addEventListener('click',()=>{
   const card=btn.closest('.research-card'); const id=card.dataset.id; const a=researchAnswers[id];
-  const ev=norm(card.querySelector('.research-event').value); const yr=norm(card.querySelector('.research-year').value);
-  const eventOk=a.event.some(x=>ev.includes(x)); const yearOk=a.year.some(x=>yr===x||yr.includes(x));
+  const ev=card.querySelector('.research-event').value; const yr=card.querySelector('.research-year').value;
+  const eventOk=eventMatches(id,ev); const yearOk=yearMatches(yr,a.year);
   if(eventOk&&yearOk){
     card.classList.add('verified'); btn.textContent='VERIFIED'; verifiedSources.add(id);
-    if(verifiedSources.size===4){
+    if(verifiedSources.size===3){
       document.getElementById('timelineFb')?.classList.add('show');
       const bridge=document.getElementById('civilWarContext'); if(bridge) bridge.hidden=false;
-      toast('All four sources identified. The recovered timeline is now visible.');
+      toast('All three sources identified. The historical chain is now visible.');
     }
-  } else toast('Not yet. Use the source and research link to check the event and date.');
+  } else if(!eventOk&&yearOk){
+    toast('The year fits, but the event is not identified clearly enough yet.');
+  } else if(eventOk&&!yearOk){
+    toast('The event fits. Check the year once more.');
+  } else {
+    toast('Not yet. Research the source and check both the event and the year.');
+  }
 }));
+
 
 // A02 geographic locator: users may retry until the target area is found
 const mapLayer=document.getElementById('mapClickLayer');
