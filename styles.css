@@ -94,6 +94,10 @@ main,.topbar{position:relative;z-index:1}
 .progressmeta #sectionLabel{font-weight:700;color:var(--blue)}
 @media(max-width:760px){.archive-register .file{grid-template-columns:20px 76px 1fr}.archive-register .file-status{grid-column:3}.research-grid{grid-template-columns:1fr}.research-card img{height:190px}}
 
+/* Recovered historical chain */
+#timelineFb{border-left-color:#5f8066;background:#edf4ec;color:#355342}
+#timelineFb .auto-timeline>div:not(.timeline-arrow){background:#f7fbf5;border-color:#b9cbb8}
+#timelineFb .auto-timeline strong,#timelineFb .timeline-arrow{color:#4e7a5b}
 
 /* Consolidated A/B review updates */
 .evidence-register{display:grid;gap:0;border-top:1px solid #c8c0b2;border-bottom:1px solid #c8c0b2}
@@ -109,19 +113,20 @@ main,.topbar{position:relative;z-index:1}
 .case-progress-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:#6d7b87}
 @media(max-width:760px){.context-grid,.recovered-data{grid-template-columns:1fr}.auto-timeline{grid-template-columns:1fr}.timeline-arrow{transform:rotate(90deg)}.evidence-row{grid-template-columns:24px 54px 1fr}.evidence-status{grid-column:3}.archivehead h1{white-space:normal}}
 
-
 /* ===== Cinematic narrative system ===== */
 body.prologue-mode{background:#07090c;overflow-x:hidden}
-body.prologue-mode .topbar{opacity:0;transform:translateY(-12px);pointer-events:none}
+body.prologue-mode .topbar{display:none}
+body.prologue-mode main{width:100vw;margin:0;padding:0}
 .topbar{transition:opacity .5s ease,transform .5s ease}
-.prologue-screen{min-height:100vh;margin:-34px calc((100vw - min(1160px,94vw))/-2) -90px;width:100vw;background:#07090c;color:#f4efe5;overflow:hidden}
-.prologue-stage{position:relative;min-height:100vh;display:grid;place-items:center;padding:7vh 6vw;background:radial-gradient(circle at 50% 40%,rgba(35,49,64,.28),transparent 42%),#07090c}
-.cold-open{position:absolute;inset:0;display:grid;place-content:center;text-align:center;gap:.35rem;width:min(900px,90vw);margin:auto}
+.prologue-screen{min-height:100vh;min-height:100dvh;margin:0;width:100vw;background:#07090c;color:#f4efe5;overflow:auto}
+.prologue-stage{position:relative;min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:clamp(20px,4vh,44px) 6vw;background:url('gettysburg-prologue-bg.png') center center/cover no-repeat}
+.prologue-stage::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.62);z-index:0;pointer-events:none}
+.cold-open{position:absolute;inset:0;z-index:1;display:grid;place-content:center;text-align:center;gap:.35rem;width:min(900px,90vw);margin:auto}
 .cold-line{margin:0;font-family:Georgia,serif;font-size:clamp(1.4rem,3.2vw,3rem);letter-spacing:.02em;opacity:0;transform:translateY(12px);animation:coldLineIn 1s ease forwards}
 .line-1{animation-delay:.6s}.line-2{animation-delay:2.4s}.line-3{animation-delay:4.2s;color:#d7cbb7}.line-4{animation-delay:6s;color:#d7cbb7}.line-5{animation-delay:7.8s;color:#d7cbb7}
 .cold-open{animation:coldOpenOut 1s ease 11.2s forwards}
-.cinematic-blackout{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;animation:blackout 1.6s ease 10.8s forwards}
-.archive-origin{position:relative;z-index:2;width:min(920px,90vw);opacity:0;transform:translateY(18px);animation:archiveOriginIn 1.2s ease 12.3s forwards;padding:5vh 0}
+.cinematic-blackout{position:absolute;inset:0;z-index:2;background:rgba(0,0,0,.42);opacity:0;pointer-events:none;animation:blackout 1.6s ease 10.8s forwards}
+.archive-origin{position:relative;z-index:3;width:min(920px,90vw);margin:auto;opacity:0;transform:translateY(18px);animation:archiveOriginIn 1.2s ease 12.3s forwards;padding:0}
 .origin-copy{max-width:760px;margin:0 auto;color:#c9d0d6;font-size:clamp(.98rem,1.6vw,1.16rem);line-height:1.75}
 .origin-copy p{margin:0 0 1rem}
 .origin-turn{color:#f0e6d5}
@@ -170,7 +175,7 @@ body.prologue-mode .topbar{opacity:0;transform:translateY(-12px);pointer-events:
 .case-overview-story+.archive-register{max-width:none}
 
 @media(max-width:760px){
-  .prologue-screen{margin:-34px -3vw -90px;width:100vw}
+  .prologue-screen{margin:0;width:100vw}
   .prologue-interface h1{white-space:normal}
   .cold-line{font-size:clamp(1.35rem,7vw,2.2rem)}
   .evidence-row{grid-template-columns:22px 48px 1fr;gap:7px}
