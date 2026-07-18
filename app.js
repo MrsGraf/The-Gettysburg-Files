@@ -1,10 +1,41 @@
 const screens=[...document.querySelectorAll('.screen')];
-let fragments=JSON.parse(localStorage.getItem('gettysburgFragments')||'["","","",""]');
+let fragments=["","","",""];
+try{fragments=JSON.parse(localStorage.getItem('gettysburgFragments')||'["","","",""]');}catch(e){fragments=["","","",""];}
 let selected=null, hintCount=0;
-function go(id){screens.forEach(s=>s.classList.toggle('active',s.dataset.id===id));const s=document.querySelector(`[data-id="${id}"]`);if(!s)return;window.scrollTo(0,0);updateProgress(s);if(id==='B4')setTimeout(()=>{document.getElementById('everettSide').classList.add('fade-side');document.getElementById('searching').style.display='none';document.getElementById('remembered').style.display='block'},1600);}
+function startPrologue(){
+  document.body.classList.add('prologue-mode');
+  const prologue=document.querySelector('[data-id="prologue"]');
+  if(!prologue)return;
+  prologue.classList.remove('run-intro');
+  void prologue.offsetWidth;
+  prologue.classList.add('run-intro');
+}
+function go(id){
+  screens.forEach(s=>s.classList.toggle('active',s.dataset.id===id));
+  const s=document.querySelector(`[data-id="${id}"]`);if(!s)return;
+  document.body.classList.toggle('prologue-mode',id==='prologue');
+  window.scrollTo({top:0,behavior:id==='prologue'?'auto':'smooth'});
+  updateProgress(s);
+  if(id==='prologue')startPrologue();
+  if(id==='B4'){
+    const everett=document.getElementById('everettSide');
+    const searching=document.getElementById('searching');
+    const remembered=document.getElementById('remembered');
+    if(everett)everett.classList.remove('fade-side');
+    if(searching)searching.style.display='block';
+    if(remembered)remembered.style.display='none';
+    setTimeout(()=>{everett?.classList.add('fade-side');if(searching)searching.style.display='none';if(remembered)remembered.style.display='block';},1500);
+  }
+}
 function updateProgress(s){const p=+s.dataset.progress||0;document.getElementById('globalProgress').style.width=p+'%';document.getElementById('progressLabel').textContent=p+'%';const caseId=s.dataset.case;document.getElementById('sectionLabel').textContent=caseId?'Case File '+caseId:(s.dataset.label||'Archive entry');renderKey();}
 function renderKey(){document.getElementById('keyMini').textContent=fragments.map((x,i)=>x||['██','██','██','█'][i]).join(' · ')}
-function unlockFragment(i,v){fragments[i]=v;localStorage.setItem('gettysburgFragments',JSON.stringify(fragments));renderKey();toast('Recovery fragment '+v+' stored.');}
+function unlockFragment(i,v){
+  fragments[i]=v;
+  try{localStorage.setItem('gettysburgFragments',JSON.stringify(fragments));}catch(e){}
+  renderKey();
+  toast('Recovery fragment '+v+' stored.');
+  document.querySelectorAll('.feedback.show .card').forEach(card=>{card.classList.remove('recovery-pulse');void card.offsetWidth;card.classList.add('recovery-pulse');});
+}
 function toast(t){const e=document.getElementById('toast');e.textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),1800)}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-next]');if(b)go(b.dataset.next)});
 document.querySelectorAll('.options').forEach(box=>box.addEventListener('click',e=>{const o=e.target.closest('.option');if(!o)return;if(box.id==='a1opts')return;box.querySelectorAll('.option').forEach(x=>x.classList.remove('selected'));o.classList.add('selected');if(box.id==='b6mc')return;let fb=null;if(box.id==='a1mc')fb=document.getElementById('a1mcfb');else if(box.id==='a4mc')fb=document.getElementById('a4mcfb');else fb=document.getElementById(box.id.replace('mc','fb'))||document.getElementById(box.id+'fb');if(o.dataset.correct&&fb)fb.classList.add('show');else if(!o.dataset.correct)toast('Recheck the evidence.')}));
@@ -161,21 +192,3 @@ document.querySelectorAll('.d3contrast').forEach(m=>m.onclick=()=>{m.classList.t
 function completeD4(){if(document.getElementById('d4a').value.trim().length<10||document.getElementById('d4b').value.trim().length<10)return toast('Add a brief response to both questions.');document.getElementById('d4fb').classList.add('show')}
 function checkFinalKey(){if(document.getElementById('keyYear').value==='1863'&&document.getElementById('keyWords').value==='272')document.getElementById('keyfb').classList.add('show');else toast('The key combines the year of the speech and its word count.');}
 go('prologue'); renderKey();
-
-
-// Robust screen navigation
-document.addEventListener('click', function (event) {
-  const button = event.target.closest('[data-next]');
-  if (!button) return;
-  const targetId = button.getAttribute('data-next');
-  const target = document.querySelector('.screen[data-id="' + targetId + '"]');
-  if (!target) return;
-  document.querySelectorAll('.screen').forEach(function (screen) {
-    screen.classList.remove('active');
-  });
-  target.classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-// Global reversibility support for assignment-style tasks before final confirmation
-document.querySelectorAll('.assign.filled,.secslot.filled,.speechslot.filled').forEach(()=>{});
