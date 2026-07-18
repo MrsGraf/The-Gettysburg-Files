@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Gettysburg Files · Cold Case #272</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="shell">
+<header class="topbar">
+  <div class="brand"><div class="seal">272</div><div><b>THE GETTYSBURG FILES</b><div class="smallcaps">Cold Case #272</div></div></div>
+  <div class="progresswrap"><div class="progressline"><div id="globalProgress" class="progressbar"></div></div><div class="progressmeta"><span id="sectionLabel">Archive entry</span><span id="progressLabel">0%</span></div></div>
+  <div class="keymini" id="keyMini">██ · ██ · ██ · █</div>
+</header>
+<main id="app">
+
+<section class="screen active" data-id="prologue" data-progress="0" data-label="Archive entry">
+  <div class="archivehead"><div><div class="kicker">November 19, 1863 · Gettysburg, Pennsylvania</div><h1>THE GETTYSBURG FILES</h1><div class="dramatic">A nation divided.<br>More than 50,000 casualties.<br>A cemetery is about to be dedicated.</div></div><div class="status">ARCHIVE RECOVERY<br><b>0%</b></div></div>
+  <div class="card hero-copy">
+    Over the past months, historians assembled a comprehensive digital case file on one of the defining moments in American history. During the final digital transfer, large parts of the analytical archive became corrupted.
+    <p>The historical sources survived.<br>The research did not.<br>Only fragments remain.</p>
+    <p><b>The archive can still be restored.</b></p>
+    <div class="actions"><button class="btn primary" data-next="A0">ACCESS ARCHIVE</button></div>
+  </div>
+</section>
+
+<section class="screen" data-id="A0" data-progress="0" data-label="Case File A · The Battlefield">
+  <div class="archivehead"><div><div class="kicker">Archive Section A</div><h2>THE BATTLEFIELD</h2></div><div class="status">CASE FILE RECOVERY<br>0%</div></div>
+  <div class="grid g2">
+    <div class="card"><h3>Surviving evidence</h3><div class="evidence-list archive-register">
+      <div class="file available"><span class="doc-icon" aria-hidden="true">▤</span><span class="file-code">FILE A01</span><span class="file-type">IMAGE ARCHIVE</span><span class="file-status">AVAILABLE</span></div>
+      <div class="file damaged"><span class="doc-icon" aria-hidden="true">▤</span><span class="file-code">FILE A02</span><span class="file-type">HISTORICAL RECORD</span><span class="file-status">DAMAGED</span></div>
+      <div class="file available"><span class="doc-icon" aria-hidden="true">▤</span><span class="file-code">FILE A03</span><span class="file-type">BATTLEFIELD MAP</span><span class="file-status">AVAILABLE</span></div>
+      <div class="file available"><span class="doc-icon" aria-hidden="true">▤</span><span class="file-code">FILE A04</span><span class="file-type">OFFICIAL DOCUMENT</span><span class="file-status">AVAILABLE</span></div>
+      <div class="file damaged"><span class="doc-icon" aria-hidden="true">▤</span><span class="file-code">FILE A05</span><span class="file-type">PERSONNEL FILES</span><span class="file-status">DAMAGED</span></div>
+    </div></div>
+    <div class="card intro-compact"><p class="dramatic">The archive is incomplete.<br>The original evidence survived.<br>The historical reconstruction did not.</p><p>Your first task is to determine what happened before the speech was delivered.</p><button class="btn primary" data-next="A1">OPEN FILE A01</button></div>
+  </div>
+</section>
+
+<section class="screen" data-id="A1" data-progress="5" data-label="A1 · The Image">
+  <div class="archivehead"><div><div class="kicker">File A01 · Recovered Image</div><h2>LOOK CLOSELY</h2></div></div>
+  <div class="grid g2">
+    <div><img class="source-img" src="https://tile.loc.gov/storage-services/service/pnp/ppmsca/12500/12563r.jpg" alt="Historic photograph showing the aftermath of the Battle of Gettysburg near the Trossell house"><div class="source-note">Library of Congress, Prints and Photographs Division.</div></div>
+    <div class="card"><h3>What can you establish from the photograph?</h3><p class="task-note">Select more than one answer.</p>
+      <div class="options" id="a1opts">
+        <button class="option" data-correct="1">The photograph shows the consequences or aftermath of a military conflict.</button>
+        <button class="option">The photograph was taken during a peaceful political celebration.</button>
+        <button class="option" data-correct="1">The setting appears to have been shaped by war.</button>
+        <button class="option">The image by itself proves that the country was politically divided.</button>
+        <button class="option">The photograph alone proves exactly when and why this destruction occurred.</button>
+      </div>
+      <div class="actions"><button class="btn" onclick="checkMulti('a1opts',2,'a1fb')">CONFIRM EVIDENCE</button></div>
+      <div class="feedback" id="a1fb"><b>SOURCE IDENTIFIED</b><br><span class="source-release">“Trossell's House, battle-field of Gettysburg” · Timothy H. O'Sullivan / Alexander Gardner · July 1863</span><p>The image was made in the aftermath of the Battle of Gettysburg. What happened here?</p><div class="actions"><button class="btn primary" data-next="A2">FIND OUT WHAT HAPPENED AT GETTYSBURG</button></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="screen" data-id="A2" data-progress="12" data-label="A2 · A Nation Divided">
+  <div class="archivehead"><div><div class="kicker">File A02 · Historical Record</div><h2>A NATION DIVIDED</h2></div><div class="status">STATUS<br>PARTIALLY RECOVERED</div></div>
+  <div class="card">
+    <h3>Research & reconstruct the timeline</h3>
+    <p>Four historical sources survived, but their labels and dates were lost. Identify each event, research its date, then arrange the four events in chronological order.</p>
+    <div class="research-grid" id="researchTimeline">
+      <article class="research-card" data-id="doi" data-year="1776">
+        <img src="https://tile.loc.gov/storage-services/service/pnp/ppmsca/59400/59405v.jpg" alt="Historical facsimile connected to the Declaration of Independence">
+        <div class="research-body"><span class="smallcaps">SOURCE 01</span><p class="research-hint">A founding document announced that the thirteen colonies regarded themselves as independent states.</p><label>Event<input class="research-event" placeholder="Identify the event"></label><label>Year<input class="research-year" inputmode="numeric" maxlength="4" placeholder="YYYY"></label><a class="source-link" href="https://www.loc.gov/resource/ppmsca.59405/" target="_blank" rel="noopener">Examine source · Library of Congress</a><button class="btn verify-source" type="button">VERIFY</button></div>
+      </article>
+      <article class="research-card" data-id="civilwar" data-year="1861">
+        <img src="https://tile.loc.gov/storage-services/service/pnp/stereo/1s04000/1s04531v.jpg" alt="Historic view of Fort Sumter after the first bombardment">
+        <div class="research-body"><span class="smallcaps">SOURCE 02</span><p class="research-hint">The event you are looking for marked the beginning of armed conflict between Union and Confederate forces.</p><label>Event<input class="research-event" placeholder="Identify the event"></label><label>Year<input class="research-year" inputmode="numeric" maxlength="4" placeholder="YYYY"></label><a class="source-link" href="https://www.loc.gov/item/2015650226/" target="_blank" rel="noopener">Examine source · Library of Congress</a><button class="btn verify-source" type="button">VERIFY</button></div>
+      </article>
+      <article class="research-card" data-id="emancipation" data-year="1863">
+        <img src="https://www.archives.gov/files/historical-docs/doc-content/images/emancipation-proclamation-l.jpg" alt="Emancipation Proclamation document">
+        <div class="research-body"><span class="smallcaps">SOURCE 03</span><p class="research-hint">This presidential proclamation made emancipation a central part of the Union war effort.</p><label>Event<input class="research-event" placeholder="Identify the event"></label><label>Year<input class="research-year" inputmode="numeric" maxlength="4" placeholder="YYYY"></label><a class="source-link" href="https://www.archives.gov/historical-docs/emancipation-proclamation" target="_blank" rel="noopener">Examine source · National Archives</a><button class="btn verify-source" type="button">VERIFY</button></div>
+      </article>
+      <article class="research-card" data-id="gettysburg" data-year="1863">
+        <img src="https://www.loc.gov/exhibits/gettysburg-address/exhibitionitems/Assets/cw0322000_enlarge.jpg" alt="Historic map of the Gettysburg battlefield">
+        <div class="research-body"><span class="smallcaps">SOURCE 04</span><p class="research-hint">This three-day battle in Pennsylvania became a major turning point in the Civil War.</p><label>Event<input class="research-event" placeholder="Identify the event"></label><label>Date<input class="research-year" placeholder="Month / year"></label><a class="source-link" href="https://www.loc.gov/item/2007630421/" target="_blank" rel="noopener">Examine source · Library of Congress</a><button class="btn verify-source" type="button">VERIFY</button></div>
+      </article>
+    </div>
+    <div id="timelineBuild" class="timeline-builder" hidden>
+      <h3>Now reconstruct the chronology.</h3><p>Select the recovered events in chronological order. You can remove any choice before confirming.</p>
+      <div class="timeline-pool" id="timelinePool"></div>
+      <div class="dropzone" id="timelineOut">Recovered sequence: —</div>
+      <div class="actions"><button class="btn ghost" id="timelineUndo" type="button">UNDO LAST</button><button class="btn ghost" id="timelineReset" type="button">RESET</button><button class="btn primary" id="timelineConfirm" type="button">CONFIRM CHRONOLOGY</button></div>
+    </div>
+    <div class="feedback" id="timelineFb"><b>PATTERN DETECTED</b><br>1776 → 1861 → January 1863 → July 1863.<br>The events connect the nation's founding ideals, the outbreak of civil war, emancipation and the battle that brought the investigation to Gettysburg.</div>
+  </div>
+  <div class="card" style="margin-top:18px"><h3>Which question best captures what was at stake in the American Civil War?</h3><div class="options" id="a2mc">
+    <button class="option">Can the United States expand further west?</button>
+    <button class="option" data-correct="1">Can a nation founded on liberty and equality survive while deeply divided over slavery and union?</button>
+    <button class="option">Can the president win another election?</button>
+    <button class="option">Can the United States defeat a foreign army?</button>
+  </div><div class="feedback" id="a2fb"><b>CONTEXT RECOVERED</b><br>The Civil War was a struggle over the survival of the Union and was inseparably connected to the conflict over slavery and freedom.<div class="actions"><button class="btn primary" data-next="A3">OPEN BATTLEFIELD MAP</button></div></div></div>
+</section>
+
+<section class="screen" data-id="A3" data-progress="25" data-label="A3 · The Battlefield">
+  <div class="archivehead"><div><div class="kicker">File A03 · Battlefield Map</div><h2>LOCATE GETTYSBURG</h2></div><div class="status">CASE FILE A<br>37% AFTER RESTORATION</div></div>
+  <div class="grid g2">
+    <div class="mapbox">
+      <svg viewBox="0 0 800 450" aria-label="Schematic north-eastern United States map">
+        <path d="M90 85 L220 55 L340 90 L455 70 L600 110 L690 175 L665 260 L565 310 L510 375 L380 350 L295 390 L170 330 L120 235 Z" fill="#24323e" stroke="#718291" stroke-width="3"/>
+        <path d="M250 165 L385 150 L440 225 L350 275 L245 235 Z" fill="#3a4f60" stroke="#8ea0af" stroke-width="2"/>
+        <text x="315" y="220" fill="#c9d4dd" font-size="22">PENNSYLVANIA</text>
+        <text x="555" y="145" fill="#81909d" font-size="18">NEW YORK</text><text x="455" y="320" fill="#81909d" font-size="18">MARYLAND</text>
+      </svg>
+      <button class="hotspot" style="left:43%;top:56%" onclick="locateGettysburg()" aria-label="Gettysburg hotspot"></button>
+    </div>
+    <div class="card"><h3>Where is Gettysburg?</h3><p>Use the map to locate the town in Pennsylvania.</p><div class="feedback" id="mapfb"><b>LOCATION CONFIRMED</b><br>Gettysburg, Pennsylvania<br>July 1–3, 1863</div>
+      <div id="battleReveal" style="display:none"><hr style="border-color:#39434d;margin:20px 0"><p>For three days, Union and Confederate forces fought at Gettysburg. More than 50,000 soldiers were killed, wounded, captured or reported missing.</p>
+      <h3>Complete the recovered record.</h3>
+      <div class="options" id="a3rec">
+        <button class="option" data-correct="1">July 1863 · Union · turning point</button>
+        <button class="option">November 1863 · Confederacy · peace treaty</button>
+        <button class="option">January 1863 · Union · final battle</button>
+      </div>
+      <div class="feedback" id="a3fb"><b>BATTLEFIELD RECORD RESTORED</b><br>The Union victory at Gettysburg became a major turning point in the Civil War.<div class="actions"><button class="btn primary" data-next="A4">OPEN OFFICIAL DOCUMENT</button></div></div></div>
+    </div>
+  </div>
+  <div class="paper" style="margin-top:22px"><img class="source-img" src="https://www.loc.gov/exhibits/gettysburg-address/exhibitionitems/Assets/cw0322000_enlarge.jpg" alt="Historic bird's-eye map of the Gettysburg battlefield"><div class="source-note" style="color:#605a4c">John B. Bachelder, Gettysburg Battle-field, 1863 · Library of Congress. Used as contextual evidence, not as the clickable locator itself.</div></div>
+</section>
+
+<section class="screen" data-id="A4" data-progress="40" data-label="A4 · The Invitation">
+  <div class="archivehead"><div><div class="kicker">File A04 · Official Document</div><h2>NEW DOCUMENT DETECTED</h2></div><div class="status">NOVEMBER 2, 1863<br>DAVID WILLS → ABRAHAM LINCOLN</div></div>
+  <div class="grid g2">
+    <div class="paper"><img class="source-img" src="https://www.loc.gov/exhibits/gettysburg-address/exhibitionitems/Assets/al0181p1_725.jpg" alt="First page of David Wills's invitation to Abraham Lincoln"><div class="source-note" style="color:#605a4c">Official invitation letter, page 1 · Robert Todd Lincoln Papers · Library of Congress.</div></div>
+    <div class="card"><h3>What is going to happen at Gettysburg on November 19, 1863?</h3><div class="options" id="a4mc">
+      <button class="option" data-correct="1">A new cemetery for soldiers will be officially opened and dedicated.</button><button class="option">A new battle will take place.</button><button class="option">A presidential election will be held.</button><button class="option">Soldiers will return to fight.</button>
+    </div><div class="feedback" id="a4fb"><b>OCCASION IDENTIFIED</b><br>The event is the dedication of the Soldiers' National Cemetery.<div class="actions"><button class="btn" onclick="document.getElementById('a4recon').style.display='block';this.disabled=true">RECONSTRUCT THE OCCASION</button></div></div></div>
+  </div>
+  <div id="a4recon" class="card" style="display:none;margin-top:20px"><div class="grid g2">
+    <div><h3>Recovered data</h3><div class="pool" id="occasionPool">
+      <button class="note" data-value="November 19, 1863">November 19, 1863</button><button class="note" data-value="Gettysburg, Pennsylvania">Gettysburg, Pennsylvania</button><button class="note" data-value="The official opening and dedication of a cemetery for soldiers">The official opening and dedication of a cemetery for soldiers</button><button class="note" data-value="To honour soldiers who died in the battle">To honour soldiers who died in the battle</button>
+    </div></div>
+    <div><h3>Case fields</h3><div class="pool"><button class="dropzone assign" data-answer="November 19, 1863">WHEN?</button><button class="dropzone assign" data-answer="Gettysburg, Pennsylvania">WHERE?</button><button class="dropzone assign" data-answer="The official opening and dedication of a cemetery for soldiers">WHAT?</button><button class="dropzone assign" data-answer="To honour soldiers who died in the battle">WHY?</button></div></div>
+  </div><div class="feedback" id="a4reconfb"><b>OCCASION RESTORED</b><br>Four months after the battle, people returned to Gettysburg. This time, they did not come to fight. They came to bury and honour the dead. Someone had been invited to address them.<div class="actions"><button class="btn primary" data-next="A5">OPEN PERSONNEL FILES</button></div></div></div>
+</section>
+
+<section class="screen" data-id="A5" data-progress="58" data-label="A5 · The Speakers">
+  <div class="archivehead"><div><div class="kicker">File A05 · Personnel Files</div><h2>THE SPEAKERS</h2></div><div class="status">STATUS<br>PARTIALLY RECOVERED</div></div>
+  <div class="grid g2">
+    <div class="card person"><img class="portrait" src="https://cdn.loc.gov/service/pnp/cph/3c10000/3c12000/3c12700/3c12729v.jpg" alt="Portrait of Abraham Lincoln"><div><span class="badge">Personnel File 01</span><h3>ABRAHAM LINCOLN</h3><p>16th President of the United States<br>President during the Civil War</p><button class="option role" data-person="Lincoln" data-role="remarks">Assign: “a few appropriate remarks”</button><button class="option role" data-person="Lincoln" data-role="oration">Assign: main ceremonial address</button></div></div>
+    <div class="card person"><img class="portrait" src="https://www.nps.gov/gett/learn/historyculture/images/Everett_2.jpg?autorotate=false&maxwidth=1300" alt="Portrait of Edward Everett"><div><span class="badge">Personnel File 02</span><h3>EDWARD EVERETT</h3><p>Politician, scholar and <span class="tooltip" tabindex="0" data-tip="famous and highly respected">renowned</span> public speaker</p><button class="option role" data-person="Everett" data-role="remarks">Assign: “a few appropriate remarks”</button><button class="option role" data-person="Everett" data-role="oration">Assign: main ceremonial address</button></div></div>
+  </div>
+  <div class="feedback" id="a5fb"><b>PERSONNEL FILES RESTORED</b><br><b>Edward Everett</b> · Main orator<br><b>Abraham Lincoln</b> · President of the United States · Assignment: “A few appropriate remarks”<p>One of these speeches would become part of American history.</p><div class="actions"><button class="btn primary" data-next="A6">RECONSTRUCT THE CASE</button></div></div>
+</section>
+
+<section class="screen" data-id="A6" data-progress="75" data-label="A6 · Case Reconstruction">
+  <div class="archivehead"><div><div class="kicker">Case Reconstruction</div><h2>THE HISTORICAL SITUATION</h2></div><div class="status">NOVEMBER 19, 1863<br>GETTYSBURG, PENNSYLVANIA</div></div>
+  <div class="card"><p>Place each recovered statement in the correct category. Select a statement, then a category.</p>
+    <div class="grid g2"><div class="pool" id="casePool">
+      <button class="note" data-cat="context">The United States is fighting a Civil War.</button><button class="note" data-cat="occasion">A national cemetery is being officially opened and dedicated for soldiers killed at Gettysburg.</button><button class="note" data-cat="speakers">Edward Everett and President Abraham Lincoln have been invited to speak.</button><button class="note" data-cat="audience">A large public crowd attends the ceremony, including citizens, officials, military participants and people connected to the fallen.</button><button class="note" data-cat="issue">The nation is facing the question of whether the Union – and the ideals on which it was founded – can survive.</button>
+    </div><div class="pool">
+      <button class="dropzone cat" data-cat="context">HISTORICAL CONTEXT</button><button class="dropzone cat" data-cat="occasion">OCCASION</button><button class="dropzone cat" data-cat="speakers">SPEAKERS</button><button class="dropzone cat" data-cat="audience">AUDIENCE</button><button class="dropzone cat" data-cat="issue">CENTRAL ISSUE</button>
+    </div></div>
+    <div class="feedback" id="a6fb"><b>CASE CONTEXT RESTORED</b><br>Gettysburg was more than a battlefield. It became a place where Americans had to confront a larger question: <b>What did the nation stand for – and could it survive?</b></div>
+  </div>
+  <div class="card" style="margin-top:18px"><h3>Why might a speech delivered at this moment matter beyond the cemetery ceremony itself?</h3><div class="options" id="a6mc">
+    <button class="option" data-correct="1">Because the speaker could use the occasion to reflect on the meaning and future of the nation.</button><button class="option">Because every cemetery speech automatically becomes politically important.</button><button class="option">Because the battle had already ended the Civil War.</button><button class="option">Because the audience expected a new law to be announced.</button>
+  </div><div class="feedback" id="a6mcfb"><b>ARCHIVE FILE A · RESTORED</b><br>CASE FILE A 100% RESTORED · TOTAL ARCHIVE 25% RECOVERED<div class="card" style="margin-top:14px"><span class="smallcaps">Master Recovery Key · Fragment 01 recovered</span><div style="font-size:3rem;font-family:Georgia,serif;color:#d6bd82">18</div></div><div class="actions"><button class="btn primary" onclick="unlockFragment(0,'18');go('B0')">ACCESS CASE FILE B</button></div></div></div>
+</section>
+
+<section class="screen" data-id="B0" data-progress="25" data-label="Case File B · The Two Speeches">
+  <div class="archivehead"><div><div class="kicker">Archive Section B</div><h2>THE TWO SPEECHES</h2></div><div class="status">TOTAL ARCHIVE<br>25%</div></div>
+  <div class="card hero-copy"><p>Historical records confirm that two men addressed the crowd at Gettysburg.</p><p>One was one of the most celebrated speakers in America.<br>The other had been asked to make only a few appropriate remarks.</p><p><b>But only one of their speeches became part of American history.</b></p><button class="btn primary" data-next="B1">OPEN EVENT RECORD</button></div>
+</section>
+
+<section class="screen" data-id="B1" data-progress="30" data-label="B1 · The Event Record">
+  <div class="archivehead"><div><div class="kicker">File B01 · Event Record</div><h2>ORDER OF EXERCISES</h2></div><div class="status">STATUS<br>RECOVERED</div></div>
+  <div class="paper" style="max-width:760px;margin:auto">
+    <div style="text-align:center;letter-spacing:.08em"><b>DEDICATION OF THE SOLDIERS' NATIONAL CEMETERY</b><br>Gettysburg · November 19, 1863</div><hr>
+    <p>Music · Prayer · Music</p><p><b>Oration</b> — Hon. Edward Everett</p><p>Music</p><p><b><span class="tooltip" tabindex="0" data-tip="marking the official opening of a place in someone's honour">Dedicatory</span> Remarks</b> — President of the United States</p><p>Dirge · Benediction</p>
+    <div class="source-note" style="color:#605a4c">Faithful documentary reconstruction of the relevant programme entries, based on the surviving dedication records described by the Library of Congress and National Park Service.</div>
+  </div>
+  <div class="actions"><button class="btn primary" data-next="B2">IDENTIFY THE SPEAKERS</button></div>
+</section>
+
+<section class="screen" data-id="B2" data-progress="34" data-label="B2 · Personnel Files">
+  <div class="archivehead"><div><div class="kicker">Personnel Files</div><h2>WHO STOOD AT THE PODIUM?</h2></div></div>
+  <div class="grid g2">
+    <div class="card person"><img class="portrait" src="https://www.nps.gov/gett/learn/historyculture/images/Everett_2.jpg?autorotate=false&maxwidth=1300" alt="Edward Everett"><div><span class="badge">Personnel File 01</span><h3>EDWARD EVERETT</h3><div class="smallcaps">1794–1865</div><p>Politician, scholar and <span class="tooltip" tabindex="0" data-tip="famous and highly respected">renowned</span> public speaker</p><ul><li>known as one of America's leading public speakers</li><li>held several important political positions <button class="info" onclick="openModal('everettInfo')">i</button></li><li>main orator at the Gettysburg ceremony</li></ul><span class="badge">Role at Gettysburg · Main Orator</span></div></div>
+    <div class="card person"><img class="portrait" src="https://cdn.loc.gov/service/pnp/cph/3c10000/3c12000/3c12700/3c12729v.jpg" alt="Abraham Lincoln"><div><span class="badge">Personnel File 02</span><h3>ABRAHAM LINCOLN</h3><div class="smallcaps">1809–1865</div><p>16th President of the United States</p><ul><li>led the Union during the American Civil War</li><li><span class="tooltip" tabindex="0" data-tip="to officially announce and put into effect">issued</span> the Emancipation Proclamation in 1863 <button class="info" onclick="openModal('emancipationInfo')">i</button></li><li>invited to deliver “a few appropriate remarks”</li></ul><span class="badge">Role · President · A few appropriate remarks</span></div></div>
+  </div>
+  <div class="paper" style="margin-top:20px"><img class="source-img" src="https://www.loc.gov/exhibits/gettysburg-address/exhibitionitems/Assets/al0181p2_725.jpg" alt="Second page of David Wills invitation showing few appropriate remarks"><div class="source-note" style="color:#605a4c">The surviving invitation links Lincoln's role directly to “a few appropriate remarks”.</div></div>
+  <div class="actions"><button class="btn primary" data-next="B3">RESTORE SPEECH RECORDS</button></div>
+</section>
+
+<section class="screen" data-id="B3" data-progress="39" data-label="B3 · Recovering Missing Data">
+  <div class="archivehead"><div><div class="kicker">File B02 · Speech Records</div><h2>DATA CORRUPTED</h2></div></div>
+  <div class="grid g2">
+    <div class="card"><h3>EDWARD EVERETT</h3><div class="smallcaps">Main Orator</div><button class="dropzone speechslot" data-answer="MORE THAN 2 HOURS">DURATION: [ DATA CORRUPTED ]</button></div>
+    <div class="card"><h3>ABRAHAM LINCOLN</h3><div class="smallcaps">Dedicatory Remarks</div><button class="dropzone speechslot" data-answer="272 WORDS">LENGTH: [ DATA CORRUPTED ]</button></div>
+  </div>
+  <div class="grid g2" style="margin-top:18px"><button class="note speechfrag" data-value="MORE THAN 2 HOURS">RECOVERED DATA FRAGMENT 01<br><b>MORE THAN 2 HOURS</b></button><button class="note speechfrag" data-value="272 WORDS">RECOVERED DATA FRAGMENT 02<br><b>272 WORDS</b></button></div>
+  <div class="feedback" id="b3fb"><b>SPEECH RECORDS RESTORED</b><br>Edward Everett · more than 2 hours<br>Abraham Lincoln · 272 words · about 2 minutes<div class="actions"><button class="btn primary" data-next="B4">COMPARE THE RECORDS</button></div></div>
+</section>
+
+<section class="screen" data-id="B4" data-progress="45" data-label="B4 · The Contradiction">
+  <div class="archivehead"><div><div class="kicker">Direct Comparison</div><h2>THE CONTRADICTION</h2></div></div>
+  <div class="compare" id="compare">
+    <div class="card" id="everettSide"><img class="portrait" style="max-width:220px" src="https://www.nps.gov/common/uploads/people/images/nri/subject/civilwar/CB661288-F2F6-40C7-52E312598B0DE494/CB661288-F2F6-40C7-52E312598B0DE494.jpg" alt="Edward Everett"><h3>EDWARD EVERETT</h3><p>MAIN ORATOR<br><b>MORE THAN 2 HOURS</b></p></div><div class="vs">VS.</div>
+    <div class="card"><img class="portrait" style="max-width:220px" src="https://cdn.loc.gov/service/pnp/cph/3c10000/3c12000/3c12700/3c12729v.jpg" alt="Abraham Lincoln"><h3>ABRAHAM LINCOLN</h3><p>DEDICATORY REMARKS<br><b>272 WORDS · ABOUT 2 MINUTES</b></p></div>
+  </div>
+  <div class="card" style="margin-top:18px;text-align:center"><div id="searching" class="smallcaps">ARCHIVE SEARCHING HISTORICAL RECORDS ...</div><div id="remembered" style="display:none"><div class="smallcaps">SPEECH REMEMBERED</div><h2 style="font-family:Georgia,serif">ABRAHAM LINCOLN</h2><div class="dramatic">272 WORDS<br>WHY?</div><div class="card" style="margin:18px auto;max-width:420px"><span class="smallcaps">Master Recovery Key · Fragment 02 recovered</span><div style="font-size:3rem;font-family:Georgia,serif;color:#d6bd82">63</div></div><button class="btn primary" onclick="unlockFragment(1,'63');go('B5')">OPEN THE 272 WORDS</button></div></div>
+</section>
+
+<section class="screen" data-id="B5" data-progress="48" data-label="B5 · First Encounter">
+  <div class="archivehead"><div><div class="kicker">File B03 · Recovered Document</div><h2>THE GETTYSBURG ADDRESS</h2><div>Abraham Lincoln · Gettysburg, Pennsylvania · November 19, 1863</div></div></div>
+  <div class="card"><p><b>Read the speech once.</b><br>Do not analyse it yet. Simply notice what stands out to you.</p></div>
+  <div class="speech" id="speechB5">
+    <p><span class="markable">Four score and seven years ago our fathers brought forth on this continent a new nation, conceived in liberty, and dedicated to the proposition that all men are created equal.</span></p>
+    <p><span class="markable">Now we are engaged in a great civil war, testing whether that nation, or any nation so conceived and dedicated, can long endure. We are met on a great battlefield of that war. We have come to dedicate a portion of that field as a final resting place for those who here gave their lives that that nation might live. It is altogether fitting and proper that we should do this.</span></p>
+    <p><span class="markable">But, in a larger sense, we cannot dedicate, we cannot consecrate, we cannot hallow this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note nor long remember what we say here, but it can never forget what they did here. It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us – that from these honoured dead we take increased devotion to that cause for which they gave the last full measure of devotion; that we here highly resolve that these dead shall not have died in vain; that this nation, under God, shall have a new birth of freedom; and that government of the people, by the people, for the people, shall not perish from the earth.</span></p>
+  </div>
+  <div class="card" style="margin-top:20px"><h3>First reaction</h3><p>Select one passage above that stands out to you. Then explain why.</p><textarea id="reactionText" placeholder="Why did this passage stand out to you? Focus on your first impression."></textarea><p>What was the main reason?</p><div class="radio-row" id="reactionCats"><button class="chip">the idea or message</button><button class="chip">the wording</button><button class="chip">its emotional impact</button><button class="chip">a connection to something we studied before</button><button class="chip">something else</button></div><div class="actions"><button class="btn primary" onclick="saveFirstReaction()">SAVE FIRST REACTION</button></div><div class="feedback" id="b5fb">REACTION STORED ON THIS DEVICE.<div class="actions"><button class="btn primary" data-next="B6">CHECK GLOBAL COMPREHENSION</button></div></div></div>
+</section>
+
+<section class="screen" data-id="B6" data-progress="49" data-label="B6 · Global Comprehension">
+  <div class="archivehead"><div><div class="kicker">Global Comprehension</div><h2>WHAT IS LINCOLN'S CENTRAL MESSAGE?</h2></div></div>
+  <div class="card"><div class="options" id="b6mc">
+    <button class="option">A · The nation can best honour the soldiers who died at Gettysburg by preserving the battlefield as a permanent memorial to their sacrifice.</button>
+    <button class="option" data-correct="1">B · The dead are best honoured when the living continue the unfinished struggle to preserve a nation founded on equality, freedom and democratic self-government.</button>
+    <button class="option">C · The Union victory at Gettysburg has shown that the principles on which the nation was founded are now secure for future generations.</button>
+    <button class="option">D · The Civil War has made the nation's original founding principles obsolete and created the need for an entirely new political order.</button>
+  </div><h3 style="margin-top:20px">Justify your choice.</h3><textarea id="b6just" placeholder="Refer to the speech as a whole and support your answer with one relevant idea or passage."></textarea><div class="actions"><button class="btn primary" onclick="submitB6()">SUBMIT INTERPRETATION</button></div><div class="feedback" id="b6fb"><b>GLOBAL COMPREHENSION RECORDED</b><br>The archive will return to your first interpretation later.<div class="actions"><button class="btn primary" data-next="B7">OPEN CENTRAL QUESTION</button></div></div></div>
+</section>
+
+<section class="screen" data-id="B7" data-progress="50" data-label="B7 · The Central Question">
+  <div class="archivehead"><div><div class="kicker">Archive Section B · Restored</div><h2>THE CENTRAL QUESTION</h2></div><div class="status">TOTAL ARCHIVE<br>50%</div></div>
+  <div class="card" style="text-align:center"><div class="compare"><div><b>EDWARD EVERETT</b><br>MORE THAN 2 HOURS</div><div class="vs">VS.</div><div><b>ABRAHAM LINCOLN</b><br>272 WORDS</div></div><p class="dramatic" style="margin-top:30px">Why did Lincoln's 272 words become one of the defining speeches in American history?</p><p>The question remains open.</p><button class="btn primary" data-next="C0">ACCESS CASE FILE C</button></div>
+</section>
+
+<section class="screen" data-id="C0" data-progress="50" data-label="Case File C · Reconstructing the Argument">
+  <div class="archivehead"><div><div class="kicker">Archive Section C</div><h2>RECONSTRUCTING THE ARGUMENT</h2></div><div class="status">ARGUMENT STRUCTURE<br>CORRUPTED</div></div>
+  <div class="card hero-copy"><p>The speech has been recovered.<br>The analytical record has not.</p><p>The archive can no longer identify where Lincoln's argument shifts – or why.</p><button class="btn primary" data-next="C1">BEGIN RECONSTRUCTION</button></div>
+</section>
+
+<section class="screen" data-id="C1" data-progress="55" data-label="C1 · Structural Shifts">
+  <div class="archivehead"><div><div class="kicker">File C01 · Argument Structure</div><h2>WHERE DOES THE ARGUMENT SHIFT?</h2></div></div>
+  <div class="card"><p>Divide the speech into five meaningful sections. Tap four sentence-boundary markers. Look for changes in <b>time · focus · purpose</b>.</p>
+    <div class="section-speech" id="c1text">
+      <span class="sentence">Four score and seven years ago our fathers brought forth on this continent a new nation, conceived in liberty, and dedicated to the proposition that all men are created equal.</span><span class="boundary" data-b="1"></span>
+      <span class="sentence">Now we are engaged in a great civil war, testing whether that nation, or any nation so conceived and dedicated, can long endure.</span><span class="boundary" data-b="2"></span>
+      <span class="sentence">We are met on a great battlefield of that war. We have come to dedicate a portion of that field as a final resting place for those who here gave their lives that that nation might live. It is altogether fitting and proper that we should do this.</span><span class="boundary" data-b="3"></span>
+      <span class="sentence">But, in a larger sense, we cannot dedicate, we cannot consecrate, we cannot hallow this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note nor long remember what we say here, but it can never forget what they did here.</span><span class="boundary" data-b="4"></span>
+      <span class="sentence">It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us – that from these honoured dead we take increased devotion to that cause for which they gave the last full measure of devotion; that we here highly resolve that these dead shall not have died in vain; that this nation, under God, shall have a new birth of freedom; and that government of the people, by the people, for the people, shall not perish from the earth.</span>
+    </div>
+    <div class="actions"><button class="btn" onclick="checkBoundaries()">CONFIRM STRUCTURE</button><button class="btn ghost" onclick="showHint()">HINT</button></div><div class="feedback" id="c1hint"></div><div class="feedback" id="c1fb"><b>STRUCTURAL SHIFTS IDENTIFIED</b><br>5 SECTIONS RECOVERED<div class="actions"><button class="btn primary" data-next="C2">RESTORE SECTION FUNCTIONS</button></div></div>
+  </div>
+</section>
+
+<section class="screen" data-id="C2" data-progress="60" data-label="C2 · Section Functions">
+  <div class="archivehead"><div><div class="kicker">Section Functions</div><h2>WHAT DOES EACH SECTION DO?</h2></div></div>
+  <div class="card"><div class="grid g2"><div class="pool" id="funcPool">
+    <button class="note" data-sec="1">Establishes the nation's founding ideals as the starting point for the argument.</button><button class="note" data-sec="2">Presents the Civil War as a test of whether the nation can survive.</button><button class="note" data-sec="3">Moves from the national crisis to the immediate occasion at Gettysburg.</button><button class="note" data-sec="4">Shifts attention from the words spoken at the ceremony to the sacrifice of the soldiers.</button><button class="note" data-sec="5">Transfers responsibility from the dead to the living and directs the speech towards the future.</button><button class="note" data-sec="x">Gives a detailed account of the Battle of Gettysburg.</button><button class="note" data-sec="x">Celebrates the Union victory as proof that the war is almost over.</button><button class="note" data-sec="x">Explains why a new cemetery was needed.</button>
+  </div><div class="pool"><button class="dropzone secslot" data-sec="1">SECTION 1</button><button class="dropzone secslot" data-sec="2">SECTION 2</button><button class="dropzone secslot" data-sec="3">SECTION 3</button><button class="dropzone secslot" data-sec="4">SECTION 4</button><button class="dropzone secslot" data-sec="5">SECTION 5</button></div></div><div class="feedback" id="c2fb"><b>SECTION FUNCTIONS RESTORED</b><br>1 FOUNDING IDEALS · 2 THE NATION TESTED · 3 THE OCCASION · 4 SACRIFICE · 5 RESPONSIBILITY & FUTURE<div class="actions"><button class="btn primary" data-next="C2evidence">CONFIRM WITH EVIDENCE</button></div></div></div>
+</section>
+
+
+<section class="screen" data-id="C2evidence" data-progress="63" data-label="C2 · Evidence Check">
+  <div class="archivehead"><div><div class="kicker">Confirm With Evidence</div><h2>GROUND THE STRUCTURAL CLAIMS IN THE TEXT</h2></div></div>
+  <div class="card">
+    <p>Select the relevant passage for each claim. Work through the three prompts in order.</p>
+    <div id="c2Prompt" class="card" style="margin-bottom:16px"><b>1.</b> Mark the phrase that links Lincoln's argument to the nation's founding principles.</div>
+    <div class="section-speech" id="c2EvidenceText">
+      Four score and seven years ago our fathers brought forth on this continent a new nation, conceived in liberty, and dedicated to the proposition that
+      <span class="markable c2ev" data-step="1">all men are created equal</span>.
+      Now we are engaged in a great civil war, testing whether that nation, or any nation so conceived and dedicated, can long endure.
+      We are met on a great battlefield of that war. We have come to dedicate a portion of that field as a final resting place for those who here gave their lives that that nation might live.
+      It is altogether fitting and proper that we should do this.
+      <span class="markable c2ev" data-step="2">But, in a larger sense, we cannot dedicate, we cannot consecrate, we cannot hallow this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note nor long remember what we say here, but it can never forget what they did here.</span>
+      <span class="markable c2ev" data-step="3">It is for us the living, rather</span>, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced.
+    </div>
+    <div class="feedback" id="c2evfb"><b>SECTION FUNCTIONS RESTORED</b><br>
+      1 FOUNDING IDEALS · 2 THE NATION TESTED · 3 THE OCCASION · 4 SACRIFICE · 5 RESPONSIBILITY & FUTURE
+      <div class="actions"><button class="btn primary" data-next="C3">OPEN CORRUPTED ANALYST NOTES</button></div>
+    </div>
+  </div>
+</section>
+
+<section class="screen" data-id="C3" data-progress="66" data-label="C3 · Content or Analysis?">
+  <div class="archivehead"><div><div class="kicker">Corrupted Analyst Notes</div><h2>CONTENT RECORDS OR ANALYTICAL RECORDS?</h2></div></div>
+  <div class="card"><p>Select a note, then choose the correct archive area.</p><div class="sortgrid"><div><h3>Mixed note pool</h3><div class="pool" id="notePool"></div></div><div><h3>Archive areas</h3><button class="dropzone sorttarget" data-kind="content">CONTENT RECORDS<br><span class="smallcaps">what Lincoln says</span></button><button class="dropzone sorttarget" data-kind="analysis" style="margin-top:10px">ANALYTICAL RECORDS<br><span class="smallcaps">how Lincoln develops his argument</span></button></div></div><div class="feedback" id="c3fb"><b>ANALYTICAL RECORD RESTORED</b><br>CONTENT RECORDS tell us what Lincoln says. ANALYTICAL RECORDS explain how his argument develops and what the structure achieves.<div class="actions"><button class="btn primary" data-next="Cskill">RUN SKILL CHECK</button></div></div></div>
+</section>
+
+<section class="screen" data-id="Cskill" data-progress="69" data-label="C3 · Skill Check">
+  <div class="archivehead"><div><div class="kicker">Skill Check</div><h2>WHAT MAKES IT AN ANALYSIS?</h2></div></div>
+  <div class="card"><div class="options" id="cskillmc">
+    <button class="option">1 · You identify the main ideas of each section and present them in the order in which they appear in the speech.</button>
+    <button class="option" data-correct="1">2 · You explain how the speaker organises and connects his ideas, how the focus develops from one section to the next, and how this structure supports his purpose.</button>
+    <button class="option">3 · You describe the content of each section in detail and support your description with quotations from the speech.</button>
+    <button class="option">4 · You identify the most important arguments and explain which of them you personally find most convincing.</button>
+  </div><div class="feedback" id="cskillfb"><b>SKILL VERIFIED</b><br>Analysis goes beyond what is said. It explains how the argument develops, how its parts are connected and what this structure achieves.<div class="card" style="margin-top:14px"><span class="smallcaps">Recovery Digit 01 identified</span><div style="font-size:3rem;font-family:Georgia,serif;color:#d6bd82">2</div><div>FRAGMENT 03 · 2█</div></div><div class="actions"><button class="btn primary" data-next="C4">RECONSTRUCT ARGUMENT MAP</button></div></div></div>
+</section>
+
+<section class="screen" data-id="C4" data-progress="72" data-label="C4 · Argument Map">
+  <div class="archivehead"><div><div class="kicker">Argument Map · Status Corrupted</div><h2>PAST → PRESENT → FUTURE</h2></div></div>
+  <div class="card"><p>Assign the five recovered sections to the broader temporal movement.</p><div class="grid g2"><div class="pool" id="temporalPool"><button class="note" data-time="past">FOUNDING IDEALS</button><button class="note" data-time="present">THE NATION TESTED</button><button class="note" data-time="present">THE OCCASION</button><button class="note" data-time="present">SACRIFICE</button><button class="note" data-time="future">RESPONSIBILITY & FUTURE</button></div><div class="pool"><button class="dropzone timetarget" data-time="past">PAST</button><button class="dropzone timetarget" data-time="present">PRESENT</button><button class="dropzone timetarget" data-time="future">PRESENT → FUTURE</button></div></div><div class="feedback" id="c4fb"><b>ARGUMENT MAP RECOVERED</b><div class="argmap"><div class="argnode">FOUNDING PROMISE</div><div class="arrow">↓</div><div class="argnode">CRISIS / NATION TESTED</div><div class="arrow">↓</div><div class="argnode">GETTYSBURG & SACRIFICE</div><div class="arrow">↓</div><div class="argnode">RESPONSIBILITY</div><div class="arrow">↓</div><div class="argnode">RENEWAL / FUTURE</div></div><button class="btn primary" data-next="Cfinal">FINAL STRUCTURE CHECK</button></div></div>
+</section>
+
+<section class="screen" data-id="Cfinal" data-progress="74" data-label="C4 · Final Structure Check">
+  <div class="archivehead"><div><div class="kicker">Final Structure Check</div><h2>WHAT DOES THE COMPLETE MAP REVEAL?</h2></div></div>
+  <div class="card"><div class="options" id="cfinalmc">
+    <button class="option">5 · Lincoln moves chronologically through the history of the United States in order to give his audience a complete account of the Civil War.</button><button class="option">6 · Lincoln gradually moves away from political questions and ends by focusing mainly on personal grief.</button><button class="option" data-correct="1">7 · Lincoln connects the nation's founding ideals to the present crisis and finally to the responsibility of the living, turning remembrance of the past into a commitment to the future.</button><button class="option">8 · Lincoln contrasts the ideals of the past with the failures of the present in order to argue that the original concept of the nation must be replaced.</button>
+  </div><div class="feedback" id="cfinalfb"><b>ARGUMENT ARCHITECTURE RESTORED</b><br>RECOVERY DIGIT 02 IDENTIFIED · 7<div class="card" style="margin-top:14px"><span class="smallcaps">Fragment 03 reconstructed</span><div style="font-size:3rem;font-family:Georgia,serif;color:#d6bd82">2 + 7 → 27</div></div><div class="actions"><button class="btn primary" onclick="unlockFragment(2,'27');go('D0')">ACCESS CASE FILE D</button></div></div></div>
+</section>
+
+<section class="screen" data-id="D0" data-progress="75" data-label="Case File D · The Hidden Blueprint">
+  <div class="archivehead"><div><div class="kicker">Archive Section D</div><h2>THE HIDDEN BLUEPRINT</h2></div><div class="status">ARGUMENT STRUCTURE · RESTORED<br>LANGUAGE LAYER · CORRUPTED</div></div>
+  <div class="card hero-copy"><p>The structure explains where Lincoln takes his audience.<br>But not yet how stylistic devices help him develop the argument.</p><div class="argmap"><div class="argnode">FOUNDING PROMISE → CRISIS → GETTYSBURG & SACRIFICE → RESPONSIBILITY → RENEWAL / FUTURE</div></div><button class="btn primary" data-next="D1">BEGIN LANGUAGE RECONSTRUCTION</button></div>
+</section>
+
+<section class="screen" data-id="D1" data-progress="80" data-label="D1 · Repetition">
+  <div class="archivehead"><div><div class="kicker">Repetition</div><h2>HOW FAR DOES THE ANALYSIS GO?</h2></div></div>
+  <div class="card"><p>Mark the particularly prominent repetition.</p><div class="speech" style="font-size:1.05rem"><span class="markable d1mark">But, in a larger sense, </span><span class="markable d1mark" data-correct="1">we cannot dedicate, we cannot consecrate, we cannot hallow</span><span class="markable d1mark"> this ground.</span></div><div class="feedback" id="d1markfb"><b>PATTERN IDENTIFIED</b><br>“we cannot dedicate – we cannot consecrate – we cannot hallow”</div></div>
+  <div class="card" style="margin-top:18px"><h3>Analyse the analysis</h3><div class="levels"><div class="level"><b>LEVEL 1</b><p>Lincoln uses repetition in “we cannot dedicate – we cannot consecrate – we cannot hallow”. The repetition catches the audience's attention and helps the listener to remember it.</p></div><div class="level"><b>LEVEL 2</b><p>By repeating “we cannot”, Lincoln emphasises that words and ceremonial acts cannot equal the soldiers' sacrifice.</p></div><div class="level"><b>LEVEL 3</b><p>By repeating “we cannot”, Lincoln emphasises that words and ceremonial acts cannot equal the soldiers' sacrifice. He thus shifts the focus from what the audience has come to do at Gettysburg to what the soldiers have already done, preparing his later appeal to the living to continue their unfinished work.</p></div></div><textarea id="d1why" placeholder="Why is Example 3 strongest? Explain what it does that Examples 1 and 2 do not."></textarea><div class="actions"><button class="btn primary" onclick="completeD1()">RESTORE ANALYTICAL LAYERS</button></div><div class="feedback" id="d1fb"><b>STRONG ANALYSIS RECONSTRUCTED</b><br>1 GENERAL EFFECT → 2 MEANING IN CONTEXT → 3 FUNCTION IN THE LINE OF ARGUMENT<div class="actions"><button class="btn primary" data-next="D2">OPEN DEVICE FILE</button></div></div></div>
+</section>
+
+<section class="screen" data-id="D2" data-progress="83" data-label="D2 · Device File">
+  <div class="archivehead"><div><div class="kicker">Device File</div><h2>PARALLELISM & ANTITHESIS</h2></div></div>
+  <div class="grid g2"><div class="card"><h3>PARALLELISM</h3><p>the use of the same or a similar grammatical structure in two or more parts of a sentence</p></div><div class="card"><h3>ANTITHESIS</h3><p>the deliberate contrast of two opposing or strongly different ideas</p><p><b>antithesis</b> /ænˈtɪθəsɪs/ <button class="info" onclick="speakAntithesis()">🔊</button></p></div></div>
+  <div class="card" style="margin-top:18px">One passage may contain more than one device: <b>parallelism</b> can describe grammatical structure while <b>antithesis</b> describes the contrast of ideas.<div class="actions"><button class="btn primary" data-next="D3">FIND THE CONTRAST</button></div></div>
+</section>
+
+<section class="screen" data-id="D3" data-progress="86" data-label="D3 · Antithesis in Context">
+  <div class="archivehead"><div><div class="kicker">Find the Contrast</div><h2>ANTITHESIS IN CONTEXT</h2></div></div>
+  <div class="card"><p>The passage contains more than one contrast. Mark them. Then identify the contrast most important for the development from ceremony to sacrifice.</p>
+    <div class="speech" style="font-size:1.02rem"><span class="markable d3contrast" data-valid="1">The brave men, living and dead,</span> who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note, nor long remember <span class="markable d3contrast" data-main="1">what we say here</span>, but it can never forget <span class="markable d3contrast" data-main="1">what they did here</span>. It is for us the living, rather, to be dedicated here to the unfinished work.</div>
+    <div class="feedback" id="d3fb"><b>DEVICE IDENTIFIED · ANTITHESIS</b><br>The central contrast is “what we say here” ↔ “what they did here”. The contrast is reinforced by a parallel structure. “living” ↔ “dead” is also a valid contrast in the passage.</div>
+  </div>
+  <div class="card" style="margin-top:18px"><div class="levels"><div class="level"><b>LEVEL 1</b><p>The contrast highlights the difference between the two ideas and gives the statement greater impact.</p></div><div class="level"><b>LEVEL 2</b><p>The contrast between the speakers' words and the soldiers' actions presents the soldiers' sacrifice as more significant than the ceremonial words spoken at Gettysburg.</p></div><div class="level"><b>LEVEL 3</b><p>The contrast between the speakers' words and the soldiers' actions presents the soldiers' sacrifice as more significant than the ceremonial words spoken at Gettysburg. Lincoln thus shifts the focus from the ceremony itself to what the soldiers have done and prepares the transition towards the responsibility of the living.</p></div></div><div class="actions"><button class="btn primary" data-next="D4">TRACE THE BIRTH METAPHOR</button></div></div>
+</section>
+
+<section class="screen" data-id="D4" data-progress="90" data-label="D4 · Past ↔ Future">
+  <div class="archivehead"><div><div class="kicker">Past ↔ Future</div><h2>BIRTH METAPHOR / PERSONIFICATION</h2></div></div>
+  <div class="card"><p><span class="tooltip" tabindex="0" data-tip="a score = twenty">Four score</span> and seven years ago = 87 years before 1863 → <b>1776</b>.</p><p>Vocabulary support preserves the imagery:</p><ul><li><span class="tooltip" tabindex="0" data-tip="to produce or give birth to something">to bring forth</span></li><li><span class="tooltip" tabindex="0" data-tip="to become pregnant with a child; also: to form or create an idea">to conceive</span></li></ul></div>
+  <div class="grid g2" style="margin-top:18px"><div class="card"><div class="quote">“our fathers brought forth ... a new nation, conceived in Liberty”</div><p>How is the nation presented here?</p><textarea id="d4a"></textarea></div><div class="card"><div class="quote">“a new birth of freedom”</div><p>Why might Lincoln return to the image of birth near the end of the speech?</p><textarea id="d4b"></textarea></div></div>
+  <div class="actions"><button class="btn primary" onclick="completeD4()">CONNECT THE TWO PASSAGES</button></div><div class="feedback" id="d4fb"><b>MACRO-CONNECTION RESTORED</b><br>The nation is presented like a living being that can be conceived and born. The recurring birth metaphor links the beginning and the end of Lincoln's argument: the nation that was originally “conceived in Liberty” must renew its commitment to freedom.<div class="actions"><button class="btn primary" data-next="D5">OPEN FINAL DEVICE FILE</button></div></div>
+</section>
+
+<section class="screen" data-id="D5" data-progress="94" data-label="D5 · Future">
+  <div class="archivehead"><div><div class="kicker">Future</div><h2>RULE OF THREE & PARALLELISM</h2></div></div>
+  <div class="card" style="text-align:center"><div class="dramatic quote">“government of the people,<br>by the people,<br>for the people”</div><p><b>RULE OF THREE</b><br>a sequence of three parallel words, phrases or ideas used as a structured rhetorical unit</p></div>
+  <div class="card" style="margin-top:18px"><h3>Contextual meaning and argumentative function</h3><p>The three parallel phrases define democratic government through the relationship between the people and political power. Placed at the end of the speech, the rule of three broadens the significance of the soldiers' sacrifice: what is ultimately at stake is not only the survival of the Union, but the survival of democratic self-government itself.</p><div class="actions"><button class="btn primary" data-next="D6">RESTORE THE HIDDEN BLUEPRINT</button></div></div>
+</section>
+
+<section class="screen" data-id="D6" data-progress="98" data-label="D6 · Restore the Hidden Blueprint">
+  <div class="archivehead"><div><div class="kicker">Final Synthesis</div><h2>THE HIDDEN BLUEPRINT</h2></div></div>
+  <div class="blueprint">
+    <div class="layer"><b>FOUNDING PROMISE</b><p>birth metaphor / personification<br><span class="quote">“brought forth” / “conceived in Liberty”</span></p></div><div class="layer">Language establishes the nation as something born from liberty.</div>
+    <div class="layer"><b>CRISIS / NATION TESTED</b></div><div class="layer">The founding promise becomes the standard against which the Civil War is understood.</div>
+    <div class="layer"><b>GETTYSBURG & SACRIFICE</b><p>repetition / parallelism<br><span class="quote">“we cannot dedicate – we cannot consecrate – we cannot hallow”</span><br>antithesis + parallelism<br><span class="quote">“what we say” ↔ “what they did”</span></p></div><div class="layer">The language shifts attention from ceremonial words to soldiers' sacrifice.</div>
+    <div class="layer"><b>RESPONSIBILITY</b></div><div class="layer">The focus moves from the dead to the living and their unfinished work.</div>
+    <div class="layer"><b>RENEWAL / FUTURE</b><p>return to birth metaphor · <span class="quote">“a new birth of freedom”</span><br>rule of three + parallelism · <span class="quote">“of the people, by the people, for the people”</span></p></div><div class="layer">The future of freedom and democratic self-government becomes the final stake.</div>
+  </div>
+  <div class="card" style="margin-top:20px;text-align:center"><p class="dramatic">Stylistic devices are not decorations added to an argument.</p><p>They can emphasise, develop and connect different stages of the line of argument.</p><p><b>DON'T ASK ONLY:</b> What effect does this device usually have?<br><b>ASK:</b> What does it do here – at this exact point in the argument?</p><div class="card" style="max-width:420px;margin:20px auto"><span class="smallcaps">Master Recovery Key · Fragment 04 recovered</span><div style="font-size:3rem;font-family:Georgia,serif;color:#d6bd82">2</div></div><button class="btn primary" onclick="unlockFragment(3,'2');go('FINALKEY')">RECONSTRUCT FINAL ARCHIVE KEY</button></div>
+</section>
+
+<section class="screen" data-id="FINALKEY" data-progress="99" data-label="Master Recovery Key">
+  <div class="archivehead"><div><div class="kicker">All Fragments Recovered</div><h2>MASTER RECOVERY KEY</h2></div><div class="status">18 · 63 · 27 · 2</div></div>
+  <div class="card" style="text-align:center"><p>Reconstruct the final archive key from the recovered fragments.</p><div class="keyentry"><input id="keyYear" inputmode="numeric" maxlength="4" placeholder="____"><span>–</span><input id="keyWords" inputmode="numeric" maxlength="3" placeholder="___"></div><button class="btn primary" onclick="checkFinalKey()">ENTER KEY</button><div class="feedback" id="keyfb"><b>FINAL KEY ACCEPTED</b><br>1863 – 272<br>ARCHIVE RECOVERY 100%<br><b>COLD CASE #272 · RESTORED</b><div class="actions" style="justify-content:center"><button class="btn primary" data-next="EPILOGUE">OPEN EPILOGUE</button></div></div></div>
+</section>
+
+<section class="screen" data-id="EPILOGUE" data-progress="100" data-label="Epilogue · The File That Survived">
+  <div class="archivehead"><div><div class="kicker">Archive Restored</div><h2>THE FILE THAT SURVIVED</h2></div><div class="status">COLD CASE #272<br>RESTORED</div></div>
+  <div class="card hero-copy"><p>November 19, 1863.</p><p>Edward Everett delivered the speech the audience had expected:<br>a long, formal address by the day's main orator.</p><p>Abraham Lincoln spoke for only a few minutes.<br>His address contained just 272 words.</p><p><b>Yet it was Lincoln's words that survived.</b></p><p>You have restored the historical context.<br>You have reconstructed the line of argument.<br>You have uncovered how stylistic devices support that argument.</p><p>The archive is complete.<br><b>The investigation is not.</b></p></div>
+  <div class="card" style="margin-top:20px;text-align:center"><div class="smallcaps">Final Case Question</div><p class="dramatic">WHY DID LINCOLN'S 272 WORDS BECOME ONE OF THE DEFINING SPEECHES IN AMERICAN HISTORY?</p></div>
+  <div class="paper" style="margin-top:20px"><h2>ANALYST'S REPORT</h2><p>Write an analytical response to the following question:</p><p><b>Why did Lincoln's 272 words become one of the defining speeches in American history?</b></p><p>In your answer, explain how Lincoln's line of argument and his use of stylistic devices work together to communicate his central message. Support your analysis with evidence from the Gettysburg Address.</p><div class="source-note" style="color:#605a4c">Required length and submission format remain teacher decisions.</div></div>
+  <div class="footer-sources">
+    <b>Historical source base used in this build</b><br>
+    Library of Congress: Gettysburg Address Online Exhibition; David Wills's invitation to Abraham Lincoln; Gettysburg dedication photographs; Bachelder battlefield map; Abraham Lincoln portrait.<br>
+    U.S. National Park Service, Gettysburg National Military Park: History of the Soldiers' National Cemetery; Edward Everett biography; David Wills House / Lincoln at Gettysburg materials.<br>
+    U.S. National Archives: Emancipation Proclamation, January 1, 1863.<br>
+    The speech text follows the wording supplied in the user's Reader; punctuation and dash style are retained from that Reader version.
+  </div>
+</section>
+
+</main>
+</div>
+
+<div class="modal" id="everettInfo"><div class="modalbox"><button class="btn ghost" onclick="closeModal('everettInfo')">CLOSE</button><h3>Edward Everett's political career</h3><p>Everett served in the U.S. House of Representatives, as Governor of Massachusetts, U.S. Minister to Great Britain, U.S. Secretary of State and U.S. Senator. He was also president of Harvard College.</p></div></div>
+<div class="modal" id="emancipationInfo"><div class="modalbox"><button class="btn ghost" onclick="closeModal('emancipationInfo')">CLOSE</button><h3>What was the Emancipation Proclamation?</h3><p>On January 1, 1863, Lincoln declared enslaved people in the states rebelling against the Union to be free. The proclamation did not abolish slavery everywhere in the United States, but it made emancipation a central part of the Union war effort.</p></div></div>
+<div class="toast" id="toast"></div>
+
+
+<script src="app.js"></script>
+</body>
+</html>
