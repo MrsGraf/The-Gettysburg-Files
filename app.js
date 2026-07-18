@@ -1,38 +1,24 @@
 const screens=[...document.querySelectorAll('.screen')];
 let fragments=JSON.parse(localStorage.getItem('gettysburgFragments')||'["","","",""]');
 let selected=null, hintCount=0;
-function go(id){screens.forEach(s=>s.classList.toggle('active',s.dataset.id===id));const s=document.querySelector(`[data-id="${id}"]`);if(!s)return;window.scrollTo(0,0);updateProgress(s);localStorage.setItem('gettysburgLast',id);if(id==='B4')setTimeout(()=>{document.getElementById('everettSide').classList.add('fade-side');document.getElementById('searching').style.display='none';document.getElementById('remembered').style.display='block'},1600);}
-function updateProgress(s){
-  const id=s.dataset.id||'';
-  const raw=+s.dataset.progress||0;
-  let label=s.dataset.label||'';
-  let pct=0;
-  const bands={A:[0,25],B:[25,50],C:[50,75],D:[75,100]};
-  const letter=/^[ABCD]/.test(id)?id[0]:null;
-  if(letter){const [start,end]=bands[letter];pct=Math.max(0,Math.min(100,Math.round(((raw-start)/(end-start))*100)));label=`CASE FILE ${letter} PROGRESS`;}
-  else if(id==='prologue'){pct=0;label='ARCHIVE ENTRY';}
-  else if(id==='EPILOGUE'||id==='FINALKEY'){pct=100;label='ARCHIVE RECOVERY';}
-  document.getElementById('globalProgress').style.width=pct+'%';
-  document.getElementById('progressLabel').textContent=pct+'%';
-  document.getElementById('sectionLabel').textContent=label;
-  renderKey();
-}
+function go(id){screens.forEach(s=>s.classList.toggle('active',s.dataset.id===id));const s=document.querySelector(`[data-id="${id}"]`);if(!s)return;window.scrollTo(0,0);updateProgress(s);if(id==='B4')setTimeout(()=>{document.getElementById('everettSide').classList.add('fade-side');document.getElementById('searching').style.display='none';document.getElementById('remembered').style.display='block'},1600);}
+function updateProgress(s){const p=+s.dataset.progress||0;document.getElementById('globalProgress').style.width=p+'%';document.getElementById('progressLabel').textContent=p+'%';const caseId=s.dataset.case;document.getElementById('sectionLabel').textContent=caseId?'Case File '+caseId:(s.dataset.label||'Archive entry');renderKey();}
 function renderKey(){document.getElementById('keyMini').textContent=fragments.map((x,i)=>x||['██','██','██','█'][i]).join(' · ')}
 function unlockFragment(i,v){fragments[i]=v;localStorage.setItem('gettysburgFragments',JSON.stringify(fragments));renderKey();toast('Recovery fragment '+v+' stored.');}
 function toast(t){const e=document.getElementById('toast');e.textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),1800)}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-next]');if(b)go(b.dataset.next)});
-document.querySelectorAll('.options').forEach(box=>box.addEventListener('click',e=>{const o=e.target.closest('.option');if(!o)return;if(box.id==='a1opts')return;box.querySelectorAll('.option').forEach(x=>x.classList.remove('selected'));o.classList.add('selected');if(box.id==='b6mc')return;let fb=null;if(box.id==='a6mc')fb=document.getElementById('a6mcfb');else fb=document.getElementById(box.id.replace('mc','fb'))||document.getElementById(box.id+'fb');if(o.dataset.correct&&fb)fb.classList.add('show');else if(!o.dataset.correct)toast('Recheck the evidence.')}));
+document.querySelectorAll('.options').forEach(box=>box.addEventListener('click',e=>{const o=e.target.closest('.option');if(!o)return;if(box.id==='a1opts')return;box.querySelectorAll('.option').forEach(x=>x.classList.remove('selected'));o.classList.add('selected');if(box.id==='b6mc')return;let fb=null;if(box.id==='a1mc')fb=document.getElementById('a1mcfb');else if(box.id==='a4mc')fb=document.getElementById('a4mcfb');else fb=document.getElementById(box.id.replace('mc','fb'))||document.getElementById(box.id+'fb');if(o.dataset.correct&&fb)fb.classList.add('show');else if(!o.dataset.correct)toast('Recheck the evidence.')}));
 function checkMulti(id,n,fbid){const sel=[...document.querySelectorAll('#'+id+' .selected')];const ok=sel.length===n&&sel.every(x=>x.dataset.correct);if(ok)document.getElementById(fbid).classList.add('show');else toast('Select only statements that the image itself can support.');}
-document.querySelectorAll('#a1opts .option').forEach(o=>o.addEventListener('click',()=>o.classList.toggle('selected')));
 let timeline=[];
 
 
-// A02 research-and-reconstruction timeline
+
+// A01 research timeline and historical bridge
 const researchAnswers={
   doi:{event:['declaration of independence','declaration'],year:['1776']},
   civilwar:{event:['american civil war','civil war','beginning of the american civil war','start of the civil war'],year:['1861']},
-  emancipation:{event:['emancipation proclamation','emancipation proclamation takes effect'],year:['1863','january 1863','jan 1863']},
-  gettysburg:{event:['battle of gettysburg','gettysburg'],year:['1863','july 1863','jul 1863']}
+  emancipation:{event:['emancipation proclamation','emancipation proclamation takes effect'],year:['1863','january 1863','jan 1863','january 1 1863']},
+  gettysburg:{event:['battle of gettysburg','gettysburg'],year:['1863','july 1863','jul 1863','july 1 1863','july 1-3 1863']}
 };
 function norm(v){return (v||'').toLowerCase().trim().replace(/[.,]/g,'').replace(/\s+/g,' ');}
 let verifiedSources=new Set();
@@ -40,33 +26,77 @@ document.querySelectorAll('.verify-source').forEach(btn=>btn.addEventListener('c
   const card=btn.closest('.research-card'); const id=card.dataset.id; const a=researchAnswers[id];
   const ev=norm(card.querySelector('.research-event').value); const yr=norm(card.querySelector('.research-year').value);
   const eventOk=a.event.some(x=>ev.includes(x)); const yearOk=a.year.some(x=>yr===x||yr.includes(x));
-  if(eventOk&&yearOk){card.classList.add('verified');btn.textContent='VERIFIED';verifiedSources.add(id); if(verifiedSources.size===4){buildTimelinePool();document.getElementById('timelineBuild').hidden=false;toast('All four sources identified. Reconstruct the chronology.');}}
-  else toast('Not yet. Use the source and research link to check the event and date.');
+  if(eventOk&&yearOk){
+    card.classList.add('verified'); btn.textContent='VERIFIED'; verifiedSources.add(id);
+    if(verifiedSources.size===4){
+      document.getElementById('timelineFb')?.classList.add('show');
+      const bridge=document.getElementById('civilWarContext'); if(bridge) bridge.hidden=false;
+      toast('All four sources identified. The recovered timeline is now visible.');
+    }
+  } else toast('Not yet. Use the source and research link to check the event and date.');
 }));
-const timelineOrder=['doi','civilwar','emancipation','gettysburg'];
-const timelineLabels={doi:'Declaration of Independence · 1776',civilwar:'Beginning of the American Civil War · 1861',emancipation:'Emancipation Proclamation takes effect · January 1863',gettysburg:'Battle of Gettysburg · July 1863'};
-let timelineSelection=[];
-function buildTimelinePool(){const pool=document.getElementById('timelinePool');if(!pool||pool.children.length)return;timelineOrder.forEach(id=>{const b=document.createElement('button');b.type='button';b.className='btn ghost timeline-choice';b.dataset.id=id;b.textContent=timelineLabels[id];b.addEventListener('click',()=>toggleTimelineChoice(id,b));pool.appendChild(b);});renderTimelineSequence();}
-function toggleTimelineChoice(id,button){const i=timelineSelection.indexOf(id);if(i>=0){timelineSelection.splice(i,1);button.classList.remove('selected');}else{timelineSelection.push(id);button.classList.add('selected');}renderTimelineSequence();}
-function renderTimelineSequence(){const out=document.getElementById('timelineOut');if(!out)return;out.textContent=timelineSelection.length?'Recovered sequence: '+timelineSelection.map(id=>timelineLabels[id]).join(' → '):'Recovered sequence: —';}
-document.getElementById('timelineUndo')?.addEventListener('click',()=>{const id=timelineSelection.pop();if(id)document.querySelector(`.timeline-choice[data-id="${id}"]`)?.classList.remove('selected');renderTimelineSequence();});
-document.getElementById('timelineReset')?.addEventListener('click',()=>{timelineSelection=[];document.querySelectorAll('.timeline-choice').forEach(b=>b.classList.remove('selected'));renderTimelineSequence();});
-document.getElementById('timelineConfirm')?.addEventListener('click',()=>{if(timelineSelection.length!==4)return toast('Place all four events before confirming.');if(timelineSelection.join(',')===timelineOrder.join(',')){document.getElementById('timelineFb')?.classList.add('show');}else toast('The chronology is not correct yet. You can undo or reset and try again.');});
 
-function locateGettysburg(){document.getElementById('mapfb').classList.add('show');document.getElementById('battleReveal').style.display='block';}
-document.querySelectorAll('#a3rec .option').forEach(o=>o.addEventListener('click',()=>{if(o.dataset.correct)document.getElementById('a3fb').classList.add('show');else toast('Check the recovered battle record.')}));
+// A02 geographic locator: users may retry until the target area is found
+const mapLayer=document.getElementById('mapClickLayer');
+mapLayer?.addEventListener('click',(event)=>{
+  const rect=mapLayer.getBoundingClientRect();
+  const x=(event.clientX-rect.left)/rect.width;
+  const y=(event.clientY-rect.top)/rect.height;
+  const marker=document.getElementById('mapMarker');
+  if(marker){marker.hidden=false;marker.style.left=(x*100)+'%';marker.style.top=(y*100)+'%';}
+  // Approximate Gettysburg target on this locator map: south-central Pennsylvania.
+  const targetX=.405, targetY=.39; const hit=Math.hypot(x-targetX,y-targetY)<.085;
+  document.getElementById('mapRetry')?.classList.toggle('show',!hit);
+  document.getElementById('mapfb')?.classList.toggle('show',hit);
+});
+
+// A03 invitation reconstruction with reversible assignments
+const openOccasion=document.getElementById('openOccasion');
+openOccasion?.addEventListener('click',()=>{const box=document.getElementById('a3recon');if(box)box.hidden=false;});
 let occasionSelected=null;
-document.querySelectorAll('#occasionPool .note').forEach(n=>n.onclick=()=>{document.querySelectorAll('#occasionPool .note').forEach(x=>x.classList.remove('active'));n.classList.add('active');occasionSelected=n;});
-document.querySelectorAll('.assign').forEach(z=>z.onclick=()=>{if(!occasionSelected)return toast('Select a recovered data card first.');if(z.dataset.answer===occasionSelected.dataset.value){z.textContent=z.textContent.split('?')[0]+'? '+occasionSelected.dataset.value;z.classList.add('filled');occasionSelected.style.display='none';occasionSelected=null;if([...document.querySelectorAll('.assign')].every(x=>x.classList.contains('filled')))document.getElementById('a4reconfb').classList.add('show');}else toast('That fragment belongs in another field.')});
-let roles={};
-document.querySelectorAll('.role').forEach(r=>r.onclick=()=>{roles[r.dataset.person]=r.dataset.role;document.querySelectorAll(`.role[data-person="${r.dataset.person}"]`).forEach(x=>x.classList.remove('selected'));r.classList.add('selected');if(roles.Lincoln&&roles.Everett){if(roles.Lincoln==='remarks'&&roles.Everett==='oration')document.getElementById('a5fb').classList.add('show');else toast('Check the surviving invitation and speaking roles.')}});
-let caseSel=null, caseDone=new Set();
-document.querySelectorAll('#casePool .note').forEach(n=>n.onclick=()=>{caseSel=n;document.querySelectorAll('#casePool .note').forEach(x=>x.classList.remove('active'));n.classList.add('active')});
-document.querySelectorAll('.cat').forEach(c=>c.onclick=()=>{if(!caseSel)return toast('Select an evidence statement first.');if(c.dataset.cat===caseSel.dataset.cat){c.textContent=c.textContent+' · '+caseSel.textContent;caseSel.style.display='none';caseDone.add(c.dataset.cat);caseSel=null;if(caseDone.size===5)document.getElementById('a6fb').classList.add('show')}else toast('This evidence belongs in another category.')});
+document.querySelectorAll('#occasionPool .note').forEach(n=>n.addEventListener('click',()=>{
+  if(n.classList.contains('assigned')) return;
+  document.querySelectorAll('#occasionPool .note').forEach(x=>x.classList.remove('active')); n.classList.add('active'); occasionSelected=n;
+}));
+function occasionComplete(){return [...document.querySelectorAll('.assign')].every(x=>x.classList.contains('filled'));}
+document.querySelectorAll('.assign').forEach(z=>z.addEventListener('click',()=>{
+  if(z.classList.contains('filled')&&!occasionSelected){
+    const value=z.dataset.assignedValue; const source=[...document.querySelectorAll('#occasionPool .note')].find(n=>n.dataset.value===value);
+    source?.classList.remove('assigned'); z.classList.remove('filled'); z.textContent=z.dataset.label; delete z.dataset.assignedValue; return;
+  }
+  if(!occasionSelected) return toast('Select a recovered data card first.');
+  if(z.dataset.answer===occasionSelected.dataset.value){
+    if(z.classList.contains('filled')){const old=z.dataset.assignedValue;document.querySelector(`#occasionPool .note[data-value="${CSS.escape(old)}"]`)?.classList.remove('assigned');}
+    z.textContent=z.dataset.label+' · '+occasionSelected.dataset.value; z.classList.add('filled'); z.dataset.assignedValue=occasionSelected.dataset.value;
+    occasionSelected.classList.remove('active'); occasionSelected.classList.add('assigned'); occasionSelected=null;
+    if(occasionComplete()) document.getElementById('a3reconfb')?.classList.add('show');
+  } else toast('That fragment belongs in another field. You can try another field.');
+}));
+
+// A04 case reconstruction with reversible assignments
+let caseSel=null; const caseDone=new Set();
+document.querySelectorAll('#casePool .note').forEach(n=>n.addEventListener('click',()=>{
+  if(n.classList.contains('assigned')) return;
+  caseSel=n; document.querySelectorAll('#casePool .note').forEach(x=>x.classList.remove('active')); n.classList.add('active');
+}));
+document.querySelectorAll('.cat').forEach(c=>c.addEventListener('click',()=>{
+  if(c.classList.contains('filled')&&!caseSel){
+    const cat=c.dataset.cat; const source=document.querySelector(`#casePool .note[data-cat="${cat}"]`); source?.classList.remove('assigned'); c.classList.remove('filled'); c.textContent=c.dataset.label; caseDone.delete(cat); return;
+  }
+  if(!caseSel) return toast('Select an evidence statement first.');
+  if(c.dataset.cat===caseSel.dataset.cat){
+    c.textContent=c.dataset.label+' · '+caseSel.textContent; c.classList.add('filled'); caseDone.add(c.dataset.cat); caseSel.classList.remove('active'); caseSel.classList.add('assigned'); caseSel=null;
+    if(caseDone.size===5) document.getElementById('a4fb')?.classList.add('show');
+  } else toast('This evidence belongs in another category.');
+}));
 function openModal(id){document.getElementById(id).classList.add('show')} function closeModal(id){document.getElementById(id).classList.remove('show')}
 let speechSel=null;
-document.querySelectorAll('.speechfrag').forEach(n=>n.onclick=()=>{speechSel=n;document.querySelectorAll('.speechfrag').forEach(x=>x.classList.remove('active'));n.classList.add('active')});
-document.querySelectorAll('.speechslot').forEach(z=>z.onclick=()=>{if(!speechSel)return toast('Select a recovered data fragment.');if(z.dataset.answer===speechSel.dataset.value){z.textContent=z.dataset.answer;z.classList.add('filled');speechSel.style.display='none';speechSel=null;if([...document.querySelectorAll('.speechslot')].every(x=>x.classList.contains('filled')))document.getElementById('b3fb').classList.add('show')}else toast('This fragment does not fit that record.')});
+document.querySelectorAll('.speechfrag').forEach(n=>n.addEventListener('click',()=>{if(n.classList.contains('assigned'))return;speechSel=n;document.querySelectorAll('.speechfrag').forEach(x=>x.classList.remove('active'));n.classList.add('active');}));
+document.querySelectorAll('.speechslot').forEach(z=>z.addEventListener('click',()=>{
+  if(z.classList.contains('filled')&&!speechSel){const val=z.dataset.assignedValue;document.querySelector(`.speechfrag[data-value="${CSS.escape(val)}"]`)?.classList.remove('assigned');z.classList.remove('filled');z.textContent=z.dataset.label||('['+z.dataset.answer+']');delete z.dataset.assignedValue;return;}
+  if(!speechSel)return toast('Select a recovered data fragment.');
+  if(z.dataset.answer===speechSel.dataset.value){z.dataset.label=z.dataset.label||z.textContent;z.textContent=z.dataset.answer;z.classList.add('filled');z.dataset.assignedValue=speechSel.dataset.value;speechSel.classList.remove('active');speechSel.classList.add('assigned');speechSel=null;if([...document.querySelectorAll('.speechslot')].every(x=>x.classList.contains('filled')))document.getElementById('b3fb')?.classList.add('show');}else toast('This fragment does not fit that record.');
+}));
 let reactionPassage='',reactionCat='';
 document.querySelectorAll('#speechB5 .markable').forEach(m=>m.onclick=()=>{document.querySelectorAll('#speechB5 .markable').forEach(x=>x.classList.remove('marked'));m.classList.add('marked');reactionPassage=m.textContent});
 document.querySelectorAll('#reactionCats .chip').forEach(c=>c.onclick=()=>{document.querySelectorAll('#reactionCats .chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');reactionCat=c.textContent});
@@ -76,9 +106,12 @@ document.querySelectorAll('.boundary').forEach(b=>b.onclick=()=>b.classList.togg
 function checkBoundaries(){const ons=[...document.querySelectorAll('.boundary.on')].map(x=>x.dataset.b);if(ons.join(',')==='1,2,3,4')document.getElementById('c1fb').classList.add('show');else{hintCount++;toast('The structure is not complete yet. Look for shifts in time, focus or purpose.')}}
 function showHint(){const f=document.getElementById('c1hint');f.classList.add('show');f.innerHTML=hintCount<2?'<b>HINT 1</b><br>A new section begins when Lincoln changes his time frame, his focus, or what he is trying to achieve.':'<b>HINT 2</b><br>Look for moves from the nation\'s beginnings → Civil War → Gettysburg itself → words to sacrifice → dead to living.'}
 let funcSel=null,funcDone=0;
-document.querySelectorAll('#funcPool .note').forEach(n=>n.onclick=()=>{funcSel=n;document.querySelectorAll('#funcPool .note').forEach(x=>x.classList.remove('active'));n.classList.add('active')});
-document.querySelectorAll('.secslot').forEach(z=>z.onclick=()=>{if(!funcSel)return toast('Select a function card.');if(z.dataset.sec===funcSel.dataset.sec){z.textContent='SECTION '+z.dataset.sec+' · '+funcSel.textContent;z.classList.add('filled');funcSel.style.display='none';funcSel=null;funcDone++;if(funcDone===5)document.getElementById('c2fb').classList.add('show')}else toast('That function does not match this section.')});
-
+document.querySelectorAll('#funcPool .note').forEach(n=>n.addEventListener('click',()=>{if(n.classList.contains('assigned'))return;funcSel=n;document.querySelectorAll('#funcPool .note').forEach(x=>x.classList.remove('active'));n.classList.add('active');}));
+document.querySelectorAll('.secslot').forEach(z=>z.addEventListener('click',()=>{
+  if(z.classList.contains('filled')&&!funcSel){const sec=z.dataset.sec;document.querySelector(`#funcPool .note[data-sec="${sec}"]`)?.classList.remove('assigned');z.classList.remove('filled');z.textContent='SECTION '+sec;funcDone=Math.max(0,funcDone-1);return;}
+  if(!funcSel)return toast('Select a function card.');
+  if(z.dataset.sec===funcSel.dataset.sec){z.textContent='SECTION '+z.dataset.sec+' · '+funcSel.textContent;z.classList.add('filled');funcSel.classList.remove('active');funcSel.classList.add('assigned');funcSel=null;funcDone++;if(funcDone===5)document.getElementById('c2fb')?.classList.add('show');}else toast('That function does not match this section.');
+}));
 let c2EvidenceStep=1;
 document.querySelectorAll('.c2ev').forEach(span=>span.addEventListener('click',()=>{
   const step=Number(span.dataset.step);
@@ -113,10 +146,12 @@ const notes=[
 ['By ending with the nation\'s future, Lincoln develops his argument from remembrance towards renewal and continued responsibility.','analysis']
 ];
 const np=document.getElementById('notePool');notes.forEach(([t,k])=>{const b=document.createElement('button');b.className='note';b.textContent=t;b.dataset.kind=k;np.appendChild(b)});
-let noteSel=null,noteDone=0;np.addEventListener('click',e=>{const n=e.target.closest('.note');if(!n)return;noteSel=n;[...np.children].forEach(x=>x.classList.remove('active'));n.classList.add('active')});document.querySelectorAll('.sorttarget').forEach(z=>z.onclick=()=>{if(!noteSel)return toast('Select a note first.');if(z.dataset.kind===noteSel.dataset.kind){noteSel.style.display='none';noteDone++;noteSel=null;if(noteDone===notes.length)document.getElementById('c3fb').classList.add('show')}else toast('Read for function: does the note state content, or explain development?')});
-document.querySelectorAll('#cskillmc .option').forEach(o=>o.onclick=()=>{document.querySelectorAll('#cskillmc .option').forEach(x=>x.classList.remove('selected'));o.classList.add('selected');if(o.dataset.correct)document.getElementById('cskillfb').classList.add('show');else toast('This still describes summary rather than analysis.')})
+let noteSel=null,noteDone=0;
+np?.addEventListener('click',e=>{const n=e.target.closest('.note');if(!n)return;if(n.classList.contains('assigned')){n.classList.remove('assigned');delete n.dataset.assignedKind;noteDone=Math.max(0,noteDone-1);return;}noteSel=n;[...np.children].forEach(x=>x.classList.remove('active'));n.classList.add('active');});
+document.querySelectorAll('.sorttarget').forEach(z=>z.addEventListener('click',()=>{if(!noteSel)return toast('Select a note first.');if(z.dataset.kind===noteSel.dataset.kind){noteSel.classList.remove('active');noteSel.classList.add('assigned');noteSel.dataset.assignedKind=z.dataset.kind;noteDone++;noteSel=null;if(noteDone===notes.length)document.getElementById('c3fb')?.classList.add('show');}else toast('Read for function: does the note state content, or explain development?');}));
 let tempSel=null,tempPlaced=0;
-document.querySelectorAll('#temporalPool .note').forEach(n=>n.onclick=()=>{tempSel=n;document.querySelectorAll('#temporalPool .note').forEach(x=>x.classList.remove('active'));n.classList.add('active')});document.querySelectorAll('.timetarget').forEach(z=>z.onclick=()=>{if(!tempSel)return toast('Select a recovered section.');if(z.dataset.time===tempSel.dataset.time){z.textContent+=' · '+tempSel.textContent;tempSel.style.display='none';tempSel=null;tempPlaced++;if(tempPlaced===5)document.getElementById('c4fb').classList.add('show')}else toast('Check the temporal movement again.')});
+document.querySelectorAll('#temporalPool .note').forEach(n=>n.addEventListener('click',()=>{if(n.classList.contains('assigned')){n.classList.remove('assigned');tempPlaced=Math.max(0,tempPlaced-1);return;}tempSel=n;document.querySelectorAll('#temporalPool .note').forEach(x=>x.classList.remove('active'));n.classList.add('active');}));
+document.querySelectorAll('.timetarget').forEach(z=>z.addEventListener('click',()=>{if(!tempSel)return toast('Select a recovered section.');if(z.dataset.time===tempSel.dataset.time){tempSel.classList.remove('active');tempSel.classList.add('assigned');tempSel=null;tempPlaced++;if(tempPlaced===5)document.getElementById('c4fb')?.classList.add('show');}else toast('Check the temporal movement again.');}));
 document.querySelectorAll('#cfinalmc .option').forEach(o=>o.onclick=()=>{document.querySelectorAll('#cfinalmc .option').forEach(x=>x.classList.remove('selected'));o.classList.add('selected');if(o.dataset.correct)document.getElementById('cfinalfb').classList.add('show');else toast('Look at the complete movement from founding ideals to future responsibility.')})
 document.querySelectorAll('.d1mark').forEach(m=>m.onclick=()=>{if(m.dataset.correct){m.classList.add('marked');document.getElementById('d1markfb').classList.add('show')}else toast('Look for the repeated grammatical opening.')});
 function completeD1(){if(document.getElementById('d1why').value.trim().length<20)return toast('Add a brief explanation first.');document.getElementById('d1fb').classList.add('show')}
@@ -125,7 +160,7 @@ let mainContrast=0;
 document.querySelectorAll('.d3contrast').forEach(m=>m.onclick=()=>{m.classList.toggle('marked');mainContrast=[...document.querySelectorAll('.d3contrast.marked[data-main="1"]')].length;if(mainContrast===2)document.getElementById('d3fb').classList.add('show')});
 function completeD4(){if(document.getElementById('d4a').value.trim().length<10||document.getElementById('d4b').value.trim().length<10)return toast('Add a brief response to both questions.');document.getElementById('d4fb').classList.add('show')}
 function checkFinalKey(){if(document.getElementById('keyYear').value==='1863'&&document.getElementById('keyWords').value==='272')document.getElementById('keyfb').classList.add('show');else toast('The key combines the year of the speech and its word count.');}
-const last=localStorage.getItem('gettysburgLast');if(last&&document.querySelector(`[data-id="${last}"]`))go(last);else updateProgress(document.querySelector('.screen.active'));renderKey();
+go('prologue'); renderKey();
 
 
 // Robust screen navigation
