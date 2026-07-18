@@ -46,9 +46,9 @@ let timeline=[];
 
 // A01 research timeline and historical bridge
 const researchAnswers={
-  doi:{event:['declaration of independence','declaration'],year:['1776']},
-  civilwar:{event:['american civil war','civil war','beginning of the american civil war','start of the civil war'],year:['1861']},
-  emancipation:{event:['emancipation proclamation','emancipation proclamation takes effect'],year:['1863','january 1863','jan 1863','january 1 1863']},
+  lincoln:{event:['abraham lincoln elected president','lincoln elected president','lincoln wins the election','election of abraham lincoln','presidential election of 1860','lincoln election'],year:['1860','november 1860','nov 1860']},
+  secession:{event:['south carolina secedes','south carolina secedes from the union','secession of south carolina','southern states secede','secession crisis','formation of the confederacy','confederacy is formed'],year:['1860','december 1860','dec 1860','1861']},
+  fortsumter:{event:['battle of fort sumter','fort sumter','attack on fort sumter','civil war begins','american civil war begins','beginning of the american civil war','start of the civil war'],year:['1861','april 1861','apr 1861']},
   gettysburg:{event:['battle of gettysburg','gettysburg'],year:['1863','july 1863','jul 1863','july 1 1863','july 1-3 1863']}
 };
 function norm(v){return (v||'').toLowerCase().trim().replace(/[.,]/g,'').replace(/\s+/g,' ');}
@@ -192,3 +192,5 @@ document.querySelectorAll('.d3contrast').forEach(m=>m.onclick=()=>{m.classList.t
 function completeD4(){if(document.getElementById('d4a').value.trim().length<10||document.getElementById('d4b').value.trim().length<10)return toast('Add a brief response to both questions.');document.getElementById('d4fb').classList.add('show')}
 function checkFinalKey(){if(document.getElementById('keyYear').value==='1863'&&document.getElementById('keyWords').value==='272')document.getElementById('keyfb').classList.add('show');else toast('The key combines the year of the speech and its word count.');}
 go('prologue'); renderKey();
+
+
