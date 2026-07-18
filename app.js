@@ -49,9 +49,7 @@ const researchAnswers={
   lincoln:{
     year:'1860',
     aliases:[
-      'abraham lincoln elected president','lincoln elected president','lincoln is elected president',
-      'lincoln wins the presidential election','lincoln won the presidential election','lincoln wins the election',
-      'election of abraham lincoln','election of lincoln','presidential election of 1860','lincoln election'
+      'abraham lincoln','lincoln','president abraham lincoln','president lincoln'
     ]
   },
   secession:{
@@ -111,9 +109,7 @@ function closeEnough(input,alias){
 function semanticEventMatch(id,input){
   const s=canonicalText(input);
   if(!s)return false;
-  if(id==='lincoln'){
-    return /\blincoln\b/.test(s)&&(/\belect/.test(s)||/\belection\b/.test(s)||(/\bpresident\b/.test(s)&&/\bwin\b/.test(s)));
-  }
+  if(id==='lincoln') return false;
   if(id==='secession'){
     const hasSC=/south carolina/.test(s);
     const secessionAction=/\bseced|\bsecession\b|\bleave\b|\bleft\b|\bbreak\b|\bbroke\b|\bwithdraw/.test(s);
@@ -126,7 +122,7 @@ function semanticEventMatch(id,input){
   }
   return false;
 }
-function eventMatches(id,value){
+function sourceMatches(id,value){
   const answer=researchAnswers[id];
   if(!answer)return false;
   return semanticEventMatch(id,value)||answer.aliases.some(alias=>closeEnough(value,alias));
@@ -138,21 +134,21 @@ function yearMatches(value,expectedYear){
 let verifiedSources=new Set();
 document.querySelectorAll('.verify-source').forEach(btn=>btn.addEventListener('click',()=>{
   const card=btn.closest('.research-card'); const id=card.dataset.id; const a=researchAnswers[id];
-  const ev=card.querySelector('.research-event').value; const yr=card.querySelector('.research-year').value;
-  const eventOk=eventMatches(id,ev); const yearOk=yearMatches(yr,a.year);
-  if(eventOk&&yearOk){
+  const identification=card.querySelector('.research-event').value; const yr=card.querySelector('.research-year').value;
+  const identificationOk=sourceMatches(id,identification); const yearOk=yearMatches(yr,a.year);
+  if(identificationOk&&yearOk){
     card.classList.add('verified'); btn.textContent='VERIFIED'; verifiedSources.add(id);
     if(verifiedSources.size===3){
       document.getElementById('timelineFb')?.classList.add('show');
       const bridge=document.getElementById('civilWarContext'); if(bridge) bridge.hidden=false;
       toast('All three sources identified. The historical chain is now visible.');
     }
-  } else if(!eventOk&&yearOk){
-    toast('The year fits, but the event is not identified clearly enough yet.');
-  } else if(eventOk&&!yearOk){
-    toast('The event fits. Check the year once more.');
+  } else if(!identificationOk&&yearOk){
+    toast('The year fits, but the person or event is not identified clearly enough yet.');
+  } else if(identificationOk&&!yearOk){
+    toast('The identification fits. Check the year once more.');
   } else {
-    toast('Not yet. Research the source and check both the event and the year.');
+    toast('Not yet. Research the source and check both the identification and the year.');
   }
 }));
 
@@ -282,5 +278,3 @@ document.querySelectorAll('.d3contrast').forEach(m=>m.onclick=()=>{m.classList.t
 function completeD4(){if(document.getElementById('d4a').value.trim().length<10||document.getElementById('d4b').value.trim().length<10)return toast('Add a brief response to both questions.');document.getElementById('d4fb').classList.add('show')}
 function checkFinalKey(){if(document.getElementById('keyYear').value==='1863'&&document.getElementById('keyWords').value==='272')document.getElementById('keyfb').classList.add('show');else toast('The key combines the year of the speech and its word count.');}
 go('prologue'); renderKey();
-
-
