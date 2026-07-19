@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "normalization": {
     "fillers": [
       "it is about",
@@ -78,7 +78,59 @@
       "finishing": "finish",
       "finished": "finish",
       "governments": "government",
-      "freedoms": "freedom"
+      "freedoms": "freedom",
+      "dies": "die",
+      "dying": "die",
+      "deaths": "death",
+      "addresses": "address",
+      "addressed": "address",
+      "addressing": "address",
+      "protects": "protect",
+      "protected": "protect",
+      "protecting": "protect",
+      "preserves": "preserve",
+      "preserved": "preserve",
+      "preserving": "preserve",
+      "saves": "save",
+      "saved": "save",
+      "saving": "save",
+      "secures": "secure",
+      "secured": "secure",
+      "securing": "secure",
+      "strengthens": "strengthen",
+      "strengthened": "strengthen",
+      "strengthening": "strengthen",
+      "improves": "improve",
+      "improved": "improve",
+      "improving": "improve",
+      "builds": "build",
+      "built": "build",
+      "building": "build",
+      "rebuilds": "rebuild",
+      "rebuilt": "rebuild",
+      "rebuilding": "rebuild",
+      "completes": "complete",
+      "completed": "complete",
+      "completing": "complete",
+      "acts": "act",
+      "acted": "act",
+      "acting": "act",
+      "Americans": "american",
+      "survivors": "survivor"
+    },
+    "contractions": {
+      "didn't": "did not",
+      "don't": "do not",
+      "doesn't": "does not",
+      "haven't": "have not",
+      "hasn't": "has not",
+      "wasn't": "was not",
+      "weren't": "were not",
+      "can't": "cannot",
+      "couldn't": "could not",
+      "shouldn't": "should not",
+      "wouldn't": "would not",
+      "won't": "will not"
     }
   },
   "sections": [
@@ -506,7 +558,27 @@
         "the living must continue the work",
         "we have to carry on what the soldiers started",
         "the living are responsible for continuing the work",
-        "the responsibility of the living for the nation's future"
+        "the responsibility of the living for the nation's future",
+        "did not die in vain",
+        "do not die in vain",
+        "have not died in vain",
+        "their deaths were not in vain",
+        "their death was not in vain",
+        "their sacrifice was not in vain",
+        "make sure the soldiers did not die for nothing",
+        "so the soldiers did not die for nothing",
+        "so their deaths meant something",
+        "not die in vain",
+        "not died in vain",
+        "did not die for nothing",
+        "died for nothing",
+        "their deaths meant something",
+        "he addresses the audience and tells them to continue the work",
+        "the audience has to carry on the soldiers' work",
+        "they have to protect the Union",
+        "the people should continue fighting for the nation",
+        "the living must make the country better",
+        "they shall make the Union great so that the soldiers did not die in vain"
       ],
       "acceptCombinations": [
         {
@@ -526,6 +598,141 @@
               "unfinished work"
             ]
           ]
+        },
+        {
+          "groups": [
+            [
+              "audience",
+              "people",
+              "living",
+              "survivor",
+              "american",
+              "they",
+              "we"
+            ],
+            [
+              "continue",
+              "carry on",
+              "finish",
+              "complete",
+              "work",
+              "act",
+              "fight",
+              "struggle"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "audience",
+              "people",
+              "living",
+              "survivor",
+              "american",
+              "they",
+              "we"
+            ],
+            [
+              "preserve",
+              "protect",
+              "save",
+              "secure",
+              "strengthen",
+              "improve",
+              "build",
+              "rebuild"
+            ],
+            [
+              "nation",
+              "union",
+              "country",
+              "america",
+              "freedom",
+              "democracy",
+              "cause"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "audience",
+              "people",
+              "living",
+              "survivor",
+              "american",
+              "they",
+              "we"
+            ],
+            [
+              "make"
+            ],
+            [
+              "better",
+              "great"
+            ],
+            [
+              "nation",
+              "union",
+              "country",
+              "america",
+              "freedom",
+              "democracy",
+              "cause"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "audience",
+              "people",
+              "living",
+              "survivor",
+              "american",
+              "they",
+              "we"
+            ],
+            [
+              "keep"
+            ],
+            [
+              "together"
+            ],
+            [
+              "nation",
+              "union",
+              "country",
+              "america"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "address",
+              "audience"
+            ],
+            [
+              "continue",
+              "carry on",
+              "finish",
+              "complete",
+              "work",
+              "act",
+              "fight",
+              "struggle",
+              "preserve",
+              "protect",
+              "save",
+              "secure",
+              "strengthen",
+              "improve",
+              "build",
+              "rebuild"
+            ]
+          ]
         }
       ],
       "refinePhrases": [
@@ -541,7 +748,11 @@
         "democracy",
         "hope",
         "new birth of freedom",
-        "government of the people"
+        "government of the people",
+        "he addresses the audience",
+        "addresses the audience",
+        "the audience",
+        "audience"
       ],
       "specificRefine": [],
       "rethink": [],
