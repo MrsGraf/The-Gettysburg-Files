@@ -1,5 +1,5 @@
 {
-  "version": "1.1",
+  "version": "1.3",
   "normalization": {
     "fillers": [
       "it is about",
@@ -115,8 +115,28 @@
       "acts": "act",
       "acted": "act",
       "acting": "act",
-      "Americans": "american",
-      "survivors": "survivor"
+      "survivors": "survivor",
+      "didn't": "did not",
+      "don't": "do not",
+      "doesn't": "does not",
+      "haven't": "have not",
+      "hasn't": "has not",
+      "wasn't": "was not",
+      "weren't": "were not",
+      "can't": "cannot",
+      "couldn't": "could not",
+      "shouldn't": "should not",
+      "wouldn't": "would not",
+      "won't": "will not",
+      "americans": "american",
+      "listeners": "listener",
+      "citizens": "citizen",
+      "roles": "role",
+      "expected": "expect",
+      "expects": "expect",
+      "expecting": "expect",
+      "needs": "need",
+      "needed": "need"
     },
     "contractions": {
       "didn't": "did not",
@@ -571,14 +591,40 @@
         "not die in vain",
         "not died in vain",
         "did not die for nothing",
-        "died for nothing",
         "their deaths meant something",
         "he addresses the audience and tells them to continue the work",
         "the audience has to carry on the soldiers' work",
         "they have to protect the Union",
         "the people should continue fighting for the nation",
         "the living must make the country better",
-        "they shall make the Union great so that the soldiers did not die in vain"
+        "they shall make the Union great so that the soldiers did not die in vain",
+        "he addresses the audience and explains what their task is in the future",
+        "he addresses the audience and what their task is in the future to make sure the Union has a future",
+        "lincoln tells the people what they have to do for the future of the Union",
+        "the audience's task for the future",
+        "it is about the audience's task for the future",
+        "the living have a responsibility for the future of the nation",
+        "he tells them what they should do so that the Union can continue",
+        "the audience has to make sure the nation has a future",
+        "what their task is",
+        "what they have to do",
+        "what they must do",
+        "what they should do",
+        "what needs to be done",
+        "their role",
+        "what is expected of them",
+        "future of the Union",
+        "future of the country",
+        "Union has a future",
+        "nation has a future",
+        "secure the future",
+        "ensure the future",
+        "make sure the Union has a future",
+        "make sure the nation has a future",
+        "keep the Union alive",
+        "keep the nation alive",
+        "ensure that the Union continues",
+        "ensure that the nation continues"
       ],
       "acceptCombinations": [
         {
@@ -731,6 +777,110 @@
               "improve",
               "build",
               "rebuild"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "audience",
+              "listener",
+              "people",
+              "living",
+              "american",
+              "citizen",
+              "they",
+              "we"
+            ],
+            [
+              "task",
+              "responsibility",
+              "duty",
+              "role",
+              "what their task is",
+              "what they have to do",
+              "what they must do",
+              "what they should do",
+              "what needs to be done",
+              "what is expected of them"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "audience",
+              "listener",
+              "people",
+              "living",
+              "american",
+              "citizen",
+              "they",
+              "we"
+            ],
+            [
+              "future",
+              "in the future",
+              "future of the union",
+              "future of the nation",
+              "future of the country",
+              "has a future",
+              "secure the future",
+              "ensure the future",
+              "keep the union alive",
+              "keep the nation alive",
+              "union continues",
+              "nation continues"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "task",
+              "responsibility",
+              "duty",
+              "role",
+              "what their task is",
+              "what they have to do",
+              "what they must do",
+              "what they should do",
+              "what needs to be done",
+              "what is expected of them"
+            ],
+            [
+              "future",
+              "union",
+              "nation",
+              "country",
+              "america"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "audience",
+              "listener",
+              "people",
+              "living",
+              "american",
+              "citizen",
+              "they",
+              "we"
+            ],
+            [
+              "have to do",
+              "must do",
+              "should do",
+              "need to do"
+            ],
+            [
+              "future",
+              "union",
+              "nation",
+              "country",
+              "america"
             ]
           ]
         }
