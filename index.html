@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Gettysburg Files · Archive Case #272</title>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/prologue.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div class="shell">
+<header class="topbar">
+  <div class="brand"><div class="seal">272</div><div><b>THE GETTYSBURG FILES</b><div class="smallcaps">Archive Case #272</div></div></div>
+  <div class="progresswrap"><div class="progressline"><div class="progressbar" id="globalProgress"></div></div><div class="progressmeta"><span id="sectionLabel">Archive entry</span><span id="progressLabel">0%</span></div></div>
+  <div class="keymini" id="keyMini">██ · ██ · ██ · █</div>
+</header>
+<main id="app" aria-live="polite"></main>
+</div>
+<div class="modal" id="everettInfo"><div class="modalbox">
+<button class="btn ghost" onclick="closeModal('everettInfo')">CLOSE</button>
+<h3>Edward Everett's political career</h3>
+<img class="modal-context-image" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Edward_Everett.jpg" alt="Historical portrait of Edward Everett">
+<p>Everett served in the U.S. House of Representatives, as Governor of Massachusetts, U.S. Minister to Great Britain, U.S. Secretary of State and U.S. Senator. He was also president of Harvard College.</p>
+</div></div>
+<div class="modal" id="emancipationInfo"><div class="modalbox">
+<button class="btn ghost" onclick="closeModal('emancipationInfo')">CLOSE</button>
+<h3>What was the Emancipation Proclamation?</h3>
+<img class="modal-context-image" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Abraham_Lincoln_O-77_matte_collodion_print.jpg" alt="Historical portrait of Abraham Lincoln">
+<p>On January 1, 1863, Lincoln declared enslaved people in the states rebelling against the Union to be free. The proclamation did not abolish slavery everywhere in the United States, but it made emancipation a central part of the Union war effort.</p>
+</div></div>
+
+<div class="modal" id="confederacyInfo"><div class="modalbox confederacy-modalbox">
+<button class="btn ghost" onclick="closeModal('confederacyInfo')">CLOSE</button>
+<h3>CONFEDERACY</h3>
+<img class="modal-context-image confederacy-flag" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Flag_of_the_Confederate_States_of_America_(1861-1863).svg" alt="First National Flag of the Confederate States, known as the Stars and Bars">
+<p>The Confederate States of America was formed in 1861 by eleven Southern states that seceded from the United States. Its government existed until 1865. The protection of slavery was central to the secession movement and to the new Confederacy.</p>
+<p>After its defeat, the Confederacy disappeared as a state, but its memory remained politically and culturally influential. The <b>Lost Cause</b> narrative romanticised the Confederate cause and downplayed slavery as a central cause of the conflict. This interpretation shaped public memory, monuments and Confederate symbolism for decades and continued to influence debates into the modern era.</p>
+<p class="source-note">Shown: First National Flag of the Confederacy (“Stars and Bars”), rather than the later Confederate Battle Flag.</p>
+</div></div>
+<div class="toast" id="toast"></div>
+
+<div class="recovery-overlay" id="recoveryOverlay" aria-hidden="true">
+  <div class="recovery-overlay-panel" role="dialog" aria-modal="true" aria-labelledby="recoveryOverlayTitle">
+    <div class="smallcaps recovery-overlay-case" id="recoveryOverlayCase">ARCHIVE FILE</div>
+    <h2 id="recoveryOverlayTitle">FILE RECOVERY IN PROGRESS</h2>
+
+    <div class="recovery-percent" id="recoveryPercent">0%</div>
+    <div class="recovery-progress-track" aria-hidden="true">
+      <div class="recovery-progress-bar" id="recoveryProgressBar"></div>
+    </div>
+    <div class="recovery-file-status" id="recoveryFileStatus">RESTORING ARCHIVE RECORD…</div>
+
+    <div class="fragment-reveal" id="fragmentReveal" hidden>
+      <div class="smallcaps" id="fragmentRevealLabel">MASTER KEY FRAGMENT RECOVERED</div>
+      <div class="fragment-reveal-value" id="fragmentRevealValue"></div>
+      <p id="fragmentRevealNote">Master Key updated.</p>
+      <button class="btn primary" id="recoveryContinueButton" type="button">CONTINUE TO NEXT FILE</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/state.js"></script>
+<script src="js/case-a.js"></script>
+<script src="js/case-b.js"></script>
+<script src="js/case-c.js"></script>
+<script src="js/case-d.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
