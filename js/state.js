@@ -1,0 +1,1 @@
+window.GettysburgState=(()=>{const KEY='gettysburgFragments';let fragments=['','','',''];try{fragments=JSON.parse(localStorage.getItem(KEY)||'["","","",""]')}catch(e){}function save(){localStorage.setItem(KEY,JSON.stringify(fragments))}return{getFragments:()=>[...fragments],unlock:(i,v)=>{fragments[i]=v;save()},reset:()=>{fragments=['','','',''];save()}}})();

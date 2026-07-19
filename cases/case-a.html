@@ -1,0 +1,176 @@
+<section class="screen" data-case="A" data-id="A0" data-label="Case File A · Opening the Case" data-progress="0">
+<div class="archivehead"><div><div class="kicker">Archive File A</div><h2>OPENING THE CASE</h2></div><div class="status">CASE FILE A<br><b>0%</b></div></div>
+<div class="narrative-setup case-overview-story"><p>The archive is incomplete.</p><p>The surviving records point to a nation in crisis, a <span class="tooltip" data-tip="extremely important in determining what happens next" tabindex="0">decisive</span> battle in Pennsylvania, and a ceremony held months later.</p><p><b>Reconstruct the files and uncover the events that shaped American history.</b></p></div>
+<div class="overview-cta"><button class="btn primary" data-next="A1">OPEN FILE A01</button></div></section>
+
+<section class="screen" data-case="A" data-id="A1" data-label="A01 · A Nation Divided" data-progress="20">
+<div class="archivehead"><div><div class="kicker">File A01 · Historical Record</div><h2>A NATION DIVIDED</h2></div><div class="status">STATUS<br>PARTIALLY RECOVERED</div></div>
+<div class="narrative-setup"><p>The archive points to a battle at Gettysburg in 1863. But battles do not begin with the first shot. Years of growing conflict had divided the United States.</p><p><b>What was the struggle that tore the nation apart — and how did it lead to civil war?</b></p></div>
+<div class="card"><h3>Research &amp; reconstruct the historical chain</h3><div class="research-grid" id="researchTimeline">
+<article class="research-card" data-id="lincoln"><div class="research-body"><span class="smallcaps">SOURCE 01</span><p>Who is this politician? He won the presidential election of 1860.</p><label>Politician<input class="research-event"></label><label>Year<input class="research-year" maxlength="4"></label><button class="btn verify-source">VERIFY</button></div></article>
+<article class="research-card" data-id="secession"><div class="research-body"><span class="smallcaps">SOURCE 02</span><p>Identify South Carolina's formal withdrawal from the Union.</p><label>Event<input class="research-event"></label><label>Year<input class="research-year" maxlength="4"></label><button class="btn verify-source">VERIFY</button></div></article>
+<article class="research-card" data-id="fortsumter"><div class="research-body"><span class="smallcaps">SOURCE 03</span><p>Identify the event at Fort Sumter that marked the beginning of the Civil War.</p><label>Event<input class="research-event"></label><label>Year<input class="research-year" maxlength="4"></label><button class="btn verify-source">VERIFY</button></div></article>
+</div>
+<div class="feedback recovery-feedback" id="timelineFb"><b>HISTORICAL CHAIN RECOVERED</b><p>1860 Lincoln elected → December 1860 South Carolina secedes → April 1861 Civil War begins at Fort Sumter.</p></div></div>
+<div class="card context-bridge" hidden id="civilWarContext">
+<div class="recovered-fragment"><span class="smallcaps">RECOVERED FRAGMENT · JANUARY 1863</span><h3>THE WAR CHANGES</h3><p>On January 1, 1863, Lincoln's Emancipation Proclamation declared enslaved people in the rebelling states to be free. <span class="tooltip" data-tip="to preserve = to protect something and keep it in existence" tabindex="0">Preserving</span> the Union remained central, but emancipation was now explicitly part of the Union war effort.</p></div>
+<div class="context-grid"><div><b>UNION</b><p>The states that remained part of the United States.</p></div><div><b>CONFEDERACY</b><p>The Southern states that seceded from the United States.</p></div><div><b>SLAVERY</b><p>Slavery was central to secession and to the conflict over the nation's future.</p></div><div><b>FOUNDING IDEALS</b><p>The language of liberty and equality stood in <span class="tooltip" data-tip="very great or intense" tabindex="0">profound</span> tension with slavery.</p></div></div>
+<div class="options" id="a1mc">
+<button class="option">Could the federal government preserve the Union while leaving the causes of <span class="tooltip" data-tip="the act of formally leaving a political union" tabindex="0">secession</span> unresolved?</button>
+<button class="option" data-correct="1">Could a nation founded on liberty and equality survive while deeply divided over slavery and union?</button>
+<button class="option">Could westward expansion continue while the nation <span class="tooltip" data-tip="delayed until a later time" tabindex="0">postponed</span> the conflict over the future of slavery?</button>
+</div>
+<div class="feedback recovery-feedback" id="a1mcfb"><b>CONTEXT RECOVERED</b><br>The Civil War tested both the survival of the Union and the meaning of the ideals on which the nation claimed to be founded.<div class="actions"><button class="btn primary" data-next="A2">LOCATE GETTYSBURG</button></div></div>
+</div></section>
+
+<section class="screen" data-case="A" data-id="A2" data-label="A02 · Locate Gettysburg" data-progress="45">
+<div class="archivehead"><div><div class="kicker">File A02 · Geographic Map</div><h2>WHERE IS GETTYSBURG?</h2></div></div>
+<div class="narrative-setup"><p>Locate Gettysburg and use the historical map to see why a major battle in Pennsylvania meant that Confederate forces had carried the war onto Northern soil.</p></div>
+<div class="grid g2 map-task-layout">
+<div class="locator-map historical-map" id="locatorMap">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/US_Secession_map_1863.svg" alt="Map of the United States in 1863 showing Union and Confederate states">
+<div class="map-legend"><span class="legend-union">Union</span><span class="legend-confederacy">Confederacy</span></div>
+<button aria-label="Tap the map to locate Gettysburg" class="map-click-layer" id="mapClickLayer"></button><div class="map-marker" hidden id="mapMarker">●</div>
+</div>
+<div class="card"><h3>Locate Gettysburg</h3><p>Tap the map where you think Gettysburg is located in southern Pennsylvania.</p>
+<div class="feedback" id="mapRetry"><b>NOT QUITE.</b><br>Try again. Gettysburg lies in southern Pennsylvania, close to the Maryland border.</div>
+<div class="feedback recovery-feedback" id="mapfb"><b>LOCATION CONFIRMED</b><br>Gettysburg, Pennsylvania · July 1–3, 1863
+<p>The Union victory stopped <span class="tooltip" data-tip="the commanding general of the Confederate Army of Northern Virginia during the Civil War" tabindex="0">Robert E. Lee</span>'s invasion of the North and became a major turning point in the war.</p>
+<div class="actions"><button class="btn primary" data-next="A3">FIND OUT WHAT HAPPENED AFTER THE BATTLE</button></div></div></div>
+</div></section>
+
+<section class="screen" data-case="A" data-id="A3" data-label="A03 · An Invitation" data-progress="70">
+<div class="archivehead">
+  <div>
+    <div class="kicker">File A03 · Official Document</div>
+    <h2>AN INVITATION</h2>
+  </div>
+</div>
+
+<div class="narrative-setup">
+  <p>The battle ended in July. Months later, a letter was sent. With the help of the letter, discover what was going to happen at Gettysburg next.</p>
+</div>
+
+<div class="card source-investigation">
+  <h3>Try to decipher as much of the letter as you can.</h3>
+  <p>Then use the recovered data fragments to reconstruct the document.</p>
+
+  <div class="paper source-document-block">
+    <img class="source-img"
+         src="https://www.loc.gov/exhibits/gettysburg-address/exhibitionitems/Assets/al0181p1_725.jpg"
+         alt="First page of the invitation letter connected to the Gettysburg cemetery dedication">
+  </div>
+
+  <div class="actions">
+    <button class="btn primary" id="openOccasion" type="button">RECONSTRUCT THE DOCUMENT</button>
+  </div>
+</div>
+
+<div class="card" hidden id="a3recon">
+  <div class="grid g2">
+    <div>
+      <h3>Recovered data</h3>
+      <div class="pool recovered-data" id="occasionPool">
+        <button class="note" data-value="President Abraham Lincoln">President Abraham Lincoln</button>
+        <button class="note" data-value="Gettysburg, Pennsylvania">Gettysburg, Pennsylvania</button>
+        <button class="note" data-value="November 2, 1863">November 2, 1863</button>
+        <button class="note" data-value="To honour soldiers who died in the battle">To honour soldiers who died in the battle</button>
+        <button class="note" data-value="Edward Everett">Edward Everett</button>
+        <button class="note" data-value="Washington, D.C.">Washington, D.C.</button>
+        <button class="note" data-value="November 19, 1863">November 19, 1863</button>
+        <button class="note" data-value="To celebrate the Union victory with a military parade">To celebrate the Union victory with a military parade</button>
+        <button class="note" data-value="The dedication of a cemetery for soldiers killed at Gettysburg">The dedication of a cemetery for soldiers killed at Gettysburg</button>
+        <button class="note" data-value="To plan the next Union military campaign">To plan the next Union military campaign</button>
+        <button class="note" data-value="Governor Andrew Curtin">Governor Andrew Curtin</button>
+      </div>
+    </div>
+
+    <div>
+      <h3>Case fields</h3>
+      <div class="pool occasion-fields">
+        <button class="dropzone assign" data-answer="November 2, 1863" data-label="WHEN?">WHEN?</button>
+        <button class="dropzone assign" data-answer="President Abraham Lincoln" data-label="TO WHOM?">TO WHOM?</button>
+        <button class="dropzone assign" data-answer="The dedication of a cemetery for soldiers killed at Gettysburg" data-label="WHAT?">WHAT?</button>
+        <button class="dropzone assign" data-answer="Gettysburg, Pennsylvania" data-label="WHERE?">WHERE?</button>
+        <button class="dropzone assign" data-answer="To honour soldiers who died in the battle" data-label="WHY?">WHY?</button>
+      </div>
+
+      <p class="task-note a03-task-note">You can click an assigned field again to change your answer before the reconstruction is complete.</p>
+
+      <div class="actions">
+        <button class="btn primary" id="verifyOccasion" type="button" disabled>VERIFY RECONSTRUCTION</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="feedback" id="a3reconretry">
+    <b>RECONSTRUCTION NOT YET RESTORED.</b><br>
+    Review the recovered data and revise any fields that do not fit the document.
+  </div>
+
+  <div class="feedback recovery-feedback" id="a3reconfb">
+    <b>DOCUMENT RESTORED</b><br>
+    The recovered invitation reveals the next event at Gettysburg: the dedication of the Soldiers' National Cemetery.
+    <div class="actions">
+      <button class="btn primary" data-next="A4">RECONSTRUCT THE HISTORICAL SITUATION</button>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="screen" data-case="A" data-id="A4" data-label="A04 · The Cemetery Dedication" data-progress="100">
+<div class="archivehead">
+  <div>
+    <div class="kicker">File A04 · Case Reconstruction</div>
+    <h2>THE CEMETERY DEDICATION</h2>
+  </div>
+  <div class="status">NOVEMBER 19, 1863<br>GETTYSBURG, PENNSYLVANIA</div>
+</div>
+
+<div class="narrative-setup">
+  <p>The records now converge: Civil War, Gettysburg, a national cemetery and invited speakers. Reconstruct the full historical situation and determine why the <span class="tooltip" data-tip="the official opening of a place or monument, often in honour or memory of someone" tabindex="0">dedication</span> of the Soldiers' National Cemetery, to which Lincoln had been invited, became an important moment in American history.</p>
+</div>
+
+<div class="card context-lead">
+  <p class="intro-compact">Gettysburg was more than a battlefield. Months after the fighting had ended, Americans gathered there on November 19, 1863 to honour the dead and dedicate a new national cemetery. Speakers had been invited to address the crowd as part of the ceremony. One of their speeches would become known as the Gettysburg Address — a speech that went down in American history.</p>
+</div>
+
+<div class="card" style="margin-top:18px">
+  <h3>Reconstruct the key facts of the historic speech</h3>
+  <p>Place each recovered statement in the correct category. Select a statement, then a category.</p>
+
+  <div class="grid g2">
+    <div class="pool" id="casePool">
+      <button class="note" data-cat="audience">Citizens, officials, military participants and people connected to the fallen attended the dedication.</button>
+      <button class="note" data-cat="issue">The nation was facing the question of whether the Union — and the ideals on which it was founded — could survive.</button>
+      <button class="note" data-cat="context">The United States was fighting a Civil War over the survival of the Union in a conflict inseparably connected to slavery.</button>
+      <button class="note" data-cat="speakers">President Abraham Lincoln was one of the speakers invited to address the crowd at the ceremony.</button>
+      <button class="note" data-cat="occasion">A national cemetery was being dedicated for soldiers killed at Gettysburg.</button>
+    </div>
+
+    <div class="pool">
+      <button class="dropzone cat" data-cat="context" data-label="HISTORICAL CONTEXT">HISTORICAL CONTEXT</button>
+      <button class="dropzone cat" data-cat="occasion" data-label="OCCASION">OCCASION</button>
+      <button class="dropzone cat" data-cat="speakers" data-label="SPEAKER">SPEAKER</button>
+      <button class="dropzone cat" data-cat="audience" data-label="AUDIENCE">AUDIENCE</button>
+      <button class="dropzone cat" data-cat="issue" data-label="CENTRAL ISSUE">CENTRAL ISSUE</button>
+    </div>
+  </div>
+
+  <div class="feedback recovery-feedback" id="a4fb">
+    <b>ARCHIVE FILE A · RESTORED</b><br>
+    The damaged records have been reconnected. You have reconstructed what happened at Gettysburg, what followed the battle and the historical situation in which the Gettysburg Address was delivered.
+    <p><b>RECOVERY PROTOCOL UPDATED.</b><br>
+    Every fully restored Archive File unlocks one fragment of the Master Recovery Key. Only when all fragments have been recovered can the final archive be opened.</p>
+
+    <div class="master-fragment-card">
+      <span class="smallcaps">MASTER RECOVERY KEY · FRAGMENT 01 UNLOCKED</span>
+      <div class="master-fragment-value">18</div>
+    </div>
+
+    <div class="actions">
+      <button class="btn primary" onclick="unlockFragment(0,'18');go('B0')">ACCESS CASE FILE B</button>
+    </div>
+  </div>
+</div>
+</section>
