@@ -1,0 +1,552 @@
+{
+  "version": "1.0",
+  "normalization": {
+    "fillers": [
+      "it is about",
+      "this section is about",
+      "this part is about",
+      "part one is about",
+      "part two is about",
+      "part three is about",
+      "part four is about",
+      "part five is about",
+      "lincoln talks about",
+      "lincoln is talking about",
+      "lincoln refers to",
+      "the section deals with",
+      "this section deals with",
+      "the part deals with"
+    ],
+    "wordForms": {
+      "founded": "found",
+      "founding": "found",
+      "foundation": "found",
+      "foundations": "found",
+      "created": "create",
+      "creation": "create",
+      "origins": "origin",
+      "divided": "divide",
+      "division": "divide",
+      "divisions": "divide",
+      "splits": "split",
+      "struggles": "struggle",
+      "survives": "survive",
+      "survived": "survive",
+      "survival": "survive",
+      "endures": "endure",
+      "endured": "endure",
+      "coping": "cope",
+      "deals": "deal",
+      "dealing": "deal",
+      "overcomes": "overcome",
+      "overcoming": "overcome",
+      "dedicated": "dedicate",
+      "dedicating": "dedicate",
+      "dedication": "dedicate",
+      "dedications": "dedicate",
+      "honor": "honour",
+      "honoring": "honour",
+      "honoured": "honour",
+      "honored": "honour",
+      "honouring": "honour",
+      "remembering": "remember",
+      "remembered": "remember",
+      "commemorating": "commemorate",
+      "commemoration": "commemorate",
+      "commemorations": "commemorate",
+      "soldiers": "soldier",
+      "actions": "action",
+      "deeds": "deed",
+      "words": "word",
+      "speeches": "speech",
+      "ceremonies": "ceremony",
+      "killings": "killing",
+      "sacrifices": "sacrifice",
+      "sacrificed": "sacrifice",
+      "fought": "fight",
+      "fighting": "fight",
+      "died": "die",
+      "killed": "kill",
+      "responsibilities": "responsibility",
+      "duties": "duty",
+      "tasks": "task",
+      "continues": "continue",
+      "continued": "continue",
+      "continuing": "continue",
+      "carries": "carry",
+      "carried": "carry",
+      "finishing": "finish",
+      "finished": "finish",
+      "governments": "government",
+      "freedoms": "freedom"
+    }
+  },
+  "sections": [
+    {
+      "id": 1,
+      "title": "SECTION 1 · FOUNDING IDEALS",
+      "excerpt": "Four score and seven years ago …",
+      "acceptPhrases": [
+        "Declaration of Independence",
+        "the Declaration",
+        "American Declaration of Independence",
+        "American independence",
+        "independence of the United States",
+        "independence from Britain",
+        "founding ideals",
+        "founding principles",
+        "founding values",
+        "founding of the nation",
+        "founding of the United States",
+        "founding of America",
+        "foundation of the nation",
+        "birth of the nation",
+        "creation of the nation",
+        "origins of the nation",
+        "the principles the nation was founded on",
+        "how the United States was founded",
+        "the foundation of the country based on equality",
+        "the nation's origins and its ideals"
+      ],
+      "acceptCombinations": [
+        {
+          "groups": [
+            [
+              "founding",
+              "foundation",
+              "creation",
+              "birth",
+              "origins"
+            ],
+            [
+              "liberty",
+              "freedom",
+              "equality",
+              "equal"
+            ]
+          ]
+        }
+      ],
+      "refinePhrases": [
+        "1776",
+        "87 years ago",
+        "four score and seven years ago",
+        "the past",
+        "liberty",
+        "freedom",
+        "equality",
+        "liberty and equality",
+        "all men are created equal",
+        "the idea that all men are created equal"
+      ],
+      "rethink": [],
+      "specificRefine": [],
+      "hint1": "You've identified an important detail. What larger historical event or idea does Lincoln refer back to?",
+      "hint2": "What significant event took place in 1776, and which ideas does Lincoln connect with it?"
+    },
+    {
+      "id": 2,
+      "title": "SECTION 2 · NATION TESTED",
+      "excerpt": "Now we are engaged in a great civil war …",
+      "acceptPhrases": [
+        "Civil War",
+        "American Civil War",
+        "conflict over slavery",
+        "division over slavery",
+        "war over slavery",
+        "Civil War and slavery",
+        "slavery and the Civil War",
+        "if the nation survives",
+        "whether the nation survives",
+        "whether the Union survives",
+        "whether the nation can survive",
+        "if the nation can endure",
+        "whether the country can continue to exist",
+        "if the Union can hold together",
+        "whether the nation can cope with the conflict",
+        "if the nation can cope with the challenges of the conflict",
+        "whether the country can deal with the crisis",
+        "whether the Union can overcome the conflict",
+        "the conflict tests the nation",
+        "the nation is being tested",
+        "whether the nation can withstand the crisis"
+      ],
+      "acceptCombinations": [
+        {
+          "groups": [
+            [
+              "current",
+              "present"
+            ],
+            [
+              "crisis",
+              "conflict",
+              "division",
+              "divided",
+              "struggle",
+              "struggles",
+              "war",
+              "turmoil"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "crisis",
+              "conflict",
+              "division",
+              "divided",
+              "split",
+              "struggle",
+              "struggles",
+              "war"
+            ],
+            [
+              "Union",
+              "nation",
+              "country",
+              "United States",
+              "America",
+              "North",
+              "South"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "nation",
+              "Union",
+              "country",
+              "United States"
+            ],
+            [
+              "survive",
+              "survival",
+              "endure",
+              "continue",
+              "continue to exist",
+              "hold together",
+              "withstand",
+              "cope",
+              "cope with",
+              "deal with",
+              "overcome",
+              "face the challenge",
+              "meet the challenge",
+              "be tested",
+              "being tested"
+            ]
+          ]
+        }
+      ],
+      "refinePhrases": [
+        "crisis",
+        "conflict",
+        "division",
+        "struggle",
+        "struggles",
+        "war",
+        "problems",
+        "current situation",
+        "the present",
+        "country",
+        "nation",
+        "survival",
+        "slavery",
+        "issues with slavery"
+      ],
+      "rethink": [],
+      "specificRefine": [],
+      "hint1": "You're pointing in the right direction, but can you identify the war or national crisis Lincoln is referring to?",
+      "hint2": "What does Lincoln say this war or crisis is testing about the nation?"
+    },
+    {
+      "id": 3,
+      "title": "SECTION 3 · GETTYSBURG / OCCASION",
+      "excerpt": "We are met on a great battlefield …",
+      "acceptPhrases": [
+        "occasion of the speech",
+        "occasion for the speech",
+        "occasion at Gettysburg",
+        "reason for the gathering",
+        "reason for the ceremony",
+        "purpose of the gathering",
+        "purpose of the ceremony",
+        "why they have gathered",
+        "why they are gathered",
+        "why they are at Gettysburg",
+        "why people have come to Gettysburg",
+        "dedication of the cemetery",
+        "cemetery dedication",
+        "dedication ceremony",
+        "dedicating the cemetery",
+        "dedication of the battlefield",
+        "dedicating part of the battlefield",
+        "dedication of a burial ground",
+        "final resting place",
+        "resting place for the soldiers",
+        "cemetery for the fallen soldiers",
+        "Soldiers' National Cemetery",
+        "honouring those who were killed",
+        "remembering those who died in battle",
+        "commemorating the people who lost their lives",
+        "honouring the men who died at Gettysburg",
+        "remembering those who gave their lives",
+        "remembering the dead"
+      ],
+      "acceptCombinations": [
+        {
+          "groups": [
+            [
+              "honour",
+              "honor",
+              "honouring",
+              "honoring",
+              "remember",
+              "remembering",
+              "commemorate",
+              "commemorating"
+            ],
+            [
+              "soldiers",
+              "fallen soldiers",
+              "the fallen",
+              "the dead",
+              "those who died",
+              "those who were killed",
+              "people who died",
+              "men who died",
+              "those who lost their lives",
+              "those who gave their lives",
+              "people killed in battle",
+              "those who died in battle",
+              "those who died at Gettysburg",
+              "those killed at Gettysburg"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "gathering",
+              "ceremony",
+              "Gettysburg",
+              "people have come"
+            ],
+            [
+              "dedicate",
+              "dedication",
+              "cemetery",
+              "burial",
+              "resting place",
+              "honour",
+              "honor",
+              "remember",
+              "commemorate"
+            ]
+          ]
+        }
+      ],
+      "refinePhrases": [
+        "opening of the cemetery",
+        "opening the cemetery",
+        "cemetery",
+        "ceremony",
+        "Gettysburg",
+        "gathering",
+        "dedication",
+        "occasion",
+        "burying soldiers",
+        "burying the dead",
+        "purpose of the speech"
+      ],
+      "specificRefine": [
+        {
+          "phrases": [
+            "opening of the cemetery",
+            "opening the cemetery"
+          ],
+          "hint": "You're close, but “opening the cemetery” is not quite precise. Look again at what Lincoln says the people have come there to do."
+        },
+        {
+          "phrases": [
+            "purpose of the speech"
+          ],
+          "hint": "Do you mean why the people have gathered at Gettysburg? Try to make this a little more specific."
+        }
+      ],
+      "rethink": [],
+      "hint1": "You're close. What are the people gathered at Gettysburg to do?",
+      "hint2": "What is being dedicated, and for whom is it intended?"
+    },
+    {
+      "id": 4,
+      "title": "SECTION 4 · SACRIFICE",
+      "excerpt": "But, in a larger sense …",
+      "acceptPhrases": [
+        "soldiers' sacrifice",
+        "sacrifice of the soldiers",
+        "sacrifice of the fallen",
+        "their sacrifice",
+        "the soldiers' actions",
+        "what the soldiers did",
+        "what the fallen soldiers did",
+        "the significance of the soldiers' actions",
+        "the soldiers gave their lives",
+        "the soldiers fought and died",
+        "the soldiers died for the nation",
+        "the soldiers consecrated the ground",
+        "the soldiers have already consecrated the ground",
+        "the soldiers made the ground sacred",
+        "the soldiers gave the ground its meaning",
+        "the soldiers have already dedicated the ground through their actions",
+        "limits of words",
+        "limits of speeches",
+        "limits of the ceremony",
+        "limits of ceremonial acts",
+        "words are not enough",
+        "words cannot equal the soldiers' actions",
+        "words cannot equal their sacrifice",
+        "words versus deeds",
+        "words compared with actions",
+        "what we say versus what they did",
+        "the soldiers' actions are more important than words",
+        "words cannot equal what the soldiers have done",
+        "the ceremony cannot add to their sacrifice",
+        "they sacrificed their lives",
+        "they consecrated the ground",
+        "they made the ground sacred",
+        "they fought and died",
+        "what we say cannot equal what they did",
+        "their actions are more important than words",
+        "the ceremony cannot equal their sacrifice"
+      ],
+      "acceptCombinations": [
+        {
+          "groups": [
+            [
+              "words",
+              "speech",
+              "what we say",
+              "ceremony",
+              "dedication"
+            ],
+            [
+              "actions",
+              "deeds",
+              "what they did",
+              "soldiers",
+              "sacrifice"
+            ]
+          ]
+        }
+      ],
+      "refinePhrases": [
+        "soldiers",
+        "sacrifice",
+        "battle",
+        "what happened at Gettysburg",
+        "remembering the dead",
+        "words",
+        "deeds",
+        "consecrating the ground"
+      ],
+      "specificRefine": [],
+      "rethink": [
+        {
+          "phrases": [
+            "actual killings during the battle",
+            "the killings",
+            "how the soldiers were killed",
+            "details of the fighting",
+            "the battle itself"
+          ],
+          "hint": "Lincoln is not describing the fighting itself here. Focus on the meaning he gives to the soldiers' actions and sacrifice."
+        }
+      ],
+      "hint1": "What does Lincoln say the soldiers have already done?",
+      "hint2": "How does Lincoln compare what the soldiers have done with what the people at the ceremony can do or say?"
+    },
+    {
+      "id": 5,
+      "title": "SECTION 5 · RESPONSIBILITY & FUTURE",
+      "excerpt": "It is for us the living, rather …",
+      "acceptPhrases": [
+        "responsibility of the living",
+        "duty of the living",
+        "task of the living",
+        "what the living must do",
+        "the living have a responsibility",
+        "the living now have to act",
+        "unfinished work",
+        "unfinished task",
+        "the work is not finished",
+        "work that still has to be done",
+        "continuing the unfinished work",
+        "finishing the work",
+        "continue the soldiers' work",
+        "carry on the soldiers' work",
+        "continue what the soldiers started",
+        "carry on what they fought for",
+        "continue their struggle",
+        "continue their cause",
+        "make sure they did not die in vain",
+        "ensure that the soldiers did not die in vain",
+        "future of the nation",
+        "future of democracy",
+        "survival of democracy",
+        "survival of democratic government",
+        "preserving democracy",
+        "protecting democracy",
+        "democratic self-government",
+        "future of freedom",
+        "renewal of freedom",
+        "the living must continue the work",
+        "we have to carry on what the soldiers started",
+        "the living are responsible for continuing the work",
+        "the responsibility of the living for the nation's future"
+      ],
+      "acceptCombinations": [
+        {
+          "groups": [
+            [
+              "living",
+              "we",
+              "people"
+            ],
+            [
+              "continue",
+              "carry on",
+              "finish",
+              "responsibility",
+              "duty",
+              "task",
+              "unfinished work"
+            ]
+          ]
+        }
+      ],
+      "refinePhrases": [
+        "future",
+        "future aspects",
+        "the future",
+        "consequences for now",
+        "what happens next",
+        "living",
+        "the living",
+        "responsibility",
+        "freedom",
+        "democracy",
+        "hope",
+        "new birth of freedom",
+        "government of the people"
+      ],
+      "specificRefine": [],
+      "rethink": [],
+      "hint1": "Have you identified the move towards the future? Look again at the final section.",
+      "hint2": "Who does Lincoln now address, and what does he say still needs to be done?"
+    }
+  ]
+}
