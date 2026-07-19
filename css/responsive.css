@@ -1,0 +1,46 @@
+@media(max-width:900px){.map-task-layout{grid-template-columns:1fr}.locator-map{width:100%}.research-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.g2,.context-grid,.research-grid{grid-template-columns:1fr}.topbar{flex-wrap:wrap}.progresswrap{order:3;flex-basis:100%}.archivehead{align-items:flex-start;flex-direction:column}.status{text-align:left}.map-task-layout{grid-template-columns:1fr}.locator-map{width:100%}}
+@media(max-width:900px){
+  .analyst-note-pair{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:900px){
+  .skill-check-options{
+    grid-template-columns:1fr;
+  }
+}
+@media(max-width:700px){
+  .time-structure-inputs{
+    gap:7px;
+  }
+  .time-structure-inputs input{
+    width:28%;
+    min-width:0;
+    padding:10px 6px;
+    font-size:.85rem;
+  }
+}
+
+/* File D responsive */
+@media(max-width:900px){
+  .analysis-layer-grid,
+  .device-def-grid{grid-template-columns:1fr}
+}
+
+/* Final D + key responsive */
+@media(max-width:900px){
+  .multi-select-options{grid-template-columns:1fr}
+}
+
+/* Restored full responsive rules */
+@media(max-width:900px){
+  .research-card-wide{grid-template-columns:1fr}.research-visual{border-right:0;border-bottom:1px solid #c7beb0;min-height:220px}.research-visual img{max-height:300px}
+  .map-task-grid,.assignment-grid,.compare{grid-template-columns:1fr}.vs{display:none}.recovered-data{grid-template-columns:1fr}
+  .auto-timeline{grid-template-columns:1fr}.timeline-arrow{transform:rotate(90deg)}
+}
+@media(max-width:760px){
+  .evidence-row{grid-template-columns:24px 54px 1fr}.evidence-status{grid-column:3}.case-progress-mini{width:min(240px,80vw)}
+  .research-card-wide{display:block}.source-document-preview{min-height:240px}.invitation-paper{padding:14px}
+}
