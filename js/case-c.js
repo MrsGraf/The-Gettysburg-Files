@@ -149,6 +149,8 @@ window.initCaseC=function(){
       status.textContent=summaryComplete?'RECOVERED':(summaryVerified[index]?'VERIFIED':'IN PROGRESS');
       status.classList.toggle('verified',summaryComplete||summaryVerified[index]);
     }
+    const nav=document.querySelector('.summary-slider-nav');
+    nav?.classList.toggle('completed',summaryComplete && index===4);
     const prev=document.getElementById('previousSummarySection');
     if(prev)prev.disabled=index===0;
     const next=document.getElementById('nextSummarySection');
@@ -268,10 +270,49 @@ window.initCaseC=function(){
     const ok=values.every((value,index)=>closeEnough(value,targets[index]));
     document.getElementById('timeStructureRetry')?.classList.toggle('show',!ok);
     document.getElementById('macroStructureRecovered')?.classList.toggle('show',ok);
+    const assignment=document.getElementById('macroSectionAssignment');
+    if(assignment)assignment.hidden=!ok;
     if(ok){
       markVerifyButton(document.getElementById('verifyTimeStructure'));
       ['timePast','timePresent','timeFuture','verifyTimeStructure','showTimeHint'].forEach(id=>{const el=document.getElementById(id);if(el)el.disabled=true;});
     }
+  });
+
+  const sectionMapping={};
+  let selectedMapSection=null;
+  let selectedMapPhase=null;
+
+  function renderSectionMapping(){
+    document.querySelectorAll('[data-map-section]').forEach(el=>{
+      const n=Number(el.dataset.mapSection), phase=sectionMapping[n];
+      el.classList.toggle('map-selected',selectedMapSection===n);
+      el.querySelector('.c02-section-phase-badge')?.remove();
+      if(phase){
+        const badge=document.createElement('span');
+        badge.className='c02-section-phase-badge'; badge.textContent=phase.toUpperCase();
+        el.querySelector('.smallcaps')?.appendChild(badge);
+      }
+    });
+    document.querySelectorAll('.macro-phase').forEach(el=>el.classList.toggle('selected',selectedMapPhase===el.dataset.phase));
+    ['past','present','future'].forEach(phase=>{
+      const slot=document.querySelector(`[data-phase-slots="${phase}"]`); if(!slot)return;
+      slot.innerHTML=Object.entries(sectionMapping).filter(([,p])=>p===phase).map(([n])=>`<span class="phase-section-chip">SECTION ${n}</span>`).join('');
+    });
+  }
+  function connectMappingIfReady(){
+    if(selectedMapSection && selectedMapPhase){sectionMapping[selectedMapSection]=selectedMapPhase;selectedMapSection=null;selectedMapPhase=null;renderSectionMapping();}
+  }
+  document.querySelectorAll('[data-map-section]').forEach(el=>{
+    const choose=()=>{selectedMapSection=Number(el.dataset.mapSection);renderSectionMapping();connectMappingIfReady();};
+    el.addEventListener('click',choose); el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose();}});
+  });
+  document.querySelectorAll('.macro-phase').forEach(el=>el.addEventListener('click',()=>{selectedMapPhase=el.dataset.phase;renderSectionMapping();connectMappingIfReady();}));
+  document.getElementById('verifySectionMapping')?.addEventListener('click',()=>{
+    const expected={1:'past',2:'present',3:'present',4:'present',5:'future'};
+    const ok=Object.entries(expected).every(([n,p])=>sectionMapping[n]===p);
+    document.getElementById('sectionMappingRetry')?.classList.toggle('show',!ok);
+    document.getElementById('sectionMappingRecovered')?.classList.toggle('show',ok);
+    if(ok){markVerifyButton(document.getElementById('verifySectionMapping'));document.querySelectorAll('[data-map-section],.macro-phase').forEach(el=>{el.style.pointerEvents='none';el.setAttribute('aria-disabled','true');});}
   });
 
   document.getElementById('openAnalystRecords')?.addEventListener('click',event=>{

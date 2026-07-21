@@ -757,7 +757,10 @@
         "keep the Union alive",
         "keep the nation alive",
         "ensure that the Union continues",
-        "ensure that the nation continues"
+        "ensure that the nation continues",
+        "future perspective",
+        "perspective on the future",
+        "future outlook"
       ],
       "acceptCombinations": [
         {

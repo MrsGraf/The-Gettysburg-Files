@@ -10,7 +10,7 @@ body.cinematic-mode main{width:100vw;margin:0;padding:0}
 .run-intro .line-1{animation-delay:.6s}.run-intro .line-2{animation-delay:2.4s}.run-intro .line-3{animation-delay:4.2s;color:#d7cbb7}.run-intro .line-4{animation-delay:6s;color:#d7cbb7}.run-intro .line-5{animation-delay:7.8s;color:#d7cbb7}
 .run-intro .cold-open{animation:coldOpenOut 1s ease 11.2s forwards}
 .cinematic-blackout{position:absolute;inset:0;z-index:2;background:rgba(0,0,0,.42);opacity:0;pointer-events:none}
-.run-intro .cinematic-blackout{animation:none;opacity:0}
+.run-intro .cinematic-blackout{animation:none;opacity:.25}
 .archive-origin{position:relative;z-index:3;width:min(920px,90vw);margin:auto;opacity:0;transform:translateY(18px);padding:0}
 .run-intro .archive-origin{animation:archiveOriginIn 1.2s ease 12.3s forwards}
 .origin-copy{max-width:760px;margin:0 auto;color:#c9d0d6;font-size:clamp(.98rem,1.6vw,1.16rem);line-height:1.75}
