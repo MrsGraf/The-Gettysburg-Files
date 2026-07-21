@@ -1,0 +1,1049 @@
+{
+  "version": "1.5",
+  "normalization": {
+    "fillers": [
+      "it is about",
+      "this section is about",
+      "this part is about",
+      "part one is about",
+      "part two is about",
+      "part three is about",
+      "part four is about",
+      "part five is about",
+      "lincoln talks about",
+      "lincoln is talking about",
+      "lincoln refers to",
+      "the section deals with",
+      "this section deals with",
+      "the part deals with",
+      "it's about"
+    ],
+    "wordForms": {
+      "founded": "found",
+      "founding": "found",
+      "foundation": "found",
+      "foundations": "found",
+      "created": "create",
+      "creation": "create",
+      "origins": "origin",
+      "divided": "divide",
+      "division": "divide",
+      "divisions": "divide",
+      "splits": "split",
+      "struggles": "struggle",
+      "survives": "survive",
+      "survived": "survive",
+      "survival": "survive",
+      "endures": "endure",
+      "endured": "endure",
+      "coping": "cope",
+      "deals": "deal",
+      "dealing": "deal",
+      "overcomes": "overcome",
+      "overcoming": "overcome",
+      "dedicated": "dedicate",
+      "dedicating": "dedicate",
+      "dedication": "dedicate",
+      "dedications": "dedicate",
+      "honor": "honour",
+      "honoring": "honour",
+      "honoured": "honour",
+      "honored": "honour",
+      "honouring": "honour",
+      "remembering": "remember",
+      "remembered": "remember",
+      "commemorating": "commemorate",
+      "commemoration": "commemorate",
+      "commemorations": "commemorate",
+      "soldiers": "soldier",
+      "actions": "action",
+      "deeds": "deed",
+      "words": "word",
+      "speeches": "speech",
+      "ceremonies": "ceremony",
+      "killings": "killing",
+      "sacrifices": "sacrifice",
+      "sacrificed": "sacrifice",
+      "fought": "fight",
+      "fighting": "fight",
+      "died": "die",
+      "killed": "kill",
+      "responsibilities": "responsibility",
+      "duties": "duty",
+      "tasks": "task",
+      "continues": "continue",
+      "continued": "continue",
+      "continuing": "continue",
+      "carries": "carry",
+      "carried": "carry",
+      "finishing": "finish",
+      "finished": "finish",
+      "governments": "government",
+      "freedoms": "freedom",
+      "dies": "die",
+      "dying": "die",
+      "deaths": "death",
+      "addresses": "address",
+      "addressed": "address",
+      "addressing": "address",
+      "protects": "protect",
+      "protected": "protect",
+      "protecting": "protect",
+      "preserves": "preserve",
+      "preserved": "preserve",
+      "preserving": "preserve",
+      "saves": "save",
+      "saved": "save",
+      "saving": "save",
+      "secures": "secure",
+      "secured": "secure",
+      "securing": "secure",
+      "strengthens": "strengthen",
+      "strengthened": "strengthen",
+      "strengthening": "strengthen",
+      "improves": "improve",
+      "improved": "improve",
+      "improving": "improve",
+      "builds": "build",
+      "built": "build",
+      "building": "build",
+      "rebuilds": "rebuild",
+      "rebuilt": "rebuild",
+      "rebuilding": "rebuild",
+      "completes": "complete",
+      "completed": "complete",
+      "completing": "complete",
+      "acts": "act",
+      "acted": "act",
+      "acting": "act",
+      "survivors": "survivor",
+      "didn't": "did not",
+      "don't": "do not",
+      "doesn't": "does not",
+      "haven't": "have not",
+      "hasn't": "has not",
+      "wasn't": "was not",
+      "weren't": "were not",
+      "can't": "cannot",
+      "couldn't": "could not",
+      "shouldn't": "should not",
+      "wouldn't": "would not",
+      "won't": "will not",
+      "americans": "american",
+      "listeners": "listener",
+      "citizens": "citizen",
+      "roles": "role",
+      "expected": "expect",
+      "expects": "expect",
+      "expecting": "expect",
+      "needs": "need",
+      "needed": "need",
+      "exists": "exist",
+      "existing": "exist",
+      "existed": "exist",
+      "remains": "remain",
+      "remained": "remain",
+      "remaining": "remain",
+      "lasts": "last",
+      "lasted": "last",
+      "lasting": "last",
+      "stays": "stay",
+      "stayed": "stay",
+      "staying": "stay",
+      "tensions": "tension",
+      "copes": "cope",
+      "tested": "test",
+      "testing": "test",
+      "tests": "test",
+      "soldier's": "soldier",
+      "soldiers'": "soldier"
+    },
+    "contractions": {
+      "didn't": "did not",
+      "don't": "do not",
+      "doesn't": "does not",
+      "haven't": "have not",
+      "hasn't": "has not",
+      "wasn't": "was not",
+      "weren't": "were not",
+      "can't": "cannot",
+      "couldn't": "could not",
+      "shouldn't": "should not",
+      "wouldn't": "would not",
+      "won't": "will not"
+    }
+  },
+  "sections": [
+    {
+      "id": 1,
+      "title": "SECTION 1 · FOUNDING IDEALS",
+      "excerpt": "Four score and seven years ago …",
+      "acceptPhrases": [
+        "Declaration of Independence",
+        "the Declaration",
+        "American Declaration of Independence",
+        "American independence",
+        "independence of the United States",
+        "independence from Britain",
+        "founding ideals",
+        "founding principles",
+        "founding values",
+        "founding of the nation",
+        "founding of the United States",
+        "founding of America",
+        "foundation of the nation",
+        "birth of the nation",
+        "creation of the nation",
+        "origins of the nation",
+        "the principles the nation was founded on",
+        "how the United States was founded",
+        "the foundation of the country based on equality",
+        "the nation's origins and its ideals"
+      ],
+      "acceptCombinations": [
+        {
+          "groups": [
+            [
+              "founding",
+              "foundation",
+              "creation",
+              "birth",
+              "origins"
+            ],
+            [
+              "liberty",
+              "freedom",
+              "equality",
+              "equal"
+            ]
+          ]
+        }
+      ],
+      "refinePhrases": [
+        "1776",
+        "87 years ago",
+        "four score and seven years ago",
+        "the past",
+        "liberty",
+        "freedom",
+        "equality",
+        "liberty and equality",
+        "all men are created equal",
+        "the idea that all men are created equal"
+      ],
+      "rethink": [],
+      "specificRefine": [],
+      "hint1": "You've identified an important detail. What larger historical event or idea does Lincoln refer back to?",
+      "hint2": "What significant event took place in 1776, and which ideas does Lincoln connect with it?"
+    },
+    {
+      "id": 2,
+      "title": "SECTION 2 · NATION TESTED",
+      "excerpt": "Now we are engaged in a great civil war …",
+      "acceptPhrases": [
+        "if the nation survives",
+        "whether the nation survives",
+        "whether the Union survives",
+        "whether the nation can survive",
+        "if the nation can endure",
+        "whether the country can continue to exist",
+        "if the Union can hold together",
+        "whether the nation can cope with the conflict",
+        "if the nation can cope with the challenges of the conflict",
+        "whether the country can deal with the crisis",
+        "whether the Union can overcome the conflict",
+        "the conflict tests the nation",
+        "the nation is being tested",
+        "whether the nation can withstand the crisis",
+        "whether the Union can still exist despite all the tensions",
+        "whether the nation can continue despite the conflict",
+        "if the country can still exist with all these tensions",
+        "whether the Union can remain together",
+        "if the nation will survive the current crisis",
+        "whether the United States can hold together despite the division",
+        "whether the Union can still exist",
+        "whether the Union can still exists",
+        "whether the nation can continue to exist",
+        "whether the country can remain",
+        "whether America can survive",
+        "whether the nation can endure",
+        "whether the Union can last",
+        "whether the country can continue",
+        "whether the nation can stay together",
+        "whether the Union can hold together",
+        "whether the nation will have a future",
+        "It's about the Civil War and whether the nation has a future",
+        "It's about the Civil War and whether the nation can survive",
+        "It's about the current conflict and whether the Union can continue to exist",
+        "It's about the current division of the country and whether the nation has a future",
+        "It's about whether the Union can still exist despite all tensions",
+        "It's about whether the nation can cope with the challenges of the conflict",
+        "It's about the crisis in the Union and whether the country can hold together",
+        "It's about the conflict and whether the nation will survive",
+        "It's about whether the country can overcome the current crisis",
+        "It's about the nation being tested by the Civil War",
+        "It's about whether the nation can endure despite the conflict",
+        "It's about the war and the future of the Union",
+        "if the nation has a future",
+        "if the country can continue to exist",
+        "if the nation can overcome the crisis",
+        "whether the nation can last",
+        "test of the nation",
+        "future of the nation",
+        "future of the Union",
+        "future of the country"
+      ],
+      "acceptCombinations": [
+        {
+          "groups": [
+            [
+              "nation",
+              "union",
+              "country",
+              "united states",
+              "america"
+            ],
+            [
+              "survive",
+              "endure",
+              "continue",
+              "continue to exist",
+              "still exist",
+              "keep existing",
+              "remain",
+              "remain united",
+              "stay together",
+              "hold together",
+              "withstand",
+              "cope with",
+              "deal with",
+              "overcome",
+              "get through",
+              "have a future",
+              "still have a future",
+              "future",
+              "last"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "civil war",
+              "american civil war",
+              "conflict",
+              "crisis",
+              "division",
+              "divide",
+              "struggle",
+              "tension",
+              "war",
+              "slavery"
+            ],
+            [
+              "survive",
+              "endure",
+              "continue",
+              "exist",
+              "remain",
+              "stay together",
+              "hold together",
+              "withstand",
+              "cope",
+              "deal",
+              "overcome",
+              "get through",
+              "future",
+              "test",
+              "last"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "nation",
+              "union",
+              "country",
+              "united states",
+              "america"
+            ],
+            [
+              "test",
+              "being tested",
+              "be tested",
+              "test of the nation"
+            ]
+          ]
+        }
+      ],
+      "refinePhrases": [
+        "crisis",
+        "conflict",
+        "division",
+        "struggle",
+        "struggles",
+        "war",
+        "problems",
+        "current situation",
+        "the present",
+        "country",
+        "nation",
+        "survival",
+        "slavery",
+        "issues with slavery",
+        "Civil War",
+        "American Civil War",
+        "current conflict",
+        "present conflict",
+        "current crisis",
+        "present crisis",
+        "national crisis",
+        "current division",
+        "division of the Union",
+        "division of the country",
+        "the country is divided",
+        "divided Union",
+        "divided nation",
+        "divided country",
+        "split nation",
+        "conflict within the Union",
+        "conflict within the country",
+        "conflict between North and South",
+        "war between North and South",
+        "current struggles",
+        "struggles within the Union",
+        "tensions",
+        "tensions within the country",
+        "national tensions",
+        "conflict over slavery",
+        "division over slavery"
+      ],
+      "rethink": [],
+      "specificRefine": [],
+      "hint1": "You've identified the historical situation. What question does Lincoln connect with this conflict?",
+      "hint2": "What does Lincoln say is being tested by the war? Think about whether the nation or Union can continue to exist."
+    },
+    {
+      "id": 3,
+      "title": "SECTION 3 · GETTYSBURG / OCCASION",
+      "excerpt": "We are met on a great battlefield …",
+      "acceptPhrases": [
+        "occasion of the speech",
+        "occasion for the speech",
+        "occasion at Gettysburg",
+        "reason for the gathering",
+        "reason for the ceremony",
+        "purpose of the gathering",
+        "purpose of the ceremony",
+        "why they have gathered",
+        "why they are gathered",
+        "why they are at Gettysburg",
+        "why people have come to Gettysburg",
+        "dedication of the cemetery",
+        "cemetery dedication",
+        "dedication ceremony",
+        "dedicating the cemetery",
+        "dedication of the battlefield",
+        "dedicating part of the battlefield",
+        "dedication of a burial ground",
+        "final resting place",
+        "resting place for the soldiers",
+        "cemetery for the fallen soldiers",
+        "Soldiers' National Cemetery",
+        "honouring those who were killed",
+        "remembering those who died in battle",
+        "commemorating the people who lost their lives",
+        "honouring the men who died at Gettysburg",
+        "remembering those who gave their lives",
+        "remembering the dead"
+      ],
+      "acceptCombinations": [
+        {
+          "groups": [
+            [
+              "honour",
+              "honor",
+              "honouring",
+              "honoring",
+              "remember",
+              "remembering",
+              "commemorate",
+              "commemorating"
+            ],
+            [
+              "soldiers",
+              "fallen soldiers",
+              "the fallen",
+              "the dead",
+              "those who died",
+              "those who were killed",
+              "people who died",
+              "men who died",
+              "those who lost their lives",
+              "those who gave their lives",
+              "people killed in battle",
+              "those who died in battle",
+              "those who died at Gettysburg",
+              "those killed at Gettysburg"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "gathering",
+              "ceremony",
+              "Gettysburg",
+              "people have come"
+            ],
+            [
+              "dedicate",
+              "dedication",
+              "cemetery",
+              "burial",
+              "resting place",
+              "honour",
+              "honor",
+              "remember",
+              "commemorate"
+            ]
+          ]
+        }
+      ],
+      "refinePhrases": [
+        "opening of the cemetery",
+        "opening the cemetery",
+        "cemetery",
+        "ceremony",
+        "Gettysburg",
+        "gathering",
+        "dedication",
+        "occasion",
+        "burying soldiers",
+        "burying the dead",
+        "purpose of the speech"
+      ],
+      "specificRefine": [
+        {
+          "phrases": [
+            "opening of the cemetery",
+            "opening the cemetery"
+          ],
+          "hint": "You're close, but “opening the cemetery” is not quite precise. Look again at what Lincoln says the people have come there to do."
+        },
+        {
+          "phrases": [
+            "purpose of the speech"
+          ],
+          "hint": "Do you mean why the people have gathered at Gettysburg? Try to make this a little more specific."
+        }
+      ],
+      "rethink": [],
+      "hint1": "You're close. What are the people gathered at Gettysburg to do?",
+      "hint2": "What is being dedicated, and for whom is it intended?"
+    },
+    {
+      "id": 4,
+      "title": "SECTION 4 · SACRIFICE",
+      "excerpt": "But, in a larger sense …",
+      "acceptPhrases": [
+        "soldiers' sacrifice",
+        "sacrifice of the soldiers",
+        "sacrifice of the fallen",
+        "their sacrifice",
+        "the soldiers' actions",
+        "what the soldiers did",
+        "what the fallen soldiers did",
+        "the significance of the soldiers' actions",
+        "the soldiers gave their lives",
+        "the soldiers fought and died",
+        "the soldiers died for the nation",
+        "the soldiers consecrated the ground",
+        "the soldiers have already consecrated the ground",
+        "the soldiers made the ground sacred",
+        "the soldiers gave the ground its meaning",
+        "the soldiers have already dedicated the ground through their actions",
+        "limits of words",
+        "limits of speeches",
+        "limits of the ceremony",
+        "limits of ceremonial acts",
+        "words are not enough",
+        "words cannot equal the soldiers' actions",
+        "words cannot equal their sacrifice",
+        "words versus deeds",
+        "words compared with actions",
+        "what we say versus what they did",
+        "the soldiers' actions are more important than words",
+        "words cannot equal what the soldiers have done",
+        "the ceremony cannot add to their sacrifice",
+        "they sacrificed their lives",
+        "they consecrated the ground",
+        "they made the ground sacred",
+        "they fought and died",
+        "what we say cannot equal what they did",
+        "their actions are more important than words",
+        "the ceremony cannot equal their sacrifice",
+        "soldier's sacrifice",
+        "soldiers sacrifice",
+        "soldier sacrifice",
+        "the sacrifice of the soldier",
+        "the sacrifice of the soldiers",
+        "the soldiers' sacrifices",
+        "the sacrifice of the fallen",
+        "the soldiers sacrificed their lives",
+        "what the soldiers sacrificed",
+        "the sacrifice they made",
+        "what the soldiers did for the nation",
+        "It's about the soldier's sacrifice"
+      ],
+      "acceptCombinations": [
+        {
+          "groups": [
+            [
+              "words",
+              "speech",
+              "what we say",
+              "ceremony",
+              "dedication"
+            ],
+            [
+              "actions",
+              "deeds",
+              "what they did",
+              "soldiers",
+              "sacrifice"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "soldier",
+              "fallen",
+              "they",
+              "their"
+            ],
+            [
+              "sacrifice",
+              "gave their lives",
+              "give their lives",
+              "gave his life",
+              "give his life"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "soldier",
+              "fallen"
+            ],
+            [
+              "what the soldiers did",
+              "what they did",
+              "did for the nation",
+              "for the nation"
+            ]
+          ]
+        }
+      ],
+      "refinePhrases": [
+        "soldiers",
+        "sacrifice",
+        "battle",
+        "what happened at Gettysburg",
+        "remembering the dead",
+        "words",
+        "deeds",
+        "consecrating the ground"
+      ],
+      "specificRefine": [],
+      "rethink": [
+        {
+          "phrases": [
+            "actual killings during the battle",
+            "the killings",
+            "how the soldiers were killed",
+            "details of the fighting",
+            "the battle itself"
+          ],
+          "hint": "Lincoln is not describing the fighting itself here. Focus on the meaning he gives to the soldiers' actions and sacrifice."
+        }
+      ],
+      "hint1": "What does Lincoln say the soldiers have already done?",
+      "hint2": "How does Lincoln compare what the soldiers have done with what the people at the ceremony can do or say?"
+    },
+    {
+      "id": 5,
+      "title": "SECTION 5 · RESPONSIBILITY & FUTURE",
+      "excerpt": "It is for us the living, rather …",
+      "acceptPhrases": [
+        "responsibility of the living",
+        "duty of the living",
+        "task of the living",
+        "what the living must do",
+        "the living have a responsibility",
+        "the living now have to act",
+        "unfinished work",
+        "unfinished task",
+        "the work is not finished",
+        "work that still has to be done",
+        "continuing the unfinished work",
+        "finishing the work",
+        "continue the soldiers' work",
+        "carry on the soldiers' work",
+        "continue what the soldiers started",
+        "carry on what they fought for",
+        "continue their struggle",
+        "continue their cause",
+        "make sure they did not die in vain",
+        "ensure that the soldiers did not die in vain",
+        "future of the nation",
+        "future of democracy",
+        "survival of democracy",
+        "survival of democratic government",
+        "preserving democracy",
+        "protecting democracy",
+        "democratic self-government",
+        "future of freedom",
+        "renewal of freedom",
+        "the living must continue the work",
+        "we have to carry on what the soldiers started",
+        "the living are responsible for continuing the work",
+        "the responsibility of the living for the nation's future",
+        "did not die in vain",
+        "do not die in vain",
+        "have not died in vain",
+        "their deaths were not in vain",
+        "their death was not in vain",
+        "their sacrifice was not in vain",
+        "make sure the soldiers did not die for nothing",
+        "so the soldiers did not die for nothing",
+        "so their deaths meant something",
+        "not die in vain",
+        "not died in vain",
+        "did not die for nothing",
+        "their deaths meant something",
+        "he addresses the audience and tells them to continue the work",
+        "the audience has to carry on the soldiers' work",
+        "they have to protect the Union",
+        "the people should continue fighting for the nation",
+        "the living must make the country better",
+        "they shall make the Union great so that the soldiers did not die in vain",
+        "he addresses the audience and explains what their task is in the future",
+        "he addresses the audience and what their task is in the future to make sure the Union has a future",
+        "lincoln tells the people what they have to do for the future of the Union",
+        "the audience's task for the future",
+        "it is about the audience's task for the future",
+        "the living have a responsibility for the future of the nation",
+        "he tells them what they should do so that the Union can continue",
+        "the audience has to make sure the nation has a future",
+        "what their task is",
+        "what they have to do",
+        "what they must do",
+        "what they should do",
+        "what needs to be done",
+        "their role",
+        "what is expected of them",
+        "future of the Union",
+        "future of the country",
+        "Union has a future",
+        "nation has a future",
+        "secure the future",
+        "ensure the future",
+        "make sure the Union has a future",
+        "make sure the nation has a future",
+        "keep the Union alive",
+        "keep the nation alive",
+        "ensure that the Union continues",
+        "ensure that the nation continues",
+        "future perspective",
+        "perspective on the future",
+        "future outlook"
+      ],
+      "acceptCombinations": [
+        {
+          "groups": [
+            [
+              "living",
+              "we",
+              "people"
+            ],
+            [
+              "continue",
+              "carry on",
+              "finish",
+              "responsibility",
+              "duty",
+              "task",
+              "unfinished work"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "audience",
+              "people",
+              "living",
+              "survivor",
+              "american",
+              "they",
+              "we"
+            ],
+            [
+              "continue",
+              "carry on",
+              "finish",
+              "complete",
+              "work",
+              "act",
+              "fight",
+              "struggle"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "audience",
+              "people",
+              "living",
+              "survivor",
+              "american",
+              "they",
+              "we"
+            ],
+            [
+              "preserve",
+              "protect",
+              "save",
+              "secure",
+              "strengthen",
+              "improve",
+              "build",
+              "rebuild"
+            ],
+            [
+              "nation",
+              "union",
+              "country",
+              "america",
+              "freedom",
+              "democracy",
+              "cause"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "audience",
+              "people",
+              "living",
+              "survivor",
+              "american",
+              "they",
+              "we"
+            ],
+            [
+              "make"
+            ],
+            [
+              "better",
+              "great"
+            ],
+            [
+              "nation",
+              "union",
+              "country",
+              "america",
+              "freedom",
+              "democracy",
+              "cause"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "audience",
+              "people",
+              "living",
+              "survivor",
+              "american",
+              "they",
+              "we"
+            ],
+            [
+              "keep"
+            ],
+            [
+              "together"
+            ],
+            [
+              "nation",
+              "union",
+              "country",
+              "america"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "address",
+              "audience"
+            ],
+            [
+              "continue",
+              "carry on",
+              "finish",
+              "complete",
+              "work",
+              "act",
+              "fight",
+              "struggle",
+              "preserve",
+              "protect",
+              "save",
+              "secure",
+              "strengthen",
+              "improve",
+              "build",
+              "rebuild"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "audience",
+              "listener",
+              "people",
+              "living",
+              "american",
+              "citizen",
+              "they",
+              "we"
+            ],
+            [
+              "task",
+              "responsibility",
+              "duty",
+              "role",
+              "what their task is",
+              "what they have to do",
+              "what they must do",
+              "what they should do",
+              "what needs to be done",
+              "what is expected of them"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "audience",
+              "listener",
+              "people",
+              "living",
+              "american",
+              "citizen",
+              "they",
+              "we"
+            ],
+            [
+              "future",
+              "in the future",
+              "future of the union",
+              "future of the nation",
+              "future of the country",
+              "has a future",
+              "secure the future",
+              "ensure the future",
+              "keep the union alive",
+              "keep the nation alive",
+              "union continues",
+              "nation continues"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "task",
+              "responsibility",
+              "duty",
+              "role",
+              "what their task is",
+              "what they have to do",
+              "what they must do",
+              "what they should do",
+              "what needs to be done",
+              "what is expected of them"
+            ],
+            [
+              "future",
+              "union",
+              "nation",
+              "country",
+              "america"
+            ]
+          ]
+        },
+        {
+          "groups": [
+            [
+              "audience",
+              "listener",
+              "people",
+              "living",
+              "american",
+              "citizen",
+              "they",
+              "we"
+            ],
+            [
+              "have to do",
+              "must do",
+              "should do",
+              "need to do"
+            ],
+            [
+              "future",
+              "union",
+              "nation",
+              "country",
+              "america"
+            ]
+          ]
+        }
+      ],
+      "refinePhrases": [
+        "future",
+        "future aspects",
+        "the future",
+        "consequences for now",
+        "what happens next",
+        "living",
+        "the living",
+        "responsibility",
+        "freedom",
+        "democracy",
+        "hope",
+        "new birth of freedom",
+        "government of the people",
+        "he addresses the audience",
+        "addresses the audience",
+        "the audience",
+        "audience"
+      ],
+      "specificRefine": [],
+      "rethink": [],
+      "hint1": "Have you identified the move towards the future? Look again at the final section.",
+      "hint2": "Who does Lincoln now address, and what does he say still needs to be done?"
+    }
+  ]
+}
