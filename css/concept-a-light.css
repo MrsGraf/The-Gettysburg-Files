@@ -1,0 +1,434 @@
+/* v43 · Concept A / Glass Archive Light
+   Visual-only override layer. No workflow, content, state, validation, or navigation logic is changed. */
+
+:root{
+  --concept-slate:#50647a;
+  --concept-slate-deep:#334a61;
+  --concept-fog:#a9b8c8;
+  --concept-fog-light:#d9e1e8;
+  --concept-cloud:#e7e9ec;
+  --concept-parchment:#f6f5ee;
+  --concept-rust:#c85a3e;
+  --concept-rust-deep:#a8422d;
+  --concept-sage:#6e8f7a;
+  --concept-sage-soft:#edf4ef;
+  --concept-ink:#3f5367;
+  --concept-muted:#788795;
+  --concept-line:rgba(80,100,122,.18);
+  --concept-glass:rgba(255,255,255,.76);
+  --concept-glass-strong:rgba(255,255,255,.9);
+  --concept-shadow:0 12px 34px rgba(58,76,94,.11);
+  --concept-shadow-soft:0 5px 18px rgba(58,76,94,.08);
+
+  --bg:#edf1f4;
+  --panel:#f7f8f8;
+  --ink:var(--concept-ink);
+  --muted:var(--concept-muted);
+  --paper:var(--concept-parchment);
+  --red:var(--concept-rust);
+  --blue:var(--concept-slate);
+  --ok:var(--concept-sage);
+  --ok-bg:var(--concept-sage-soft);
+  --line:#ccd5dd;
+  --shadow:var(--concept-shadow);
+  --select-border:#7993aa;
+  --select-bg:#eaf0f5;
+  --select-text:#3e5870;
+}
+
+/* Global archive canvas: cool, bright and layered rather than beige/paper-led. */
+body:not(.cinematic-mode){
+  background-color:#edf1f4;
+  background-image:
+    radial-gradient(circle at 8% 12%,rgba(169,184,200,.2),transparent 27%),
+    radial-gradient(circle at 88% 18%,rgba(255,255,255,.75),transparent 34%),
+    linear-gradient(180deg,#f4f6f7 0%,#edf1f4 52%,#e9eef1 100%);
+  color:var(--concept-ink);
+}
+body:not(.cinematic-mode)::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  opacity:.38;
+  background-image:
+    repeating-radial-gradient(ellipse at 18% 22%,transparent 0 26px,rgba(80,100,122,.045) 27px 28px,transparent 29px 44px),
+    linear-gradient(90deg,rgba(80,100,122,.022) 1px,transparent 1px),
+    linear-gradient(rgba(80,100,122,.018) 1px,transparent 1px);
+  background-size:auto,72px 72px,72px 72px;
+}
+body.cinematic-mode::before{display:none}
+
+/* Header / archive identity */
+.topbar{
+  min-height:78px;
+  background:rgba(248,250,251,.9);
+  border-bottom:1px solid rgba(80,100,122,.18);
+  box-shadow:0 8px 26px rgba(58,76,94,.08);
+  backdrop-filter:blur(16px) saturate(1.06);
+  -webkit-backdrop-filter:blur(16px) saturate(1.06);
+}
+.brand-copy b{color:var(--concept-slate-deep);letter-spacing:.025em}
+.brand-subtitle,.keymini,.progressmeta,.smallcaps{color:#788795}
+.header-recovery-cluster{gap:6px}
+.progressline{
+  height:4px;
+  background:#dce4ea;
+  border-radius:999px;
+  box-shadow:inset 0 1px 2px rgba(51,74,97,.08);
+}
+.progressbar{
+  background:linear-gradient(90deg,#718ca4 0%,var(--concept-slate) 72%,#6c8297 100%);
+  border-radius:999px;
+}
+.archive-home-button{
+  border:1px solid rgba(80,100,122,.25);
+  color:var(--concept-slate-deep);
+  background:rgba(255,255,255,.58);
+  box-shadow:0 2px 8px rgba(58,76,94,.04);
+}
+.archive-home-button:hover,.archive-home-button:focus{background:#fff;border-color:rgba(80,100,122,.4)}
+
+main{width:min(1240px,94vw);padding:34px 0 92px}
+
+/* Strong but quiet content hierarchy */
+.archivehead{
+  border-bottom:1px solid rgba(80,100,122,.24);
+  padding-bottom:15px;
+  margin-bottom:22px;
+}
+.archivehead h2{
+  color:var(--concept-slate-deep);
+  font-size:clamp(2rem,4.2vw,3.85rem);
+  letter-spacing:.018em;
+  line-height:.96;
+}
+.kicker{color:var(--concept-rust);font-weight:800}
+.status{color:var(--concept-slate);font-size:.9rem;line-height:1.15}
+
+/* Glass Archive Light surfaces */
+.card,
+.narrative-setup,
+.archive-file-card,
+.master-key-directory-card,
+.archive-register,
+.recovered-context-strip,
+.recovered-fragment,
+.analyst-record-status,
+.research-card,
+.context-grid>div,
+.paper,
+.speech,
+.section-speech,
+.device-definition-box,
+.analysis-example,
+.device-example,
+.role-box,
+.personnel-card,
+.master-fragment-card,
+.skill-option,
+.multi-option,
+.note,
+.dropzone,
+.option,
+.passage-choice,
+.macro-phase,
+.argument-function-slot,
+.d1-layer-slot{
+  border-color:var(--concept-line);
+}
+
+.card,
+.archive-file-card,
+.master-key-directory-card,
+.research-card{
+  background:var(--concept-glass);
+  border:1px solid var(--concept-line);
+  border-radius:14px;
+  box-shadow:var(--concept-shadow);
+  backdrop-filter:blur(12px) saturate(1.03);
+  -webkit-backdrop-filter:blur(12px) saturate(1.03);
+}
+.card{padding:22px;margin-bottom:20px}
+
+/* Narrative / briefing blocks: same language, compact rhythm, no pseudo-paper look. */
+.narrative-setup{
+  position:relative;
+  padding:19px 22px 19px 24px;
+  border:1px solid var(--concept-line);
+  border-left:3px solid rgba(200,90,62,.78);
+  border-radius:13px;
+  background:rgba(255,255,255,.68);
+  box-shadow:var(--concept-shadow-soft);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  font-family:Inter,system-ui,sans-serif;
+  color:#435a6e;
+  line-height:1.56;
+}
+.narrative-setup p{margin:.46rem 0}
+.narrative-setup p:first-child{margin-top:0}
+.narrative-setup p:last-child{margin-bottom:0}
+.narrative-setup.case-overview-story{padding:21px 24px}
+.narrative-setup .narrative-mission{color:var(--concept-slate-deep)}
+
+/* Historic/source reading surfaces remain distinct without returning to beige dominance. */
+.paper,.speech,.section-speech{
+  background:rgba(246,245,238,.94);
+  color:#343b40;
+  box-shadow:0 7px 22px rgba(58,76,94,.06);
+}
+.paper{border:1px solid rgba(80,100,122,.16)}
+.speech{border:1px solid rgba(80,100,122,.14)}
+
+/* Buttons: rust primary, restrained glass secondary. */
+.btn{
+  min-height:42px;
+  border-radius:7px;
+  border:1px solid var(--concept-slate);
+  background:var(--concept-slate);
+  color:#fff;
+  padding:11px 17px;
+  box-shadow:0 4px 12px rgba(58,76,94,.09);
+  transition:background-color .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease;
+}
+.btn:hover:not(:disabled),.btn:focus-visible:not(:disabled){box-shadow:0 7px 16px rgba(58,76,94,.14);transform:translateY(-1px)}
+.btn.primary{
+  background:linear-gradient(180deg,#cf6247,var(--concept-rust));
+  border-color:var(--concept-rust-deep);
+  box-shadow:0 6px 16px rgba(168,66,45,.17);
+}
+.btn.primary:hover:not(:disabled),.btn.primary:focus-visible:not(:disabled){background:#bd5037}
+.btn.ghost{
+  background:rgba(255,255,255,.58);
+  color:var(--concept-slate-deep);
+  border-color:rgba(80,100,122,.3);
+  box-shadow:none;
+}
+.btn.ghost:hover:not(:disabled),.btn.ghost:focus-visible:not(:disabled){background:#fff;border-color:rgba(80,100,122,.48)}
+.btn[disabled],button[disabled]{opacity:.46;box-shadow:none;transform:none}
+
+/* Inputs / interactive answer surfaces */
+input,textarea{
+  color:var(--concept-ink);
+  background:rgba(255,255,255,.78);
+  border-color:rgba(80,100,122,.28);
+}
+input:focus,textarea:focus{outline:2px solid rgba(80,100,122,.2);outline-offset:2px;border-color:#7f98ae}
+.note,.dropzone,.option,.passage-choice,.macro-phase,.argument-function-slot,.d1-layer-slot,.skill-option,.multi-option{
+  background:rgba(255,255,255,.66);
+  color:var(--concept-ink);
+  border-radius:9px;
+  box-shadow:0 2px 8px rgba(58,76,94,.035);
+}
+.note.active,.option.selected,.passage-choice.selected,.analyst-note-option.selected,.skill-option.selected,.function-token.active,.word-token.selected,.multi-option.selected,.dropzone.filled{
+  border-color:#7f98ae!important;
+  background:#eaf0f5!important;
+  color:#3e5870;
+}
+
+/* Feedback and semantic states */
+.feedback{
+  border:1px solid rgba(200,90,62,.18);
+  border-left:3px solid var(--concept-rust);
+  border-radius:9px;
+  background:#fbf1ed;
+  color:#5b514d;
+}
+.recovery-feedback,.summary-accepted,.c02-restored-note{
+  border-color:rgba(110,143,122,.35);
+  border-left-color:var(--concept-sage);
+  background:var(--concept-sage-soft);
+  color:#476555;
+}
+.badge{
+  border-color:rgba(200,90,62,.5);
+  color:var(--concept-rust-deep);
+  background:#fbf0eb;
+  border-radius:999px;
+}
+.info{background:var(--concept-slate);border-color:var(--concept-slate)}
+
+/* Archive overview: closest translation of Concept A's clean recovery directory. */
+.archive-overview-screen .archivehead{margin-bottom:20px}
+.archive-overview-intro{
+  overflow:hidden;
+  background:
+    linear-gradient(102deg,rgba(255,255,255,.86) 0%,rgba(255,255,255,.78) 63%,rgba(225,233,239,.62) 100%);
+  border-left-color:var(--concept-sage);
+}
+.archive-overview-intro::after{
+  content:"";
+  position:absolute;
+  right:-60px;
+  bottom:-78px;
+  width:340px;
+  height:230px;
+  pointer-events:none;
+  opacity:.32;
+  background:
+    repeating-radial-gradient(ellipse at 50% 50%,transparent 0 18px,rgba(80,100,122,.12) 19px 20px,transparent 21px 34px);
+  transform:rotate(-8deg);
+}
+.archive-overview-intro>*{position:relative;z-index:1}
+.directory-access-line{color:var(--concept-sage);font-family:Inter,system-ui,sans-serif}
+.directory-review-note{background:rgba(110,143,122,.065);border-top-color:rgba(80,100,122,.16)}
+.archive-overview-grid{
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:15px;
+  align-items:stretch;
+}
+.archive-file-card{
+  min-height:286px;
+  padding:20px 18px 18px;
+  background:rgba(255,255,255,.76);
+  border-color:rgba(80,100,122,.17);
+  box-shadow:0 11px 28px rgba(58,76,94,.1);
+}
+.archive-file-card::before{
+  content:"";
+  position:absolute;
+  top:0;left:18px;right:18px;
+  height:2px;
+  border-radius:0 0 999px 999px;
+  background:rgba(80,100,122,.2);
+}
+.archive-file-card h3{
+  margin:20px 0 9px;
+  color:var(--concept-slate-deep);
+  font-size:clamp(1.35rem,2.05vw,2rem);
+  line-height:1;
+}
+.archive-file-card p{color:#5b6f80;line-height:1.5;font-size:.93rem}
+.archive-file-code{color:var(--concept-slate);font-size:.77rem}
+.archive-file-state{color:#9b724f;font-size:.62rem;line-height:1.35}
+.archive-file-card.available{
+  border-color:rgba(80,100,122,.25);
+  background:rgba(255,255,255,.8);
+}
+.archive-file-card.available .archive-file-state{color:var(--concept-slate)}
+.archive-file-card.available::before{background:#7f98ae}
+.archive-file-card.restored{
+  border-color:rgba(110,143,122,.36);
+  background:rgba(247,251,248,.84);
+}
+.archive-file-card.restored::before{background:var(--concept-sage)}
+.archive-file-card.restored .archive-file-state{color:var(--concept-sage)}
+.archive-file-card.locked{
+  opacity:.72;
+  background:rgba(237,240,242,.86);
+  border-color:rgba(120,130,140,.18);
+}
+.archive-file-card.locked::before{background:#a5adb4}
+.archive-file-card.locked .archive-file-state{color:#7d878f}
+.archive-file-card.locked .archive-file-open{background:#87939c;border-color:#87939c}
+.master-key-directory-card{
+  margin-top:18px;
+  padding:19px 22px;
+  background:rgba(255,255,255,.72);
+  border-color:rgba(80,100,122,.18);
+}
+.master-key-directory-card h3{color:var(--concept-slate-deep)}
+.master-key-directory-card p{color:#627484}
+.master-key-directory-card.locked{opacity:.76;background:rgba(237,240,242,.84);border-color:rgba(120,130,140,.18)}
+.master-key-directory-card.available{background:rgba(247,251,248,.84);border-color:rgba(110,143,122,.34)}
+
+/* Registers / compact context systems */
+.archive-register,.recovered-context-strip,.recovered-fragment{
+  background:rgba(255,255,255,.56);
+  border-color:rgba(80,100,122,.17);
+  box-shadow:0 3px 12px rgba(58,76,94,.04);
+}
+.recovered-fragment{border-left-color:var(--concept-slate)}
+.context-grid>div{background:rgba(255,255,255,.58);border-left-color:#7890a7}
+.context-grid b{color:var(--concept-rust)}
+
+/* Research / source work */
+.research-card.verified{border-color:rgba(110,143,122,.42);background:rgba(247,251,248,.88)}
+.research-visual{background:#edf1f3;border-color:rgba(80,100,122,.16)}
+.source-document-preview{background:linear-gradient(135deg,#f4f3ed,#faf9f5);color:#42494e}
+.source-document-preview:before{border-color:rgba(80,100,122,.15)}
+
+/* C02 / macro workspace: clean connected analysis surface. */
+.c02-investigation-grid{gap:18px}
+.c02-investigation-grid>.card{background:rgba(255,255,255,.75)}
+.c02-speech-section{
+  background:rgba(249,250,249,.78);
+  border-color:rgba(80,100,122,.16);
+  box-shadow:0 3px 10px rgba(58,76,94,.035);
+}
+.c02-speech-section.map-selected{outline-color:var(--concept-rust)}
+.c02-section-phase-badge,.phase-section-chip{
+  border-radius:999px;
+  background:#e5edf3;
+  color:#4d667c;
+}
+.c02-section-phase-badge{background:var(--concept-slate);color:#fff}
+.macro-phase{border-left-color:var(--concept-slate)}
+.macro-phase.selected{outline-color:var(--concept-rust)}
+.c02-section-mapping,.analyst-record-workflow{border-top-color:rgba(80,100,122,.16)}
+.analyst-record-status{
+  background:rgba(255,255,255,.72);
+  border-color:rgba(80,100,122,.22);
+  border-left-color:var(--concept-slate);
+  border-radius:12px;
+  box-shadow:var(--concept-shadow-soft);
+}
+
+/* Standard modals become bright glass. Dark recovery/transmission systems remain intentional exceptions. */
+.modal{background:rgba(70,84,98,.34);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+.modalbox{
+  background:rgba(250,251,251,.94);
+  color:var(--concept-ink);
+  border:1px solid rgba(80,100,122,.2);
+  border-radius:15px;
+  box-shadow:0 24px 70px rgba(44,59,73,.2);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+}
+.modalbox h3{color:var(--concept-slate-deep)}
+.tooltip{border-bottom-color:#7f98ae}
+.tooltip:after{background:#f8fafb;color:#3f5367;border:1px solid rgba(80,100,122,.16)}
+
+/* Preserve special cinematic/system alerts as dark narrative exceptions, while aligning accents. */
+.archive-alert-dialog,
+.recovery-overlay-panel,
+.final-archive-panel{
+  border-color:rgba(169,184,200,.34);
+}
+.archive-alert-dialog .kicker{color:#d46a4d}
+.archive-alert-keyline{border-left-color:#d46a4d;background:rgba(200,90,62,.1)}
+.analyst-signal-mark{border-color:rgba(200,90,62,.82)}
+.analyst-signal-mark span{background:var(--concept-rust);box-shadow:0 0 18px rgba(200,90,62,.9)}
+.analyst-recovery-bar{background:linear-gradient(90deg,#7890a7,var(--concept-rust))}
+.recovery-progress-bar{background:linear-gradient(90deg,#7890a7,var(--concept-rust))}
+.final-archive-bar{background:linear-gradient(90deg,var(--concept-rust-deep),var(--concept-rust),var(--concept-sage))}
+
+/* Clean section mechanics */
+.subfile-head{border-bottom-color:rgba(80,100,122,.15)}
+.summary-slider-head,.summary-slider-nav,.slider-controls{border-color:rgba(80,100,122,.14)}
+.auto-timeline>div:not(.timeline-arrow){background:rgba(247,251,248,.78);border-color:rgba(110,143,122,.28)}
+.auto-timeline strong,.timeline-arrow{color:var(--concept-sage)}
+.argnode{background:rgba(255,255,255,.66);border-color:rgba(80,100,122,.24)}
+.arrow{color:var(--concept-rust)}
+
+/* Slightly calmer selection and information density. */
+.actions{gap:9px;margin-top:20px}
+.source-note,.task-note,.analyst-record-pending{color:#7c8994}
+
+/* Responsive translation of Concept A: 4→2→1 file cards, without changing workflow. */
+@media(max-width:1100px){
+  .archive-overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .archive-file-card{min-height:245px}
+}
+@media(max-width:760px){
+  main{width:min(94vw,760px);padding-top:24px}
+  .archive-overview-grid{grid-template-columns:1fr}
+  .archive-file-card{min-height:0}
+  .card,.narrative-setup{border-radius:12px}
+  .narrative-setup{padding:17px 18px}
+}
+
+/* Keep prologue/epilogue, their images and cinematic framing exactly in their established visual system. */
+body.cinematic-mode .btn.primary{background:var(--red);border-color:var(--red)}
