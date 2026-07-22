@@ -3155,3 +3155,510 @@ body.archive-overview-mode main{
     align-self:center !important;
   }
 }
+
+/* ========================================================================== 
+   v61 · unified archive language
+   Prologue legibility, neutral status cards, responsive image framing,
+   modern recovery/master-key sequences and coherent task surfaces.
+   ========================================================================== */
+
+:root{
+  --v61-navy:#294b68;
+  --v61-navy-deep:#173a56;
+  --v61-slate:#526d83;
+  --v61-rust:#b64d35;
+  --v61-rust-deep:#963d2b;
+  --v61-sage:#4f775d;
+  --v61-amber:#a96d43;
+  --v61-lock:#9c5548;
+  --v61-line:rgba(65,96,121,.22);
+  --v61-glass-top:rgba(252,254,255,.82);
+  --v61-glass-bottom:rgba(228,237,243,.58);
+  --v61-panel-shadow:0 18px 42px rgba(35,58,78,.13),0 4px 12px rgba(35,58,78,.07),inset 0 1px 0 rgba(255,255,255,.84);
+}
+
+/* Prologue part two: one clearly legible dark-blue type system. The block,
+   transparency and timing from v60 remain unchanged. */
+.prologue-origin-copy,
+.prologue-origin-copy p,
+.prologue-origin-copy .prologue-story-beat,
+.prologue-origin-copy .origin-turn,
+.prologue-origin-copy .prologue-fragment-stack span,
+.prologue-origin-copy .prologue-beat-5,
+.prologue-origin-copy .prologue-beat-6{
+  color:var(--v61-navy) !important;
+  text-shadow:0 1px 0 rgba(255,255,255,.34) !important;
+}
+.prologue-origin-copy .prologue-fragment-stack span{
+  color:var(--v61-navy-deep) !important;
+}
+.prologue-origin-copy .prologue-beat-5{
+  color:var(--v61-navy-deep) !important;
+  font-weight:800 !important;
+}
+
+/* Tablet framing: preserve the historically important left side of the
+   image instead of recentering the crop. */
+@media (min-width:761px) and (max-width:1180px){
+  body.booting-prologue,
+  body.booting-prologue .prologue-stage,
+  .prologue-stage{
+    background-position:left center !important;
+  }
+}
+
+/* Overview: move the image upwards again so less sky is shown, while the
+   existing mask keeps the lower edge soft. */
+body.archive-overview-mode .shell::before{
+  background-position:center 63% !important;
+}
+@media (max-width:1180px){
+  body.archive-overview-mode .shell::before{background-position:center 60% !important}
+}
+@media (max-width:760px){
+  body.archive-overview-mode .shell::before{background-position:center 57% !important}
+}
+
+/* Case-file cards: exactly one neutral paper/glass surface for every state.
+   Status is communicated only by border, wording and lock colour. */
+.archive-overview-grid{
+  align-items:stretch !important;
+}
+.archive-file-card,
+.archive-file-card.restored,
+.archive-file-card.available,
+.archive-file-card.locked{
+  height:410px !important;
+  min-height:410px !important;
+  opacity:1 !important;
+  background-color:rgba(242,247,249,.84) !important;
+  background-image:
+    linear-gradient(145deg,rgba(255,255,255,.62),rgba(224,234,240,.16)),
+    url('../assets/images/archive-paper-glass-texture.webp') !important;
+  background-repeat:no-repeat,repeat !important;
+  background-position:center,center !important;
+  background-size:100% 100%,420px 420px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.96),
+    inset 0 -1px 0 rgba(92,115,133,.08),
+    0 8px 18px rgba(45,67,85,.10),
+    0 26px 50px rgba(45,67,85,.13) !important;
+}
+.archive-file-card.restored{border-color:rgba(79,119,93,.78) !important}
+.archive-file-card.available{border-color:rgba(169,109,67,.78) !important}
+.archive-file-card.locked{border-color:rgba(156,85,72,.76) !important}
+.archive-file-card .archive-file-open{
+  align-self:center !important;
+  margin:auto auto 18px !important;
+}
+.archive-file-card .archive-file-state{
+  flex:0 0 auto !important;
+}
+@media (max-width:1180px) and (min-width:761px){
+  .archive-file-card,
+  .archive-file-card.restored,
+  .archive-file-card.available,
+  .archive-file-card.locked{
+    height:400px !important;
+    min-height:400px !important;
+  }
+}
+@media (max-width:760px){
+  .archive-file-card,
+  .archive-file-card.restored,
+  .archive-file-card.available,
+  .archive-file-card.locked{
+    height:auto !important;
+    min-height:390px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Recovery, contradiction and Master-Key sequences
+   -------------------------------------------------------------------------- */
+.recovery-overlay,
+.final-archive-overlay,
+.archive-alert-overlay,
+.contradiction-overlay{
+  background:rgba(67,88,105,.28) !important;
+  backdrop-filter:blur(12px) saturate(1.02) !important;
+  -webkit-backdrop-filter:blur(12px) saturate(1.02) !important;
+}
+.recovery-overlay-panel,
+.final-archive-panel,
+.archive-alert-dialog,
+.contradiction-panel,
+.final-key-entry,
+.final-key-panel,
+.final-key-confirm,
+.final-completion-wrap .final-archive-panel{
+  color:var(--v61-navy) !important;
+  background:
+    linear-gradient(180deg,var(--v61-glass-top),var(--v61-glass-bottom)),
+    url('../assets/images/glass-topo-fog.webp') center/cover no-repeat,
+    url('../assets/images/archive-surface-texture.webp') center/430px 430px repeat !important;
+  border:1px solid rgba(255,255,255,.82) !important;
+  border-radius:24px !important;
+  box-shadow:
+    0 30px 82px rgba(25,46,64,.27),
+    0 8px 24px rgba(25,46,64,.13),
+    inset 0 1px 0 rgba(255,255,255,.92) !important;
+  backdrop-filter:blur(24px) saturate(1.06) !important;
+  -webkit-backdrop-filter:blur(24px) saturate(1.06) !important;
+}
+.recovery-overlay-panel h2,
+.final-archive-phase h2,
+.archive-alert-dialog h2,
+.contradiction-panel h2,
+.final-key-entry h2,
+[data-id="K0"] h2{
+  color:var(--v61-navy-deep) !important;
+  text-shadow:0 1px 0 rgba(255,255,255,.56) !important;
+}
+.recovery-overlay-case,
+.recovery-file-status,
+.final-archive-systemline,
+.final-archive-status,
+.archive-alert-systemline,
+.contradiction-kicker,
+.final-archive-phase label{
+  color:var(--v61-slate) !important;
+}
+.recovery-percent,
+.final-archive-percent,
+.contradiction-counter span{
+  color:var(--v61-navy-deep) !important;
+  text-shadow:0 2px 10px rgba(41,75,104,.12) !important;
+}
+.recovery-progress-track,
+.final-archive-track,
+.analyst-recovery-track{
+  height:14px !important;
+  border:1px solid rgba(61,91,116,.25) !important;
+  border-radius:999px !important;
+  background:rgba(58,83,105,.12) !important;
+  box-shadow:inset 0 2px 5px rgba(36,58,78,.18),0 1px 0 rgba(255,255,255,.72) !important;
+  overflow:hidden !important;
+}
+.recovery-progress-bar,
+.analyst-recovery-bar{
+  border-radius:999px !important;
+  background:linear-gradient(90deg,#557a99,var(--v61-rust)) !important;
+  box-shadow:0 0 16px rgba(80,119,150,.26) !important;
+}
+.final-archive-bar{
+  border-radius:999px !important;
+  background:linear-gradient(90deg,var(--v61-rust-deep),var(--v61-rust),#6f977f) !important;
+  box-shadow:0 0 18px rgba(182,77,53,.25) !important;
+}
+.recovery-overlay.recovered .recovery-percent,
+.recovery-overlay.recovered .recovery-file-status,
+.recovery-overlay.recovered h2,
+.final-archive-complete h2{
+  color:var(--v61-sage) !important;
+}
+.fragment-reveal,
+.final-archive-cliffhanger,
+.archive-alert-keyline{
+  color:var(--v61-navy) !important;
+  background:rgba(255,255,255,.42) !important;
+  border-color:rgba(79,119,93,.56) !important;
+  border-radius:14px !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.64) !important;
+}
+.fragment-reveal-value,
+.final-fragment-string{
+  color:var(--v61-rust-deep) !important;
+  text-shadow:none !important;
+}
+.final-archive-phase p,
+.archive-alert-copy,
+.archive-alert-copy p,
+.final-key-clue,
+.final-key-denied,
+.contradiction-reveal,
+.contradiction-panel{
+  color:var(--v61-navy) !important;
+}
+.final-archive-phase input,
+.final-key-entry input{
+  color:var(--v61-navy-deep) !important;
+  background:rgba(255,255,255,.72) !important;
+  border:1px solid rgba(69,99,124,.34) !important;
+  border-radius:9px !important;
+  box-shadow:inset 0 2px 5px rgba(40,63,82,.08),0 1px 0 rgba(255,255,255,.7) !important;
+}
+.final-archive-phase input:focus,
+.final-key-entry input:focus{
+  outline:2px solid rgba(182,77,53,.28) !important;
+  border-color:var(--v61-rust) !important;
+}
+
+/* Contradiction sequence: retain its cinematic comparison, but move it into
+   the present-day glass archive instead of the old black console surface. */
+.contradiction-panel{padding:clamp(24px,4vw,48px) !important}
+.contradiction-speaker{
+  padding:18px 16px !important;
+  border:1px solid rgba(77,107,131,.18) !important;
+  border-radius:18px !important;
+  background:rgba(255,255,255,.36) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.66) !important;
+}
+.contradiction-speaker img{
+  border:1px solid rgba(255,255,255,.72) !important;
+  border-radius:15px !important;
+  box-shadow:0 14px 30px rgba(38,60,78,.18) !important;
+}
+.contradiction-speaker h3{color:var(--v61-navy-deep) !important}
+.contradiction-over,
+.contradiction-begin{color:var(--v61-rust-deep) !important}
+.contradiction-vs{color:var(--v61-slate) !important}
+.contradiction-counter small{color:var(--v61-slate) !important}
+.contradiction-272{color:var(--v61-rust-deep) !important}
+.contradiction-reveal{
+  padding:24px !important;
+  border:1px solid rgba(77,107,131,.18) !important;
+  border-radius:18px !important;
+  background:rgba(255,255,255,.40) !important;
+}
+
+/* K0 fallback/master-key screen follows the same overview language. */
+[data-id="K0"]::before{
+  opacity:.34 !important;
+}
+[data-id="K0"] .final-key-entry{
+  max-width:780px !important;
+  padding:30px !important;
+}
+[data-id="K0"] .final-key-entry .feedback{
+  color:var(--v61-navy) !important;
+  background:rgba(255,255,255,.46) !important;
+}
+[data-id="K0"] .final-key-entry .recovery-feedback{
+  color:#365e45 !important;
+  background:rgba(222,239,226,.70) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Concrete file tasks: same cool archive palette as the overview/file covers
+   -------------------------------------------------------------------------- */
+.screen[data-case] .archivehead h2,
+.screen[data-case] h3,
+.screen[data-case] h4{
+  color:var(--v61-navy-deep);
+}
+.screen[data-case] .archivehead{
+  border-bottom-color:rgba(41,75,104,.30) !important;
+}
+.screen[data-case] .status{color:var(--v61-slate) !important}
+
+.screen[data-case] .card,
+.screen[data-case] .narrative-setup:not(.case-overview-story),
+.screen[data-case] .archive-register,
+.screen[data-case] .recovered-context-strip,
+.screen[data-case] .research-card,
+.screen[data-case] .context-grid>div,
+.screen[data-case] .section-summary-slider,
+.screen[data-case] .c02-sections-card,
+.screen[data-case] .analyst-record-status,
+.screen[data-case] .device-definition-box,
+.screen[data-case] .analysis-example,
+.screen[data-case] .device-example,
+.screen[data-case] .macro-phase,
+.screen[data-case] .d1-layer-slot{
+  color:var(--v61-navy) !important;
+  background:
+    linear-gradient(180deg,rgba(252,254,255,.76),rgba(229,238,244,.50)),
+    url('../assets/images/archive-surface-texture.webp') center/430px 430px repeat !important;
+  border-color:rgba(72,103,128,.20) !important;
+  box-shadow:var(--v61-panel-shadow) !important;
+}
+
+/* Historical source material stays paper-like, but uses the cooler archive
+   paper instead of the older yellow/brown palette. */
+.screen[data-case] .paper,
+.screen[data-case] .speech,
+.screen[data-case] .source-document-preview,
+.screen[data-case] .b01-invitation-paper,
+.screen[data-case] .ceremony-programme{
+  color:#314d63 !important;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.56),rgba(235,240,241,.18)),
+    url('../assets/images/archive-paper-texture.webp') center/320px 320px repeat,
+    #f5f4ef !important;
+  border-color:rgba(104,123,137,.26) !important;
+  box-shadow:0 12px 28px rgba(45,67,85,.10),inset 0 1px 0 rgba(255,255,255,.82) !important;
+}
+
+.screen[data-case] .note,
+.screen[data-case] .dropzone,
+.screen[data-case] .option,
+.screen[data-case] .passage-choice,
+.screen[data-case] .analyst-note-option,
+.screen[data-case] .skill-option,
+.screen[data-case] .function-token,
+.screen[data-case] .argument-function-slot,
+.screen[data-case] .multi-option,
+.screen[data-case] .argument-section,
+.screen[data-case] .c02-speech-section{
+  color:var(--v61-navy) !important;
+  background:rgba(248,251,253,.68) !important;
+  border-color:rgba(73,103,128,.24) !important;
+  border-radius:10px !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.60) !important;
+}
+.screen[data-case] .note.active,
+.screen[data-case] .option.selected,
+.screen[data-case] .passage-choice.selected,
+.screen[data-case] .analyst-note-option.selected,
+.screen[data-case] .skill-option.selected,
+.screen[data-case] .function-token.active,
+.screen[data-case] .multi-option.selected,
+.screen[data-case] .macro-phase.selected{
+  color:var(--v61-navy-deep) !important;
+  background:rgba(182,77,53,.09) !important;
+  border-color:rgba(182,77,53,.58) !important;
+  outline-color:rgba(182,77,53,.32) !important;
+}
+.screen[data-case] .dropzone.filled,
+.screen[data-case] .argument-function-slot.filled{
+  color:#365e45 !important;
+  background:rgba(79,119,93,.10) !important;
+  border-color:rgba(79,119,93,.48) !important;
+}
+
+.screen[data-case] .feedback{
+  color:var(--v61-navy) !important;
+  background:rgba(235,242,247,.76) !important;
+  border-left-color:var(--v61-rust) !important;
+  border-radius:0 12px 12px 0 !important;
+}
+.screen[data-case] .feedback.recovery-feedback,
+.screen[data-case] .recovery-feedback,
+.screen[data-case] .summary-accepted,
+.screen[data-case] .c02-restored-note{
+  color:#365e45 !important;
+  background:rgba(222,239,226,.76) !important;
+  border-color:rgba(79,119,93,.55) !important;
+}
+.screen[data-case] .summary-rethink{
+  color:var(--v61-navy) !important;
+  background:rgba(244,232,226,.72) !important;
+  border-color:rgba(182,77,53,.52) !important;
+}
+.screen[data-case] .task-note,
+.screen[data-case] .source-note,
+.screen[data-case] .research-hint,
+.screen[data-case] .analyst-record-pending{
+  color:#6a7e8e !important;
+}
+.screen[data-case] .recovered-fragment,
+.screen[data-case] .master-fragment-card{
+  color:var(--v61-navy) !important;
+  background:rgba(230,241,233,.74) !important;
+  border-color:rgba(79,119,93,.46) !important;
+  border-left-color:var(--v61-sage) !important;
+}
+.screen[data-case] .archive-register,
+.screen[data-case] .recovered-context-strip{
+  border-top-color:rgba(73,103,128,.20) !important;
+  border-bottom-color:rgba(73,103,128,.20) !important;
+}
+.screen[data-case] .evidence-row{
+  border-top-color:rgba(73,103,128,.16) !important;
+}
+.screen[data-case] .evidence-code,
+.screen[data-case] .evidence-type{
+  color:var(--v61-slate) !important;
+}
+.screen[data-case] input,
+.screen[data-case] textarea,
+.screen[data-case] select{
+  color:var(--v61-navy-deep) !important;
+  background:rgba(255,255,255,.72) !important;
+  border-color:rgba(73,103,128,.28) !important;
+}
+.screen[data-case] input:focus,
+.screen[data-case] textarea:focus,
+.screen[data-case] select:focus{
+  border-color:rgba(182,77,53,.55) !important;
+  outline-color:rgba(182,77,53,.22) !important;
+}
+.screen[data-case] .word-token.selected,
+.screen[data-case] mark{
+  color:var(--v61-navy-deep) !important;
+  background:rgba(206,171,108,.42) !important;
+}
+
+/* C-file system/transmission panels are part of the same new archive system. */
+.archive-alert-dialog .kicker{color:var(--v61-rust) !important}
+.archive-alert-dialog .btn.ghost{
+  color:var(--v61-navy) !important;
+  border-color:rgba(41,75,104,.42) !important;
+}
+.analyst-signal-mark{
+  border-color:rgba(182,77,53,.64) !important;
+  box-shadow:0 0 0 6px rgba(182,77,53,.07) !important;
+}
+.analyst-signal-mark span{
+  background:var(--v61-rust) !important;
+  box-shadow:0 0 17px rgba(182,77,53,.42) !important;
+}
+.analyst-recovery-copy,
+.analyst-recovery-meter-head,
+.analyst-recovery-meter-head strong{
+  color:var(--v61-slate) !important;
+}
+
+@media (max-width:760px){
+  .recovery-overlay,
+  .final-archive-overlay,
+  .archive-alert-overlay,
+  .contradiction-overlay{padding:10px !important}
+  .recovery-overlay-panel,
+  .final-archive-panel,
+  .archive-alert-dialog,
+  .contradiction-panel{
+    border-radius:18px !important;
+    padding:22px 17px !important;
+  }
+  .contradiction-speaker{padding:14px 12px !important}
+}
+
+/* Status wording follows the same colour as its lock and outline. */
+.archive-file-card.restored .archive-file-state{color:var(--v61-sage) !important}
+.archive-file-card.available .archive-file-state{color:var(--v61-amber) !important}
+.archive-file-card.locked .archive-file-state{color:var(--v61-lock) !important}
+
+/* Keep the phase colours in C02 as structural edge markers on the shared
+   neutral archive surface. */
+.screen[data-case] .c02-section-1{border-left-color:#8f4b3c !important}
+.screen[data-case] .c02-section-2{border-left-color:#9b7735 !important}
+.screen[data-case] .c02-section-3{border-left-color:#5b7750 !important}
+.screen[data-case] .c02-section-4{border-left-color:#496f7c !important}
+.screen[data-case] .c02-section-5{border-left-color:#6f5680 !important}
+.archive-alert-dialog::before{display:none !important;content:none !important}
+
+/* Overview Master-Key strip also stays neutral; only its lock/status accents
+   communicate availability. */
+.master-key-directory-card,
+.master-key-directory-card.available,
+.master-key-directory-card.locked{
+  background:
+    linear-gradient(180deg,rgba(252,254,255,.76),rgba(229,238,244,.50)),
+    url('../assets/images/archive-surface-texture.webp') center/430px 430px repeat !important;
+  box-shadow:var(--v61-panel-shadow) !important;
+}
+.master-key-directory-card.available{border-color:rgba(79,119,93,.66) !important}
+.master-key-directory-card.locked{border-color:rgba(156,85,72,.62) !important}
+
+/* Restore deliberate archive accents after neutralising the old beige task
+   palette. */
+.screen[data-case] .narrative-setup:not(.case-overview-story){border-left-color:var(--v61-rust) !important}
+.screen[data-case] .analyst-briefing,
+.screen[data-case] .analysis-example,
+.screen[data-case] .device-definition-box,
+.screen[data-case] .analyst-record-status,
+.screen[data-case] .macro-phase{
+  border-left-color:var(--v61-navy) !important;
+}
