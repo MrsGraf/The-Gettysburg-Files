@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Gettysburg Files · Archive Case #272</title>
+<link rel="preload" as="image" href="assets/images/gettysburg-prologue-bg.webp" type="image/webp">
+<style>
+html,body{margin:0;min-height:100%;background:#182431}
+body.booting-prologue{min-height:100vh;background:linear-gradient(180deg,rgba(13,24,35,.24),rgba(13,24,35,.42)),url("assets/images/gettysburg-prologue-bg.webp") center/cover no-repeat fixed}
+body.booting-prologue::before{content:"";position:fixed;inset:0;background:linear-gradient(180deg,rgba(229,236,241,.14),rgba(21,33,44,.18));pointer-events:none;z-index:0}
+body.booting-prologue .shell{position:relative;z-index:1;visibility:visible!important}
+</style>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/prologue.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/concept-a-light.css">
+</head>
+<body class="cinematic-mode booting-prologue">
+<div class="shell">
+<header class="topbar">
+  <div class="brand brand-prologue">
+    <div class="brand-copy">
+      <b>THE GETTYSBURG FILES</b>
+      <div class="smallcaps brand-subtitle">Archive Case #272</div>
+      <button class="archive-home-button" id="archiveHomeButton" data-next="O0" type="button" hidden>ARCHIVE OVERVIEW</button>
+    </div>
+  </div>
+  <div class="header-recovery-cluster">
+    <div class="keymini" id="keyMini">██ · ██ · ██ · █</div>
+    <div class="progresswrap">
+      <div class="progressline"><div class="progressbar" id="globalProgress"></div></div>
+      <div class="progressmeta"><span id="sectionLabel">Archive entry</span><span id="progressLabel">0%</span></div>
+    </div>
+  </div>
+</header>
+<main id="app" aria-live="polite">
+<section class="screen active prologue-screen run-intro" data-id="prologue" data-label="Archive entry" data-progress="0">
+  <div class="prologue-stage">
+    <div aria-label="Historical opening" class="cold-open">
+      <p class="cold-line line-1">November 19, 1863.</p>
+      <p class="cold-line line-2">Gettysburg, Pennsylvania.</p>
+      <p class="cold-line line-3">A nation divided.</p>
+      <p class="cold-line line-4">More than 50,000 casualties.</p>
+      <p class="cold-line line-5">A cemetery is about to be dedicated.</p>
+    </div>
+    <div aria-hidden="true" class="cinematic-blackout"></div>
+    <div class="archive-origin">
+      <div class="origin-copy prologue-origin-copy">
+        <p class="prologue-story-beat prologue-beat-1">Over the past months, historians assembled a comprehensive digital case file on one of the defining moments in American history — to explore what happened at Gettysburg and why it has shaped the American story to this day.</p>
+        <p class="prologue-story-beat prologue-beat-2">Hundreds of documents were collected, examined and connected: photographs, maps, eyewitness accounts, letters and official records.</p>
+        <p class="origin-turn prologue-story-beat prologue-beat-3">Then, during the final digital transfer, large parts of the analytical archive became corrupted.</p>
+        <p class="origin-fragments prologue-fragment-stack"><span>The historical sources survived.</span><span>The research did not.</span><span>Only fragments remain.</span></p>
+        <p class="prologue-story-beat prologue-beat-5"><b>The archive can still be restored.</b></p>
+        <p class="prologue-story-beat prologue-beat-6">But every missing section has to be reconstructed from the surviving evidence before the complete case file can be recovered.</p>
+      </div>
+      <div class="prologue-interface">
+        <div class="smallcaps">ARCHIVE CASE #272</div>
+        <h1>THE GETTYSBURG FILES</h1>
+        <div class="prologue-recovery"><span>Archive Recovery</span><strong>0%</strong></div>
+        <div class="progressline prologue-progress"><div class="progressbar" style="width:0%"></div></div>
+        <button class="btn primary prologue-access" data-next="O0">ACCESS ARCHIVE</button>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+</div>
+<div class="modal" id="everettInfo"><div class="modalbox">
+<button class="btn ghost" onclick="closeModal('everettInfo')">CLOSE</button>
+<h3>Edward Everett's political career</h3>
+<img class="modal-context-image" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Edward_Everett.jpg" alt="Historical portrait of Edward Everett">
+<p>Everett served in the U.S. House of Representatives, as Governor of Massachusetts, U.S. Minister to Great Britain, U.S. Secretary of State and U.S. Senator. He was also president of Harvard College.</p>
+</div></div>
+<div class="modal" id="emancipationInfo"><div class="modalbox">
+<button class="btn ghost" onclick="closeModal('emancipationInfo')">CLOSE</button>
+<h3>What was the Emancipation Proclamation?</h3>
+<p>On January 1, 1863, Lincoln declared enslaved people in the states rebelling against the Union to be free. The proclamation did not abolish slavery everywhere in the United States, but it made emancipation a central part of the Union war effort.</p>
+<div class="image-slider" data-slider>
+  <div class="slider-stage">
+    <figure class="slider-slide active">
+      <img class="modal-context-image" src="https://backintimetoday.com/wp-content/uploads/2025/01/Emancipation-Proclamation-1863.jpg" alt="Historical image connected to the Emancipation Proclamation">
+    </figure>
+    <figure class="slider-slide">
+      <img class="modal-context-image" src="https://upload.wikimedia.org/wikipedia/commons/4/49/Emancipation_proclamation_document.jpg" alt="The Emancipation Proclamation document">
+    </figure>
+  </div>
+  <div class="slider-controls">
+    <button class="btn ghost" type="button" data-slider-prev>PREVIOUS</button>
+    <span class="slider-count" data-slider-count>1 / 2</span>
+    <button class="btn ghost" type="button" data-slider-next>NEXT</button>
+  </div>
+</div>
+</div></div>
+
+<div class="modal" id="confederacyInfo"><div class="modalbox confederacy-modalbox">
+<button class="btn ghost" onclick="closeModal('confederacyInfo')">CLOSE</button>
+<h3>CONFEDERACY</h3>
+<img class="modal-context-image confederacy-flag" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Confederate_Rebel_Flag.svg" alt="Confederate battle flag with the Southern Cross design">
+<p>The Confederate States of America was formed in 1861 by eleven Southern states that seceded from the United States. Its government existed until 1865. The protection of slavery was central to the secession movement and to the new Confederacy.</p>
+<p>After its defeat, the Confederacy disappeared as a state, but its memory remained politically and culturally influential. The <b>Lost Cause</b> narrative romanticized the Confederate cause and downplayed slavery as a central cause of the conflict. This interpretation shaped public memory, monuments and Confederate symbolism for decades and continued to influence debates into the modern era.</p>
+<p class="source-note">Shown: the widely recognized Confederate battle flag with the Southern Cross design. It was a battle flag, not the national flag of the Confederate States.</p>
+</div></div>
+<div class="modal" id="unionInfo"><div class="modalbox wide-modalbox">
+<button class="btn ghost" onclick="closeModal('unionInfo')">CLOSE</button>
+<h3>UNION</h3>
+<img class="modal-context-image modal-map-image" src="assets/images/union-divided-nation-1861.webp" alt="Map showing how the war divided the nation in 1861">
+</div></div>
+
+<div class="modal" id="foundingIdealsInfo"><div class="modalbox wide-modalbox">
+<button class="btn ghost" onclick="closeModal('foundingIdealsInfo')">CLOSE</button>
+<h3>FOUNDING IDEALS</h3>
+<img class="modal-context-image modal-map-image" src="assets/images/founding-fathers-ideals.webp" alt="Founding Fathers and founding ideals of the United States">
+</div></div>
+
+<div class="modal" id="americanHistoryInfo"><div class="modalbox">
+<button class="btn ghost" onclick="closeModal('americanHistoryInfo')">CLOSE</button>
+<h3>GETTYSBURG IN AMERICAN HISTORY</h3>
+<p>Gettysburg was more than a battlefield. Months after the fighting had ended, Americans gathered there on November 19, 1863 to honor the dead and dedicate a new national cemetery. Speakers had been invited to address the crowd as part of the ceremony. One of their speeches would become known as the Gettysburg Address — a speech that went down in American history.</p>
+<figure class="modal-figure">
+  <img class="modal-context-image compact-modal-image" src="https://www.oldpostcards.com/media/c/civ004125.jpg" alt="Historical postcard of the Soldiers' National Cemetery in Gettysburg">
+  <figcaption>The soldiers national Cemetery Gettysburg, PA, USA Civil War Postcard</figcaption>
+</figure>
+</div></div>
+
+
+<div class="modal" id="everettPersonnelFile"><div class="modalbox personnel-file-modalbox">
+<button class="btn ghost" onclick="closeModal('everettPersonnelFile')">CLOSE</button>
+<div class="card person personnel-modal-card">
+  <img alt="Edward Everett" class="portrait personnel-portrait everett-portrait" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Edward_Everett.jpg">
+  <div class="personnel-modal-copy">
+    <span class="badge">Personnel File 01</span>
+    <h3>EDWARD EVERETT</h3>
+    <div class="smallcaps">1794–1865</div>
+    <p>Politician, scholar and <span class="tooltip" data-tip="famous and highly respected" tabindex="0">renowned</span> public speaker</p>
+    <ul>
+      <li>known as one of America's leading public speakers</li>
+      <li>served in the U.S. House of Representatives, as Governor of Massachusetts, U.S. Minister to Great Britain, U.S. Secretary of State and U.S. Senator; he was also president of Harvard College</li>
+    </ul>
+    <div class="role-box">
+      <span class="smallcaps">ROLE</span>
+      <strong>Main <span class="tooltip" data-tip="a person who gives a formal public speech" tabindex="0">orator</span></strong>
+    </div>
+  </div>
+</div>
+</div></div>
+
+<div class="modal" id="lincolnPersonnelFile"><div class="modalbox personnel-file-modalbox">
+<button class="btn ghost" onclick="closeModal('lincolnPersonnelFile')">CLOSE</button>
+<div class="card person personnel-modal-card">
+  <img alt="Abraham Lincoln" class="portrait personnel-portrait" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Abraham_Lincoln_O-77_matte_collodion_print.jpg">
+  <div class="personnel-modal-copy">
+    <span class="badge">Personnel File 02</span>
+    <h3>ABRAHAM LINCOLN</h3>
+    <div class="smallcaps">1809–1865</div>
+    <p>16th President of the United States</p>
+    <ul>
+      <li>led the Union during the American Civil War</li>
+      <li><span class="tooltip" data-tip="to officially announce and put into effect" tabindex="0">issued</span> the Emancipation Proclamation in 1863, declaring enslaved people in the states rebelling against the Union to be free and making emancipation a central part of the Union war effort</li>
+    </ul>
+    <div class="role-box">
+      <span class="smallcaps">ROLE</span>
+      <strong>Deliver a few appropriate <span class="tooltip" data-tip="short statements or comments made in a speech or conversation" tabindex="0">remarks</span></strong>
+    </div>
+  </div>
+</div>
+</div></div>
+
+<div class="final-archive-overlay" id="finalArchiveOverlay" aria-hidden="true">
+  <div class="final-archive-panel" role="dialog" aria-modal="true" aria-labelledby="finalArchiveTitle">
+    <div class="final-archive-systemline"><span>ARCHIVE SYSTEM · FINAL ACCESS PROTOCOL</span><span>MASTER KEY COMPLETE</span></div>
+
+    <div class="final-archive-phase" id="finalArchiveKeyPhase">
+      <div class="kicker">FINAL RECOVERY PROTOCOL</div>
+      <h2 id="finalArchiveTitle">MASTER RECOVERY KEY</h2>
+      <p>The four recovered fragments have reconstructed the final access code.</p>
+      <div class="final-fragment-string" aria-label="Recovered key fragments">18 · 63 · 27 · 2</div>
+      <p class="final-key-clue">Combine what the fragments reveal: <b>When was the Gettysburg Address delivered — and approximately how many words did Lincoln need?</b></p>
+      <label for="finalArchiveKeyInput" class="smallcaps">ENTER COMPLETE MASTER KEY</label>
+      <input id="finalArchiveKeyInput" type="text" autocomplete="off" inputmode="numeric" placeholder="Enter the complete key">
+      <div class="actions"><button class="btn primary" id="finalArchiveEnterKey" type="button">INITIATE FULL ARCHIVE RECOVERY</button></div>
+      <div class="feedback final-key-denied" id="finalArchiveKeyDenied"><b>ACCESS DENIED.</b><br>Recheck the year and the approximate number of words.</div>
+    </div>
+
+    <div class="final-archive-phase final-archive-recovery-phase" id="finalArchiveRecoveryPhase" hidden>
+      <div class="kicker">MASTER KEY ACCEPTED · 1863 – 272</div>
+      <h2>FULL ARCHIVE RECOVERY</h2>
+      <div class="final-archive-percent" id="finalArchiveRecoveryPercent">0%</div>
+      <div class="final-archive-track" aria-hidden="true"><div class="final-archive-bar" id="finalArchiveRecoveryBar"></div></div>
+      <div class="final-archive-status" id="finalArchiveRecoveryStatus">RECONSTRUCTING COMPLETE ARCHIVE…</div>
+    </div>
+
+    <div class="final-archive-phase final-archive-complete" id="finalArchiveCompletePhase" hidden>
+      <div class="kicker">RECOVERY COMPLETE</div>
+      <h2>ARCHIVE CASE #272 · FULLY RESTORED</h2>
+      <p>The battlefield, the historical context, Lincoln's words, the line of argument and the language patterns recovered across the four files have been reconnected.</p>
+      <p class="final-archive-cliffhanger">The archive is complete. The final question is not.</p>
+      <div class="actions"><button class="btn primary" id="openEpilogueFromRecovery" type="button">OPEN FINAL ANALYST FILE</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="recovery-overlay" id="recoveryOverlay" aria-hidden="true">
+  <div class="recovery-overlay-panel" role="dialog" aria-modal="true" aria-labelledby="recoveryOverlayTitle">
+    <div class="smallcaps recovery-overlay-case" id="recoveryOverlayCase">ARCHIVE FILE</div>
+    <h2 id="recoveryOverlayTitle">FILE RECOVERY IN PROGRESS</h2>
+
+    <div class="recovery-percent" id="recoveryPercent">0%</div>
+    <div class="recovery-progress-track" aria-hidden="true">
+      <div class="recovery-progress-bar" id="recoveryProgressBar"></div>
+    </div>
+    <div class="recovery-file-status" id="recoveryFileStatus">RESTORING ARCHIVE RECORD…</div>
+
+    <div class="fragment-reveal" id="fragmentReveal" hidden>
+      <div class="smallcaps" id="fragmentRevealLabel">MASTER KEY FRAGMENT RECOVERED</div>
+      <div class="fragment-reveal-value" id="fragmentRevealValue"></div>
+      <p id="fragmentRevealNote">Master Key updated.</p>
+      <button class="btn primary" id="recoveryContinueButton" type="button">CONTINUE TO NEXT FILE</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/state.js"></script>
+<script src="js/case-a.js"></script>
+<script src="js/case-b.js"></script>
+<script src="js/case-c.js"></script>
+<script src="js/case-d.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
