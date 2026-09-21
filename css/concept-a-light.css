@@ -5521,3 +5521,85 @@ body.file-overview-mode main{background:transparent !important}
 .prologue-screen .prologue-interface h1{
   font-family:Impact,'Arial Narrow',Haettenschweiler,sans-serif !important;
 }
+
+
+/* ==========================================================================
+   v76 · post-v75 refinements
+   - calmer prologue pacing
+   - D01 analytical progression + distractors
+   - directory state borders
+   - blue ungraded selection in File A
+   ========================================================================== */
+
+/* Part 1: only slightly slower than v75, with the same cinematic rhythm. */
+.run-intro .cold-line{animation-duration:1.15s !important}
+.run-intro .line-1{animation-delay:.7s !important}
+.run-intro .line-2{animation-delay:2.6s !important}
+.run-intro .line-3{animation-delay:4.5s !important}
+.run-intro .line-4{animation-delay:6.4s !important}
+.run-intro .line-5{animation-delay:8.3s !important}
+.run-intro .cold-open{animation:coldOpenOut 1.1s ease 11.1s forwards !important}
+
+/* Part 2: let each paragraph settle before the next one appears. */
+.run-intro .archive-origin{animation:v60ArchiveOriginIn 1.15s ease 12.3s forwards !important}
+.run-intro .prologue-origin-copy .prologue-beat-1{animation:prologueBeatIn 1.5s ease 14.2s forwards !important}
+.run-intro .prologue-origin-copy .prologue-beat-2{animation:prologueBeatIn 1.5s ease 17.4s forwards !important}
+.run-intro .prologue-origin-copy .prologue-beat-3{animation:prologueBeatIn 1.5s ease 20.6s forwards !important}
+.run-intro .prologue-origin-copy .prologue-fragment-stack span:nth-child(1){animation:prologueFragmentIn 1.25s cubic-bezier(.2,.8,.2,1) 23.8s forwards !important}
+.run-intro .prologue-origin-copy .prologue-fragment-stack span:nth-child(2){animation:prologueFragmentIn 1.25s cubic-bezier(.2,.8,.2,1) 25.7s forwards !important}
+.run-intro .prologue-origin-copy .prologue-fragment-stack span:nth-child(3){animation:prologueFragmentIn 1.25s cubic-bezier(.2,.8,.2,1) 27.6s forwards !important}
+.run-intro .prologue-origin-copy .prologue-beat-5{animation:prologueBeatIn 1.5s ease 30.6s forwards !important}
+.run-intro .prologue-origin-copy .prologue-beat-6{animation:prologueBeatIn 1.5s ease 33.8s forwards !important}
+.run-intro .prologue-interface{animation:interfaceReveal 1.2s ease 37.3s forwards !important}
+.run-intro .prologue-access{animation:accessReveal .9s ease 38.5s forwards !important}
+
+/* D01: make the three-note progression explicit without giving away the
+   analytical labels the learners still have to match. */
+.d1-stage-heading{
+  display:block;
+  margin:0 0 8px;
+  color:#71889a;
+  font-size:.68rem;
+  font-weight:800;
+  letter-spacing:.13em;
+  line-height:1.25;
+  text-transform:uppercase;
+}
+
+/* Directory status is readable at a glance. Keep the existing card/glass
+   treatment; the frame alone carries the state. */
+.archive-file-card.available{
+  border-width:2px !important;
+  border-color:#c97845 !important;
+}
+.archive-file-card.locked{
+  border-width:2px !important;
+  border-color:#b65b52 !important;
+}
+.archive-file-card.restored{
+  border-width:2px !important;
+  border-color:#6f9b79 !important;
+}
+
+/* This MC state is a selection, not a right/wrong judgement. */
+#a1mc .option.selected{
+  color:var(--select-text) !important;
+  background:var(--select-bg) !important;
+  border-color:var(--select-border) !important;
+  outline-color:rgba(95,130,167,.22) !important;
+  box-shadow:0 0 0 1px rgba(95,130,167,.08) inset !important;
+}
+
+@media(prefers-reduced-motion:reduce){
+  .run-intro .cold-line,
+  .run-intro .cold-open,
+  .run-intro .archive-origin,
+  .run-intro .prologue-origin-copy .prologue-story-beat,
+  .run-intro .prologue-origin-copy .prologue-fragment-stack span,
+  .run-intro .prologue-interface,
+  .run-intro .prologue-access{
+    animation:none !important;
+    opacity:1 !important;
+    transform:none !important;
+  }
+}

@@ -98,3 +98,4 @@ The replaceable `data/c01-answer-matrix.json` has been expanded for the final C0
 
 Baseline v74: prologue continuity/readability, tablet-led mobile convergence, full archive/file overview backgrounds, intro-copy de-duplication, and staged hidden-state gate fix.
 Baseline v75: spoiler-safe introduction copy and restoration of the dedicated prologue logo typeface.
+Baseline v76: slower prologue text reveals, clearer neutral Gettysburg opening line, D01 label distractors and staged analysis headings, status-coloured directory card frames, and blue ungraded MC selection in File A.
